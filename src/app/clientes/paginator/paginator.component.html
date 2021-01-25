@@ -1,0 +1,22 @@
+
+
+  <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Pagina No: {{this.pageNo+1}} de {{totalPages}}
+    <!-- | Elementos: del: {{(size)*(pageNo-1)+1}} al
+
+    <div *ngIf="last; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>{{size*pageNo-size + numberOfElements}}</ng-template>
+    <ng-template #elseBlock>{{numberOfElements*(pageNo)}}</ng-template> -->
+
+   | Total de elementos: {{numberOfElements}}
+  </div>
+  <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate">
+    <button class="btn btn-info" (click)="firstPage()" [disabled]="first">«</button>
+
+    <button class="btn btn-info" [disabled]="first" aria-controls="myTable"
+    data-dt-idx="0" tabindex="0" id="myTable_previous" (click)="restPageNo()">Previous</button>
+
+    <button class="btn btn-info" [disabled]="last" aria-controls="myTable"
+    data-dt-idx="7" tabindex="0" id="myTable_next" (click)="addPageNo()">Next</button>
+
+    <button class="btn btn-info" (click)="lastPage()" [disabled]="last">»</button>
+  </div>

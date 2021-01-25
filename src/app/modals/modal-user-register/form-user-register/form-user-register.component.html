@@ -1,0 +1,139 @@
+
+<div class="card">
+  <div class="card-body">
+    <!-- <h4 class="card-title">Sample Form with the Icons</h4> -->
+    <!-- <h6 class="card-subtitle">made with bootstrap elements</h6> -->
+    <form [formGroup]="_formUser.form" class="form p-t-20">
+
+      <div class="form-group">
+        <label for="exampleInputuname">Nombre</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-pencil"></i></div>
+          <input type="text" class="form-control" formControlName="nombre" id="exampleInputuname"
+            placeholder="Nombre del Usuario">
+          </div>
+          <small *ngIf="_formUser.form.get('nombre').invalid" class="text-danger">
+            * El campo es necesario entre 3 y 10 caracteres </small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Apellido</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-stamp"></i></div>
+          <input type="text" class="form-control" formControlName="apellido" id="exampleInputEmail1"
+            placeholder="Apellido del Usuario">
+        </div>
+        <small *ngIf="_formUser.form.get('apellido').invalid" class="text-danger">
+          * El campo es necesario entre 3 y 10 caracteres</small>
+       </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-email"></i></div>
+          <input type="text" class="form-control" formControlName="email" id="email" placeholder="Correo Electronico">
+        </div>
+        <small *ngIf="_formUser.form.get('email').invalid" class="text-danger">* Agrege un correo valido ej. abc@example.com</small>
+       </div>
+
+      <div class="form-group">
+        <label for="pwd1">Nombre de Usuario</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-user"></i></div>
+          <input type="text" class="form-control" formControlName="nombreUsuario" id="pwd1" placeholder="Registre el nombre del Usuario">
+        </div>
+        <small *ngIf="_formUser.form.get('nombreUsuario').invalid" class="text-danger">* El campo es necesario min caract(4) max caract(10)</small>
+       </div>
+      <div *ngIf="!_formUser.userId" class="form-group">
+        <label for="pwd2">Contraseña</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-key"></i></div>
+          <input  type="text" class="form-control" formControlName="password" id="pwd2" placeholder="Contraseña">
+        </div>
+        <small *ngIf="_formUser.form.get('password').invalid" class="text-danger">* El campo es necesario </small>
+       </div>
+
+      <div *ngIf="!_formUser.userId" class="form-group">
+        <label for="confirm">Confirmar Contraseña</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-key"></i></div>
+          <input type="text" class="form-control" id="confirm" formControlName="passwordConfirm" placeholder="Confrimar la contraseña">
+        </div>
+      </div>
+     <div class="container p-3">
+      <div>
+        <div>
+          <label for="exampleFormControlSelect2">Seleccione los Roles del Usuario</label>
+          <select multiple class="form-control" formControlName="roles" id="exampleFormControlSelect2">
+            <option>admin</option>
+            <option>contabilidad</option>
+            <option>ventas</option>
+            <option>compras</option>
+            <option>produccion</option>
+            <option>almacen</option>
+          </select>
+        </div>
+        <small *ngIf="_formUser.form.get('roles').invalid" class="text-danger">*Seleccione una o varias opciones Ctrl + click </small>
+      </div>
+    </div>
+
+    <div class="m-4">
+
+      <div class="checkbox checkbox-success">
+        <input id="checkbox33" type="checkbox" formControlName="enabled">
+        <label for="checkbox33">Habilitar Usuario !</label>
+      </div>
+    </div>
+      <!-- <div class="form-group">
+        <label for="pwd2">Imagen del Usuario</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-camera"></i></div>
+          <input class="form-control" (change)="this._formUser.onFileSelected($event)"  type="file" required="" placeholder="File Upload">
+
+        </div>
+      </div> -->
+
+
+      <!-- <div class="row form-group">
+        <div formGroupName="productName">
+
+          <select class="form-control" id="productName" formControlName="category" placeholder="Seleccionar Producto"
+            name="category" (click)="getCategories()">
+            <option>Seleccione una Categoria</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.catName">{{cat.catName}}</option>
+          </select>
+        </div>
+      </div> -->
+
+      <!-- <div class="row form-group">
+          <div class="col-md-10">
+
+         <div formGroupName="productName">
+
+              <select
+                class="form-control"
+                id="productName"
+                formControlName="subCategory"
+                placeholder="Seleccionar Producto"
+                (click)="getSubCategories()"
+                name="subcategory">
+          <option>Seleccione una Sub-Categoria</option>
+          <option *ngFor ="let cat of subcategories" [ngValue] ="cat.subCatName">{{cat.subCatName}}</option>
+
+        </select>
+        <small id="valid1" *ngIf="!_form.form.controls['productName'].valid" class="text-danger">*Este campo es requerido.</small>
+
+  </div>
+</div>
+
+</div> -->
+
+
+<button type="submit" (click)="_formUser.onSubmit()" *ngIf="!this._formUser.userId"
+  class="btn btn-info waves-effect waves-light m-r-10" [disabled]="_formUser.form.invalid">Enviar</button>
+  <button type="submit" (click)="_formUser.onEdit()" *ngIf="this._formUser.userId"
+  class="btn btn-success waves-effect waves-light m-r-10" [disabled]="_formUser.form.invalid" >Actualizar</button>
+
+<button type="button" (click)="_formUser.clearForm()" class="btn btn-red waves-effect waves-light">Borrar Formulario</button>
+</form>
+</div>
+</div>

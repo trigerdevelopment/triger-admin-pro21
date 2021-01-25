@@ -1,0 +1,19 @@
+
+/*
+@media only screen and (max-width: 600px) {
+
+  .loader-position .loader {
+    position: relative;
+    left: 25px;
+    top: 10px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  .loader-position {
+    position: absolute;
+    left: 400px;
+    top: 100px;
+  }
+} */

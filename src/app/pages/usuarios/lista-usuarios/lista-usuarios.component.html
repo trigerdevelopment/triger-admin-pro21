@@ -1,0 +1,62 @@
+<div class="row p-3">
+  <div class="col-md-5"></div>
+  <div class="col-md-5"></div>
+  <div class="col-md-1 align-right">
+    <button class="btn btn-info" (click)="mostrarUserRegModal()">Agregar Usuario</button>
+  </div>
+
+</div>
+<div class="table-responsive">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Email</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Activo</th>
+        <th scope="col">acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let u of usuarios">
+        <th scope="row">{{u.id}}</th>
+        <td>{{u.nombre}}</td>
+        <td>{{u.apellido}}</td>
+        <td>{{u.nombreUsuario}}</td>
+      <td>{{u.email}}</td>
+       <td>
+        <div *ngFor="let r of u.roles">
+           <span class="label label-table"
+            [ngClass]="{
+              'label-danger': r.rolNombre==='ROLE_ADMIN',
+              'label-info' : r.rolNombre==='ROLE_CONTA',
+              'label-warning' : r.rolNombre==='ROLE_ALMACEN',
+              'label-success' : r.rolNombre==='ROLE_VENTAS',
+              'label-primary' : r.rolNombre==='ROLE_COMPRAS',
+              'label-inverse' : r.rolNombre==='ROLE_PRODUCCION'
+            }"
+            >{{r.rolNombre}}</span>
+        </div>
+      <!-- <div class="label label-table" [ngClass] ="{'label-info':u.role === 'administrador', 'label-success':u.role === 'usuario',  'label-danger':!u.enabled}">{{u.roles}}</div> -->
+     </td>
+     <td class="small-text">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" (click)="deshabilitarUsuario(u)" [checked]="u.enabled"
+          id ="{{u.nombreUsuario}}" name="example1">
+        <label for="{{u.nombreUsuario}}" class="custom-control-label" ></label>
+      </div>
+    </td>
+    <td class="text-nowrap">
+      <a data-toggle="tooltip" (click)="edit(u)" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+      <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+  </td>
+   </tr>
+
+  </tbody>
+</table>
+</div>
+<app-modal-user-register></app-modal-user-register>

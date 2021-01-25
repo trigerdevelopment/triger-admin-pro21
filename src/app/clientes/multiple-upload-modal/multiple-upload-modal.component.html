@@ -1,0 +1,91 @@
+<div class="fondo-negro animated fadein" >
+  <!-- [ngClass]="_modalService.multipleUpload" -->
+
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Oprima el boton izquierdo del mouse para seleccionar</h5>
+        <button type="button" (click)="cerrarMultipleModalUpload()" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="demoForm" [formGroup]="demoForm" (ngSubmit)="onSubmit()">
+
+        <label class="btn btn-default">
+          <!-- <input id="uploadCaptureInputFile" #fileUploader name="filesArr" ngModel #filesArr="ngModel" (change)="selectFiles($event)" accept="application/xml"  type="file" multiple /> -->
+          <input type="file" class="custom-file-input form-control" id="files" multiple (change)="detectFiles($event)" accept="">
+        </label>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+
+      <div class="alert alert-light" role="alert">{{ message }}</div>
+
+      <div class="card-body">
+        <h4 class="card-title">Lista de Archivos para enviar</h4>
+        <h6 class="card-subtitle">Agregar<code>.archivos en formato xml del Cliente</code>revise bien que sean archivos de Venta.</h6>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Archivo</th>
+                <th>Bites</th>
+                <th>Progress</th>
+                <th>fecha</th>
+                <th><i class="fa fa-trash-o"></i></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let f of selectedFiles; index as index">
+                <td>{{f.name}}</td>
+                <td><span class="label label-danger">{{f.size/1000 | number}} KB</span></td>
+
+                <td>
+                  <!-- <div *ngFor="let progressInfo of progressInfos" class="mb-2"> -->
+                    <!-- <span>{{ progressInfo.fileName }}</span> -->
+                    <div *ngIf="this.progressInfos.length > 0" class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                        attr.aria-valuenow="{{ this.progressInfos[index].value }}" aria-valuemin="0" aria-valuemax="100"
+                        [ngStyle]="{ width: this.progressInfos[index].value + '%' }">
+                        {{ this.progressInfos[index].value }}%
+                      </div>
+                    </div>
+                  <!-- </div> -->
+                </td>
+                <td>{{f.lastModifiedDate|date}}</td>
+                <td>
+                  <a data-toggle="tooltip" data-placement="top" (click)="borrarUnArchivo(index)" title data-original-title="Borrar Archivo"> <i class="fa fa-close text-danger"></i> </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="images-preview mt-2" *ngIf="photos.length">
+        <div class="row">
+          <div class="col-md-6 col-lg-3	 col-xl-2" formArrayName="photos" *ngFor="let photo of photos.controls; let i = index;">
+            <div class="card mb-3" [formGroupName]="i">
+              <button type="button" (click)="removePhoto(i)" class="btn btn-danger remove-btn">x</button>
+              <!-- <img [src]="photo.controls.url.value" class="card-img-top" alt="Image Preview"> -->
+            <div>{{photo}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      ...
+      <div class="modal-footer">
+
+        <button type="button" (click)="cerrarMultipleModalUpload()" class="btn-secondary"
+          data-dismiss="modal">Close</button>
+        <button class="btn-danger" (click)="borrarInput()">borrar archivos</button>
+        <button type="button" [disabled]="!select" (click)="uploadFiles()" class="btn-primary">Enviar
+          Archivo</button>
+      </div>
+    </div>
+  </div>
+
+</div>

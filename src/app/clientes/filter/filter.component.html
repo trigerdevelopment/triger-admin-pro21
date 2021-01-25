@@ -1,0 +1,111 @@
+<div *ngIf="!isLoading" class="row">
+
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row">
+          <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
+          <div class="m-l-10 align-self-center">
+            <h3 class="m-b-0">{{this.totalSales | currency}}</h3>
+            <h5 class="text-muted m-b-0">Total Facturado</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row">
+          <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
+          <div class="m-l-10 align-self-center">
+            <h3 class="m-b-0">{{this.totalSales | currency}}</h3>
+            <h5 class="text-muted m-b-0">Income</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6">
+    <div class="">
+      <div class="">
+        <div class="">
+
+          <div class="chart-wrapper">
+            <!-- <app-sales-by-month></app-sales-by-month> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+<div *ngIf="!isLoading" class="card-body">
+
+  <div *ngIf="isFilter" class="alert alert-success">
+     <i _ngcontent-hjd-c52="" [ngClass]="(isFilter)?'text-danger':'text-info'" class="ti-search text-danger"></i>
+      Filtro de Busqueda <span class="label label-table label-danger">activado</span>
+       , seleccione un rango de fechas. o una busqueda por campos y oprima al icono de busqueda
+       </div>
+
+  <h4 class="card-title">Fitro de Facturas</h4>
+  <h6 class="card-subtitle">Busca por
+    <code>.fechas, numero de folio, Cliente, Proveedor, Sucursal, Total de Factura</code></h6>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th> Fecha >= ?</th>
+          <th>Fecha < ?</th>
+          <th>Folio >= ?</th>
+          <th>Folio <= ?</th>
+          <th>Cliente/Proveedor</th>
+          <th>Sucursal</th>
+          <th>Total >= ?</th>
+          <th>Total <= ?</th>
+          <th></th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="date" [(ngModel)]="filter.iniDate" data-date-format="YYYY-MM-DD" class="input-group input-group-sm"
+              style="width: 88%"></td>
+          <td><input type="date" [(ngModel)]="filter.finalDate" data-date-format="YYYY-MM-DD"
+              class="input-group input-group-sm" style="width: 88%;">
+          </td>
+          <td><input type="text" [(ngModel)]="filter.iniFolio" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="filter.finalFolio" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="filter.company" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="filter.sucursal" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="filter.total" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="filter.total2" class="input-group input-group-sm"></td>
+          <th>
+            <a _ngcontent-rpy-c70="" data-toggle="tooltip" (click)="addFilter(filter)" data-original-title="Filtrar">
+              <i _ngcontent-hjd-c52="" [ngClass]="(isFilter)?'text-danger':'text-info'" class="ti-search text-danger"></i></a>
+
+           </th>
+          <th><a _ngcontent-rpy-c70="" data-toggle="tooltip" (click)="quitarFiltro()"
+              data-original-title="Quitar Filtro"><i _ngcontent-rpy-c70=""  class="fa fa-close text-danger"></i></a></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="dataTables_length" id="myTable_length">
+
+  <label>
+    Mostrar
+    <select name="myTable_length" [(ngModel)]="filter.pageSize" (change)="setEventPageSize($event)" aria-controls="myTable">
+      <option *ngFor="let c of pages" [value]="c.id">{{c.name}}</option>
+      <option selected=selected></option>
+    </select>entradas </label>
+  </div>
+

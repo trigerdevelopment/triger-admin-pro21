@@ -1,0 +1,100 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Responsive Table </h4>
+      <h6 class="card-subtitle">Create responsive tables by wrapping any <code>.table</code> in
+        <code>.table-responsive </code>
+      </h6>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre del Cliente</th>
+              <th>Enero</th>
+              <th>Febrero</th>
+              <th>Marzo</th>
+              <th>Abril</th>
+              <th>Mayo</th>
+              <th>Junio</th>
+              <th>Julio</th>
+              <th>Agosto</th>
+              <th>Septiembre</th>
+              <th>Octubre</th>
+              <th>Noviembre</th>
+              <th>Diciembre</th>
+              <th><h4>Total Anual</h4></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of clientes; let index = index">
+              <td> {{c.sucursal}} {{c.customerName }} </td>
+              <td>{{c.january | currency}} </td>
+              <td>{{c.february |currency}} </td>
+              <td>{{c.march |currency}} </td>
+              <td>{{c.april |currency}} </td>
+              <td>{{c.may |currency}} </td>
+              <td>{{c.june |currency}} </td>
+              <td>{{c.july |currency}} </td>
+              <td>{{c.august |currency}} </td>
+              <td>{{c.september |currency}} </td>
+              <td>{{c.october |currency}} </td>
+              <td>{{c.november |currency}} </td>
+              <td>{{c.december |currency}} </td>
+              <td><h4> {{c.january + c.february
+                 + c.march + c.april+
+                 c.may+c.june+c.july+
+                 c.august+c.september+
+                 c.october+c.november+
+                 c.december|currency}}</h4> </td>
+
+            </tr>
+            <tr>
+              <td><h4>Totales del Mes</h4></td>
+              <td>
+                <h4>{{salesJan | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesFeb | currency}} </h4>
+              </td>
+              <td>
+                <h4>{{salesMar | currency}} </h4>
+              </td>
+              <td>
+                <h4>{{salesAbr | currency}} </h4></td>
+              <td>
+                <h4>{{salesMay | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesJun | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesJul | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesAug | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesSep | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesOct | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesNov | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{salesDic | currency}}</h4>
+              </td>
+              <td>
+                <h4>{{ttlanualSales | currency}}</h4>
+              </td>
+            </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

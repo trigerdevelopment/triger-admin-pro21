@@ -1,0 +1,65 @@
+<div class="row p-3">
+  <div class="col-md-5"></div>
+  <div class="col-md-5"></div>
+  <div class="col-md-1 align-right">
+    <button class="btn btn-info" (click)="mostrarUserRegModal()">Agregar Tarea</button>
+  </div>
+
+</div>
+<div class="table-responsive">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tarea</th>
+        <th scope="col">Asignado a</th>
+        <th scope="col">Requerido por</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Prioridad</th>
+        <th scope="col">Fecha inicial</th>
+        <th scope="col">Fecha final</th>
+        <th scope="col">Tarea Finalizada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let u of tasks">
+        <th scope="row">{{u.id}}</th>
+        <td [ngStyle]="{'text-decoration':u.completed ? 'line-through': ''}">{{u.task}}</td>
+        <td>{{u.asignedTo}}</td>
+        <td><span class="label label-table label-primary" >{{u.requestby.toUpperCase()}}</span></td>
+        <td><span class="label label-table"
+          [ngClass]="{
+            'label-danger': u.status==='Estancado',
+            'label-info' : u.status==='En Proceso',
+            'label-success' : u.status==='Terminada'}"
+            >{{u.status}}</span></td>
+
+            <td><span class="label label-table"
+                [ngClass]="{
+                  'label-danger': u.priority==='Alta',
+                  'label-primary' : u.priority==='Baja',
+                  'label-warning' : u.priority==='Media'}"
+                  >{{u.priority}}</span></td>
+
+            <td>{{u.date}}</td>
+            <td>{{u.completedDate}}</td>
+     <td class="small-text">
+      <div class="custom-control custom-checkbox">
+        <input  id="{{u.id}}n" type="checkbox" class="custom-control-input" (click)="completed(u)" [checked]="u.completed" name="example1">
+        <label for="{{u.id}}n" class="custom-control-label" ></label>
+        <!-- <p>Habilitar Tarea</p> -->
+      </div>
+    </td>
+    <td class="text-nowrap">
+      <a data-toggle="tooltip" (click)="edit(u)" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+      <a data-toggle="tooltip" (click)="deleteTask(u)" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+  </td>
+
+   </tr>
+
+  </tbody>
+</table>
+</div>
+<app-modal-task></app-modal-task>
+

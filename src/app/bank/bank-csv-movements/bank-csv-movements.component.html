@@ -1,0 +1,322 @@
+
+<div *ngIf="!isLoading" class="row">
+
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row">
+          <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
+          <div class="m-l-10 align-self-center">
+            <h3 class="m-b-0">{{this.totalSales | currency}}</h3>
+            <h5 class="text-muted m-b-0">Total Facturado</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+        <div class="d-flex flex-row">
+            <div class="p-10 bg-info">
+                <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+            <div class="align-self-center m-l-20">
+                <h3 class="m-b-0 text-info">{{this.totalSales | currency}}</h3>
+                <h5 class="text-muted m-b-0">Depositos</h5></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+  <div class="card">
+      <div class="d-flex flex-row">
+          <div class="p-10 bg-inverse">
+              <h3 class="text-white box m-b-0"><i class="ti-wallet"></i></h3></div>
+          <div class="align-self-center m-l-20">
+              <h3 class="m-b-0">$18090</h3>
+              <h5 class="text-muted m-b-0">Income</h5></div>
+      </div>
+  </div>
+</div>
+
+  <div class="col-lg-3 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-row">
+          <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
+          <div class="m-l-10 align-self-center">
+            <h3 class="m-b-0">{{this.totalSales | currency}}</h3>
+            <h5 class="text-muted m-b-0">Income</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-md-6">
+    <div class="">
+      <div class="">
+        <div class="">
+
+          <div class="chart-wrapper">
+           <!-- <app-sales-by-month></app-sales-by-month> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+
+<div *ngIf="!isLoading" class="card-body">
+
+  <div *ngIf="isFilter" class="alert alert-success"> <i _ngcontent-hjd-c52="" [ngClass]="(isFilter)?'text-danger':'text-info'" class="ti-search text-danger"></i> Filtro de Busqueda <span class="label label-table label-danger">activado</span> , seleccione un rango de fechas. o una busqueda por campos y oprima al icono de busqueda </div>
+
+  <h4 class="card-title">Fitro de Movimientos Bancarios</h4>
+  <h6 class="card-subtitle">Busca por
+    <code>.fechas, numero de movimientos, Extendido, Proveedor, Sucursal, Total de Factura</code></h6>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th> Fecha >= ?</th>
+          <th>Fecha < ?</th>
+          <th>Folio >= ?</th>
+          <th>Folio <= ?</th>
+          <th>Cliente/Proveedor</th>
+          <th>Sucursal</th>
+          <th>Total >= ?</th>
+          <th>Total <= ?</th>
+          <th></th>
+
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><input type="date" [(ngModel)]="iniDate" data-date-format="YYYY-MM-DD" class="input-group input-group-sm"
+              style="width: 88%"></td>
+          <td><input type="date" [(ngModel)]="finalDate" data-date-format="YYYY-MM-DD"
+              class="input-group input-group-sm" style="width: 88%;">
+          </td>
+          <td><input type="text" [(ngModel)]="iniFolio" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="finalFolio" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="company" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="sucursal" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="total" class="input-group input-group-sm"></td>
+          <td><input type="text" [(ngModel)]="total2" class="input-group input-group-sm"></td>
+          <th>
+            <a _ngcontent-rpy-c70="" data-toggle="tooltip" (click)="addFilter()" data-original-title="Filtrar">
+              <i _ngcontent-hjd-c52="" [ngClass]="(isFilter)?'text-danger':'text-info'" class="ti-search text-danger"></i></a>
+
+           </th>
+          <th><a _ngcontent-rpy-c70="" data-toggle="tooltip" (click)="quitarFiltro()"
+              data-original-title="Quitar Filtro"><i _ngcontent-rpy-c70=""  class="fa fa-close text-danger"></i></a></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" class="card">
+  <div class="card-body">
+    <!-- <h4 class="card-title"></h4>
+    <h6 class="card-subtitle">Data table example</h6> -->
+    <div class="table-responsive">
+      <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+        <!-- <div class="dataTables_length" id="myTable_length">
+          <label>Mostrar <select name="myTable_length" (change)="setEventPageSize($event)" aria-controls="myTable"
+              class="" >
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select> entradas</label>
+        </div> -->
+
+
+        <div class="dataTables_length" id="myTable_length">
+
+          <label>
+            Mostrar
+            <select name="myTable_length" [(ngModel)]="selectedValue" (change)="setEventPageSize($event)" aria-controls="myTable">
+              <option *ngFor="let c of pages" [value]="c.id">{{c.name}}</option>
+              <option selected=selected></option>
+            </select>entradas </label>
+          </div>
+
+        <div class="dataTables_length ml-2" id="myTable_length">
+          <!-- <button class="btn btn-primary btn-sm" (click)="mostrarModal()">Agragar Factura</button> -->
+        </div>
+        <div id="myTable_filter" class="dataTables_filter">
+          <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarMultipleModal()" title
+            data-original-title="agregar multiple-facutras" class="btn btn-warning btn-circle btn-sm"><i
+              class="fa fa-plus"></i> </button>
+
+          <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarModal()" title
+            data-original-title="agregar facutra" class="btn btn-secondary btn-circle btn-sm"><i class="fa fa-plus"></i>
+          </button>
+          <button class="btn btn-primary btn-sm ml-2" (click)="mostrarPaymentModal()">Pagar Factura</button>
+
+        </div>
+
+
+
+        <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
+          aria-describedby="myTable_info">
+          <thead>
+            <tr role="row">
+              <th class="sorting_asc" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">#</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionOrderBy('fecha')"
+                style="width: 5%;">Fecha</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionOrderBy('fecha')"
+                style="width: 5%;">Fecha Pago</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Office: "
+                style="width:2%;">#</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Age: activate to sort column ascending" (click)="functionOrderBy('folio')"
+                style="width: 5%;">Folio</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" (click)="functionOrderBy('company')"
+                style="width:30%;">Cliente</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" (click)="functionOrderBy('sucursal')"
+                style="width:30%;">Sucursal</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">SubTotal</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Impuesto</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" (click)="functionOrderBy('total')"
+                style="width:5%;">Total</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Archivo</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Acciones</th>
+            </tr>
+            <tr role="row" class="alert-gray">
+              <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate> -->
+              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
+              </th>
+              <th class="form-group" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionOrderBy('fecha')"
+                style="width:1%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
+              </th>
+              <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 5%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" style="width:30%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <hr>
+            <tr role="row" class="odd" *ngFor="let inv of this.invoices">
+              <td>{{inv.id}}</td>
+              <td>{{inv.fecha|date:'dd/MM/yyyy'}}</td>
+              <td>{{inv.fechaPago|date:'dd/MM/yyyy'}}</td>
+              <td>-</td>
+              <td>{{inv.folio}}</td>
+              <td>{{inv.company}}</td>
+              <td>{{inv.sucursal}}</td>
+              <td>{{inv.subTotal|currency}}</td>
+              <td>{{inv.impuesto|currency}}</td>
+              <td>{{inv.total|currency}}</td>
+              <!-- <td>{{inv.nombreArchivo}}</td> -->
+              <td><span class="label label-warning">pagar</span></td>
+              <td><span class="label label-info">admin</span></td>
+
+            </tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3">Larry the Bird</td>
+            <td>{{+ this.totalSales}}</td>
+
+          </tbody>
+        </table>
+        <div *ngIf="this.pageable.content.length == 0" class="alert alert-info text-center">No existen Movimientos del mes en curso. </div>
+        <div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">Pagina No: {{this.pageNo+1}} de {{pageable.totalPages}}
+          | Elementos: del: {{(pageable.size)*(pageNumber-1)+1}} al
+          <!-- <div *ngIf="pageable.last; else elseBlock">{{(pageable.size)*2}}.</div>
+          <div #elseBlock>{{pageable.numberOfElements}}</div> Total de elementos: {{pageable.totalElements}} -->
+          <div *ngIf="pageable.last; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>{{pageable.size*pageNumber-pageable.size + pageable.numberOfElements}}</ng-template>
+              <ng-template #elseBlock>{{pageable.numberOfElements*(pageNumber)}}</ng-template> del Total de elementos: {{pageable.totalElements}}
+        </div>
+        <div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate">
+          <button class="btn btn-primary" [ngClass]="{'disabled':this.pageNo == 0}">«</button>
+          <button class="btn btn-primary" [ngClass]="{'disabled':this.pageNo == 0}" aria-controls="myTable"
+            data-dt-idx="0" tabindex="0" id="myTable_previous" (click)="restPageNo()">Previous</button>
+            <!-- <span *ngFor="let t of this.pagesLenght ; let index = index"> -->
+
+              <!-- <span  let i=0 i < 5 i++ ; let index = index"> -->
+
+            <!-- <a class="paginate_button" [ngClass]="{'current':this.currentPage == index}" aria-controls="myTable"
+              data-dt-idx="1" tabindex="0" (click)="getFacturasPorPagina(this.pageSize,index)">{{index +1 }}</a> -->
+            <!-- <a class="paginate_button" *ngIf ="this.buttonToShow > 1" aria-controls="myTable" [ngClass] ="{'current':this.pageNo == 1}" data-dt-idx="2" tabindex="0"(click)="getFacturasPorPagina(this.pageSize,1)">2</a>
+            <a class="paginate_button" *ngIf ="this.buttonToShow > 2" aria-controls="myTable" [ngClass] ="{'current':this.pageNo == 2}" data-dt-idx="3" tabindex="0"(click)="getFacturasPorPagina(this.pageSize,2)">3</a>
+            <a class="paginate_button" *ngIf ="this.buttonToShow > 3" aria-controls="myTable" [ngClass] ="{'current':this.pageNo == 3}" data-dt-idx="4" tabindex="0"(click)="getFacturasPorPagina(this.pageSize,3)">4</a><a
+              class="paginate_button" *ngIf ="this.buttonToShow > 4" aria-controls="myTable" [ngClass] ="{'current':this.pageNo == 4}" data-dt-idx="5" tabindex="0" (click)="getFacturasPorPagina(this.pageSize,4)">5</a>
+              <a class="paginate_button" *ngIf ="this.buttonToShow > 5" aria-controls="myTable" [ngClass] ="{'current':this.pageNo == 5}" data-dt-idx="1" tabindex="0" (click)="getFacturasPorPagina(this.pageSize,5)">1</a> -->
+
+          <!-- </span> -->
+          <button class="btn btn-primary" [ngClass]="{'disabled': this.isLastPage}" aria-controls="myTable"
+            data-dt-idx="7" tabindex="0" id="myTable_next" (click)="addPageNo()">Next</button>
+            <button class="btn btn-primary" [ngClass]="{'disabled': this.isLastPage}">»</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="card-footer pb-0 pt-3">
+  <jw-pagination [items]="items" class="cursor"  (changePage)="onChangePage($event)"></jw-pagination>
+</div> -->
+
+
+<!-- <app-modal-upload></app-modal-upload> -->
+<!-- <app-multiple-upload-modal></app-multiple-upload-modal> -->
+<!-- <app-multiple-file-upload-modal></app-multiple-file-upload-modal> -->
+<!-- <app-payment-modal></app-payment-modal> -->
+
+
+
+<div class="row m-t-10">
+
+  <div *ngIf="isLoading" class="loader">
+    <div class="loader__figure"></div>
+    <p class="loader__label">Enviando Datos...</p>
+   </div>
+ </div>

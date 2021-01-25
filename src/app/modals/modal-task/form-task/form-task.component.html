@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="_formUser.form" class="form p-t-20">
+
+      <div class="form-group">
+        <label for="exampleInputuname">Tarea</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-pencil"></i></div>
+          <input type="text" class="form-control" formControlName="task" id="exampleInputuname"
+            placeholder="Tarea a realizar">
+        </div>
+        <small *ngIf="_formUser.form.get('task').invalid" class="text-danger">
+          * El campo es necesario entre 3 y 255 caracteres </small>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">Responsable</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-user"></i></div>
+          <input type="text" class="form-control" formControlName="asignedTo" id="exampleInputEmail1"
+            placeholder="Asignar a Responsable">
+        </div>
+        <small *ngIf="_formUser.form.get('asignedTo').invalid" class="text-danger">
+          * El campo es necesario entre 3 y 10 caracteres</small>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd2">Prioridad</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-pin-alt"></i></div>
+          <select formControlName="priority" class="custom-select col-12" id="priority">
+            <option selected="">Prioridad...</option>
+            <option value="Alta">Alta</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+        <small *ngIf="_formUser.form.get('priority').invalid" class="text-danger">* Seleccione la prioridad</small>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd2">Estado</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-stamp"></i></div>
+          <select formControlName="status" class="custom-select col-12" id="estado">
+            <option selected="">Estado...</option>
+            <option value="Estancado">Estancado</option>
+            <option value="En Proceso">En proceso</option>
+            <option value="Terminada">Terminada</option>
+          </select>
+        </div>
+        <small *ngIf="_formUser.form.get('priority').invalid" class="text-danger">* Seleccione el Estado</small>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd2">Fecha de Asignacion</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class=" ti-arrow-top-right"></i></div>
+          <input type="date" class="form-control" formControlName="date" id="pwd2" placeholder="Fecha">
+        </div>
+        <small *ngIf="_formUser.form.get('date').invalid" class="text-danger">* El campo es necesario </small>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm">Fecha para Terminar</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class=" ti-face-smile"></i></div>
+          <input type="date" class="form-control" id="confirm" formControlName="completedDate"
+            placeholder="Fecha de Terminacion">
+        </div>
+        <small *ngIf="_formUser.form.get('date').invalid" class="text-danger">* El campo es necesario </small>
+      </div>
+
+      <div class="m-4">
+
+        <div class="checkbox checkbox-success">
+          <input id="checkbox33" type="checkbox" formControlName="completed">
+          <label for="checkbox33">Tarea completada</label>
+        </div>
+      </div>
+
+      <button type="submit" (click)="_formUser.onSubmit()" *ngIf="!this._formUser.taskId"
+        class="btn btn-info waves-effect waves-light m-r-10 m-b-10" [disabled]="_formUser.form.invalid">Enviar</button>
+      <button type="submit" (click)="_formUser.onEdit()" *ngIf="this._formUser.taskId"
+        class="btn btn-success waves-effect waves-light m-r-10 m-b-10"
+        [disabled]="_formUser.form.invalid">Actualizar</button>
+
+      <button type="button" (click)="_formUser.clearForm()" class="btn btn-red waves-effect waves-light m-b-10">Borrar
+        Formulario</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="this._formUser.isspinner" class="preloader">
+  <div class="loader">
+    <div class="loader__figure"></div>
+    <p class="loader__label">Admin Pro</p>
+  </div>
+</div>
