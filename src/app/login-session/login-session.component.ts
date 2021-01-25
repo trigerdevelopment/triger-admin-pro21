@@ -9,9 +9,7 @@ import Swal from 'sweetalert2';
 import { CrudService } from '../services/shared/crud.service';
 import { AuthSessionService } from '../services/auth/auth-session.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducers';
 
-import * as AuthActions from '../store/actions/auth.actions';
 
 @Component({
   selector: 'app-login-session',
@@ -33,7 +31,7 @@ export class LoginSessionComponent implements OnInit {
     private tokenService: AuthSessionService,
     private authService: CrudService,
     private router: Router,
-    private store: Store<AppState>
+    // private store: Store<AppState>
 
   ) { }
 
@@ -55,7 +53,7 @@ export class LoginSessionComponent implements OnInit {
     console.log('ENTRAMOS AL LOGIN');
 
     this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
-    this.store.dispatch(AuthActions.loginComponent({user: this.loginUsuario}))
+    // this.store.dispatch(AuthActions.loginComponent({user: this.loginUsuario}))
 
 
 

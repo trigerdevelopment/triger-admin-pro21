@@ -12,8 +12,6 @@ import { ModalUserCardComponent } from '../modals/modal-user-card/modal-user-car
 import { ModalTaskComponent } from '../modals/modal-task/modal-task.component';
 import { FormTaskComponent } from '../modals/modal-task/form-task/form-task.component';
 import { ModalUploadComponent } from '../modals/modal-upload/modal-upload.component';
-import { SalesByMonthComponent } from '../reports/sales-by-month/sales-by-month.component';
-import { ChartsModule } from 'ng2-charts';
 
 
 

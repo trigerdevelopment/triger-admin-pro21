@@ -5,7 +5,6 @@ import { PagenofoundComponent } from './pagenofound/pagenofound.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './services/auth/auth.guard';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
-import { ClientesComponent } from './clientes/clientes.component';
 import { CustomerComponent } from './customer/customer.component';
 
 import { PagesComponent } from './pages/pages.component';
@@ -40,22 +39,10 @@ const appRoutes: Routes = [
     loadChildren: () => import('./proveedores/proveedores.module').then(m => m.ProveedoresModule),
 
   },
-  {
-    path: 'clientes',
-    component: ClientesComponent,
-    loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
-
-  },
-  {
+   {
     path: 'customer',
     component: CustomerComponent,
     loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule),
-
-  },
-  {
-    path: 'reporteschal',
-    component: ClientesComponent,
-    loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
 
   },
 

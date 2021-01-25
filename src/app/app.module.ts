@@ -26,6 +26,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store';
+import { AuthEffects } from './store/effects/auth.effects';
 
 
 
@@ -57,6 +60,12 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     APP_ROUTES,
     // MODULES_ROUTES,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forRoot(reducers, { metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      }}),
+    EffectsModule.forFeature([AuthEffects]),
 
 
   ],

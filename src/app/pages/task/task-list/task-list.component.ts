@@ -5,7 +5,6 @@ import { Task } from '../../../models/task';
 import { FormTaskService } from '../../../services/form-services/form-task.service';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/app.reducers';
 import { cargarTareas } from '../store/actions/task.actions';
 import { Subscription } from 'rxjs';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -28,7 +27,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
               public _modalService: ModalService,
               public _crudService: CrudService,
               public _formTaskService: FormTaskService,
-              public store: Store<AppState>) { }
+              // public store: Store<AppState>
+              ) { }
 
 
               ngOnDestroy(): void {
@@ -42,18 +42,18 @@ export class TaskListComponent implements OnInit, OnDestroy {
     // });
     // this.getTasks();
 
-     this.storeSuscribe =  this.store.select('tasks').subscribe((tasks) => {
-        console.log('taslk ', tasks);
-        if(tasks){
-          console.log('ENTREMOS', tasks);
+    //  this.storeSuscribe =  this.store.select('tasks').subscribe((tasks) => {
+    //     console.log('taslk ', tasks);
+    //     if(tasks){
+    //       console.log('ENTREMOS', tasks);
 
-          this.tasks = tasks.tasks;
+    //       this.tasks = tasks.tasks;
 
-        }
-      })
+    //     }
+    //   })
 
 
-      this.store.dispatch(cargarTareas());
+      // this.store.dispatch(cargarTareas());
   }
 
   mostrarUserRegModal(){

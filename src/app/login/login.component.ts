@@ -7,13 +7,9 @@ import Swal from 'sweetalert2'
 import { CrudService } from '../services/shared/crud.service';
 import { AuthSessionService } from '../services/auth/auth-session.service';
 import { select, Store } from '@ngrx/store';
-import { AppState } from '../app.reducers';
-import * as AuthActions from '../store/actions/auth.actions';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { JwtDTO } from '../models/jwt-dto';
-import { authSelector, selectJwt } from '../store/selectors/auth.selector';
-import { AuthState } from '../store/reducers/auth.reducers';
 import { SpinnerService } from '../services/spiner.service';
 
 declare function init_plugins(): void;
@@ -42,7 +38,7 @@ export class LoginComponent implements OnInit {
     private authservice: AuthService,
     public spinnerService: SpinnerService,
     private router: Router,
-    private store: Store<AppState>
+    // private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -68,7 +64,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.isspinner = true;
-    this.store.dispatch(AuthActions.loginComponent({ user: this.form.value }));
+    // this.store.dispatch(AuthActions.loginComponent({ user: this.form.value }));
     // this.store.dispatch(AuthActions.isLoading())
 
 
