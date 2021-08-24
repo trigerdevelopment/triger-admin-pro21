@@ -27,7 +27,6 @@ export class GetService {
   httpHeaders: HttpHeaders;
 
 
-
   constructor(private http: HttpClient) { }
 
   getAllAccounts(url: string): Observable<Pageable> {
@@ -77,6 +76,13 @@ export class GetService {
     return this.http.get<Pageable>(`${URL_SERVICIOS}${url}/?pageSize=${pageSize}&pageNo=${pageNo}&sortBy=${sortBy}&orderBy=${orderBy}`, { headers: this.httpHeaders })
 
 
+  }
+
+  getAllInvoice(query:any): Observable<Pageable> {
+    console.log('GET ALL ACCOUNTS TYPE');
+    this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<Pageable>(`${query}`, { headers: this.httpHeaders })
+    .pipe()
   }
 
 
@@ -156,7 +162,17 @@ export class GetService {
           // this._refreshNeeded$.next;
         })
       )
+  }
 
+  getAllObjects(url: string): Observable<any[]> {
+    this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any[]>(URL_SERVICIOS + url, { headers: this.httpHeaders })
+    .pipe()
+      // .pipe(
+      //   tap(() => {
+      //     // this._refreshNeeded$.next;
+      //   })
+      // )
   }
 
 

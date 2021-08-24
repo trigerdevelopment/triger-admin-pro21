@@ -5,13 +5,17 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   providedIn: 'root'
 })
 export class NgxModalService {
+
   modalRef: BsModalRef;
   config = {
     backdrop: true,
     ignoreBackdropClick: true,
     class: 'modal-lg'
   };
-  constructor(private modalService: BsModalService) { }
+
+
+
+  constructor(public modalService: BsModalService) { }
 
   hide() {
     if (this.modalRef) {

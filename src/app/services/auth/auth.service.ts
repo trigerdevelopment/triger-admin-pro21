@@ -7,12 +7,6 @@ import { NuevoUsuario } from 'src/app/models/nuevo-usuario';
 import { LoginUsuario } from 'src/app/models/login-usuario';
 import { JwtDTO } from 'src/app/models/jwt-dto';
 
-// import { URL_SERVICIOS } from './url/url';
-
-// import { config } from './../../config';
-//import { Tokens } from '../models/tokens';
-
-// import { TOKEN_NAME } from '../../guard/usuario.service';
 export class Tokens {
   jwt: string;
   refreshToken: string;
@@ -43,7 +37,7 @@ export class AuthService {
       .pipe(
         tap(token => {
           console.log('TOKEN ', token);
-          this.doLoginUser(token.nombreUsuario, token);
+          // this.doLoginUser(token.nombreUsuario, token);
         }),
         // mapTo(true),
         // catchError(error => {
@@ -104,7 +98,7 @@ export class AuthService {
     return localStorage.getItem(this.JWT_TOKEN);
   }
 
-  private doLoginUser(username: any, token:any) {
+  public doLoginUser(username: any, token:any) {
     console.log('DO LOGIN USER', username, 'TOKEN ', token);
     this.loggedUser = username;
     console.log('USER AUTH ', token.authorities);
@@ -137,7 +131,7 @@ export class AuthService {
   }
 
   private storeAuthorities(auth:[{authority:string}]) {
-    console.log('STORE TOKEN');
+    console.log('STORE TOKEN', auth);
     for(let i =0; i < auth.length; i++){
       if(auth[i].authority ==="ROLE_ADMIN"){
         console.log('ROLE ADMIN');

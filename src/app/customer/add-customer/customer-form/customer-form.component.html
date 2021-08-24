@@ -1,0 +1,174 @@
+<div class="col-md-6">
+  <div class="card card-body">
+      <h3 class="box-title m-b-0">Datos del Cliente</h3>
+      <!-- <p class="text-muted m-b-30 font-13"> Use Bootstrap's predefined grid classes for horizontal form </p> -->
+      <form [formGroup]="form.formCustomer" class="form-horizontal">
+      <!-- <form  #f="ngForm" (ngSubmit)=onSubmit(f) class="form-horizontal"> -->
+
+          <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Nombre Cliente</label>
+              <div class="col-sm-9">
+                  <input type="text" class="form-control" formControlName="company" id="company" placeholder="Nombre del Cliente">
+                  <!-- <input type="text" [required]='' class="form-control" id="inputEmail3" placeholder="Nombre del Cliente" [(ngModel)]="custom.company" [ngModelOptions]="{standalone: true}"> -->
+                  <div *ngIf="form.formCustomer.get('company').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                  <div *ngIf="form.formCustomer.get('company').hasError('minlength')" class="form-control-feedback text-danger">*Agrege 3 Caracteres minimo</div>
+                  <div *ngIf="form.formCustomer.get('company').hasError('maxlength')" class="form-control-feedback text-danger">*Agrege 50 Caracteres maximo</div>
+                  <!-- <div *ngIf="company.invalid && (name.dirty || name.touched)" class="alert alert-danger"></div> -->
+              </div>
+          </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Num Sucursal</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" formControlName="storeNum" id="storeNum" placeholder="Numero de Sucursal">
+                  <!-- <input type="text" class="form-control" name="storeNum" id="inputEmail3" placeholder="Numero de Sucursal"[(ngModel)]="custom.storeNum" [ngModelOptions]="{standalone: true}"> -->
+                  <div *ngIf="form.formCustomer.get('storeNum').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">RFC</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" formControlName="rfc" id="rfc" placeholder="Registro Federal de Contribuyente">
+                  <div *ngIf="form.formCustomer.get('rfc').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                  <div *ngIf="form.formCustomer.get('rfc').hasError('minlength')" class="form-control-feedback text-danger">*Agrege 12 Caracteres Validos</div>
+                  <div *ngIf="form.formCustomer.get('rfc').hasError('maxlength')" class="form-control-feedback text-danger">*Agrege 12 Caracteres Validos</div>
+
+                  <!-- <input type="text" class="form-control" name="rfc" id="inputEmail3" placeholder="Registro Federal de Contribuyente" [(ngModel)]="custom.rfc" [ngModelOptions]="{standalone: true}"> -->
+                  <!-- <div *ngIf="form.formCustomer.get('rfc').errors.required" class="form-control-feedback text-danger">*Este campo es requerido</div> -->
+              </div>
+          </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Seleccione Categoria de Conte Cliente</label>
+                <div class="col-sm-9">
+                  <!-- <input type="text" class="form-control" formControlName="rfc" id="inputEmail3" placeholder="Registro Federal de Contribuyente"> -->
+                  <select formControlName="categoria">
+                    <!-- <option>Seleccione una Opcion</option> -->
+                    <option *ngFor="let c of customerType"[value]="c.name" >{{c.name}}</option>
+                  </select>
+                  <div *ngIf="form.formCustomer.get('categoria').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                  <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarTypeModal()" title
+                  data-original-title="agregar un tipo de cliente" class="btn btn-warning btn-circle btn-sm"><i
+                    class="fa fa-plus"></i>
+                </button>
+              </div>
+          </div>
+
+          <h3>Datos de Direccion</h3>
+          <hr>
+          <div class="card card-body" formGroupName="customerAddress">
+          <!-- <div class="card card-body"> -->
+
+            <!-- <div class="form-group row">
+              <label for="street" class="col-sm-3 text-right control-label col-form-label">ID</label>
+              <div class="col-sm-9">
+                <input type="text" formControlName="id" class="form-control" id="street" placeholder="Calle">
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <label for="street" class="col-sm-3 text-right control-label col-form-label">Calle</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="street" id="street" placeholder="Calle">
+                <div *ngIf="form.formCustomer.get('customerAddress.street').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="number" class="col-sm-3 text-right control-label col-form-label">Numero</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="number" id="number" placeholder="Numero">
+                <div *ngIf="form.formCustomer.get('customerAddress.number').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="code" class="col-sm-3 text-right control-label col-form-label">Codigo Postal</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="code" id="code" placeholder="Codigo Postal">
+                <div *ngIf="form.formCustomer.get('customerAddress.code').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="code" class="col-sm-3 text-right control-label col-form-label">Colonia</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="suburb" id="suburb" placeholder="Colonia">
+                <div *ngIf="form.formCustomer.get('customerAddress.suburb').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="code" class="col-sm-3 text-right control-label col-form-label">Ciudad</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="city" id="city" placeholder="Ciudad">
+                <div *ngIf="form.formCustomer.get('customerAddress.city').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="code" class="col-sm-3 text-right control-label col-form-label">Estado</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="state" id="estado" placeholder="Estado">
+                <div *ngIf="form.formCustomer.get('customerAddress.state').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="code" class="col-sm-3 text-right control-label col-form-label">Pais</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="country" id="country" placeholder="Pais">
+                <div *ngIf="form.formCustomer.get('customerAddress.country').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="phone" class="col-sm-3 text-right control-label col-form-label">Telefono</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="phone"id="code" placeholder="Telefonos">
+                <!-- <div *ngIf="form.formCustomer.get('customerAddress.phone').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div> -->
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="phone" class="col-sm-3 text-right control-label col-form-label">Email</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="email"id="email" placeholder="Email">
+                <!-- <input type="text" class="form-control" name="email" id="email" placeholder="Email" [(ngModel)]="custom.customerAddress.email" [ngModelOptions]="{standalone: true}"> -->
+
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="notes" class="col-sm-3 text-right control-label col-form-label">Notas</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="notes"id="notes" placeholder="Notas">
+                <!-- <input type="text" class="form-control" name="notes" id="notes" placeholder="Notas" [(ngModel)]="custom.customerAddress.notes" [ngModelOptions]="{standalone: true}"> -->
+
+              </div>
+            </div>
+
+          </div>
+
+            <div class="form-group row">
+              <div class="offset-sm-3 col-sm-9">
+                <div class="checkbox checkbox-success">
+                  <input id="checkbox33" formControlName="status" type="checkbox">
+                  <!-- <input id="checkbox33" type="checkbox" [(ngModel)]="custom.status" [ngModelOptions]="{standalone: true}"> -->
+                      <label for="checkbox33">Activo</label>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group m-b-0 row">
+              <div  class="col-sm-3">
+                  <button *ngIf="!edit"  [disabled]="!form.formCustomer.valid" (click)="form.submit()" class="btn btn-info waves-effect waves-light m-t-10">Agregar Cliente</button>
+                  <!-- <button   type=submit class="btn btn-info waves-effect waves-light m-t-10">Agregar Cliente</button> -->
+                </div>
+              <div *ngIf="edit" class="col-sm-3">
+                  <button  type=submit class="btn btn-warning waves-effect waves-light m-t-10" (click)="form.edit()">Editar Cliente</button>
+                </div>
+              <div class="col-sm-3">
+                  <button (click)="form.cleanForm()" class="btn btn-danger waves-effect waves-light m-t-10">Borrar Forma</button>
+                </div>
+          </div>
+        </form>
+  </div>
+</div>

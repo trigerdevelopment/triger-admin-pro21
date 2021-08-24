@@ -13,6 +13,10 @@ import { FormUserService } from '../services/form-services/form-user.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TypesComponent } from './types/types.component';
+import { TypesListComponent } from './types/types-list/types-list.component';
+import { ProductCategoryComponent } from './product-category/product-category.component';
+import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
 
 
 
@@ -26,6 +30,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MovimientosComponent,
     TaskComponent,
     TaskListComponent,
+    TypesComponent,
+    TypesListComponent,
+    ProductCategoryComponent,
+    ProductCategoryListComponent,
   ],
   imports: [
     CommonModule,

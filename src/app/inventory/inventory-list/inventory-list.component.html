@@ -1,0 +1,31 @@
+<div class="col-lg-6">
+  <div class="card">
+      <div class="card-body">
+          <h4 class="card-title">Basic Table</h4>
+          <h6 class="card-subtitle">Add class <code>.table</code></h6>
+          <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th style="width:25%;">Codigo de Producto</th>
+                          <th style="width:400px;">Producto</th>
+                          <th style="width:3%;">Cantidad</th>
+                          <th>Costo Unitario</th>
+                          <th>Costo Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let product of inventory">
+                          <td>{{product.code}}</td>
+                          <td>{{product.product}}</td>
+                          <td>{{product.quantity}}</td>
+                          <td>{{product.unitCost | currency}}</td>
+                          <td><h3><span [ngClass]="{'label label-danger': product.quantity == '0', 'label label-info' : product.unitCost > '0' }" class="label label-danger">{{product.quantity * product.unitCost | currency}}</span></h3></td>
+                      </tr>
+
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>

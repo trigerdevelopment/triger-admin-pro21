@@ -32,14 +32,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
 
               ngOnDestroy(): void {
-    this.storeSuscribe.unsubscribe();
+    // this.storeSuscribe.unsubscribe();
   }
 
   ngOnInit() {
-    // this._crudService.refreshNeeded$.subscribe(() => {
-    //   this.getTasks();
+    this._crudService.refreshNeeded$.subscribe(() => {
+      this.getTasks();
 
-    // });
+    });
     // this.getTasks();
 
     //  this.storeSuscribe =  this.store.select('tasks').subscribe((tasks) => {
@@ -54,6 +54,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
 
       // this.store.dispatch(cargarTareas());
+      this.getTasks();
   }
 
   mostrarUserRegModal(){

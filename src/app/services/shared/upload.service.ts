@@ -38,12 +38,13 @@ export class UploadService {
 
 
   pushFileToStorage(file: File, url:any): Observable<HttpEvent<{}>> {
+    console.log('file', file);
     const formdata: FormData = new FormData();
     this.httpHeaders = new HttpHeaders({ Accept: "application/json" });
     formdata.append("file", file);
     console.log("FORM DATA ", formdata);
     console.log('TIPO ', url);
-
+    console.log('formdata', formdata);
 
     const req = new HttpRequest(
       "POST",
@@ -75,7 +76,7 @@ export class UploadService {
 
       tap(() => {
         console.log('IS REFRESHHHEEEEDDDD?????');
-          //  this._refreshForInvoice.next();
+           this._refreshForInvoice.next();
       } )
 
       )
@@ -147,6 +148,44 @@ export class UploadService {
     formData.append('file', file);
     this.httpHeaders = new HttpHeaders({'Content-Type': 'application/xml'});
     const req = new HttpRequest('POST', `${URL_SERVICIOS}/cfdi/customer-xml-file`, file, {
+      headers: this.httpHeaders,
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req).pipe(
+      tap(() => {
+          console.log('MULTIPLE FILE LLEGADA DE DATOS');
+
+      })
+    );
+  }
+
+  uploadSupplierXMLFile(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+    this.httpHeaders = new HttpHeaders({'Content-Type': 'application/xml'});
+    const req = new HttpRequest('POST', `${URL_SERVICIOS}/cfdi/supplier-xml-file`, file, {
+      headers: this.httpHeaders,
+      reportProgress: true,
+      responseType: 'text'
+    });
+
+    return this.http.request(req).pipe(
+      tap(() => {
+          console.log('MULTIPLE FILE LLEGADA DE DATOS');
+
+      })
+    );
+  }
+
+  uploadCSVFile(file: File,url:string): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+    this.httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    const req = new HttpRequest('POST', `${URL_SERVICIOS}/${url}`, file, {
       headers: this.httpHeaders,
       reportProgress: true,
       responseType: 'text'

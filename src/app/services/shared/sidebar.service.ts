@@ -8,11 +8,12 @@ export class SidebarService {
 
   menuTask: any = [
     {
-      titulo: "Tareas",
+      titulo: "Utilerias",
       icono: "mdi mdi-account-multiple",
       submenu: [
         { titulo: "Listado de Tareas", url: "/dashboard/tareas" },
-        // { titulo: "Forma de Usuarios", url: "/form-user-register" },
+        { titulo: "Lista de Categorias", url: "/dashboard/types" },
+        { titulo: "Categorias de Productos", url: "/dashboard/product-category-list" },
         // { titulo: "Lista de Usuarios Registrados", url: "/usuarios-registrados" },
 
       ],
@@ -48,10 +49,14 @@ export class SidebarService {
   menuClientes: any = [
     {
       titulo: "Clientes",
-      icono: "mdi mdi-bank",
+      icono: "mdi mdi-account-card-details",
       submenu: [
-        { titulo: "Lista Facturas", url: "/clientes/lista-facturas" },
+        { titulo: "Lista Facturas", url: "/customer/invoice" },
+        { titulo: "Lista de Clientes", url: "/customer/list" },
         { titulo: "Ventas por Cliente", url: "/clientes/ventas-por-cliente" },
+        { titulo: "Agregar Factura", url: "/customer/add-invoice" },
+        { titulo: "Agregar un Cliente", url: "/customer/add-customer" },
+
       ],
     },
   ];
@@ -60,18 +65,47 @@ export class SidebarService {
       titulo: "Proveedores",
       icono: "mdi mdi-bank",
       submenu: [
-        { titulo: "Proveedores", url: "supplier/supplier-list" },
-        { titulo: "Facturas", url: "supplier/invoice-list" },
+        { titulo: "Lista de Facturas", url: "/supplier/invoice-list" },
+        { titulo: "Lista de Proveedores", url: "/supplier/supplier-list" },
+        { titulo: "Agregar Factura", url: "/supplier/add-invoice" },
+        { titulo: "Agragar Proveedor", url: "/supplier/add-supplier" },
       ],
     },
   ];
+
+  menuProduccion: any = [
+    {
+      titulo: "Produccion",
+      icono: "mdi mdi-factory",
+      submenu: [
+        { titulo: "Listado de Producciones", url: "/manufacture/production-list" },
+        {
+          titulo: "Agregar Produccion", url: "/manufacture/add-production",
+        },
+        { titulo: "Productos", url: "/manufacture/production-list" },
+      ],
+    },
+  ];
+
+  menuInventory: any = [
+    {
+      titulo: "Inventarios",
+      icono: "mdi mdi-format-list-bulleted",
+      submenu: [
+        { titulo: "Productos", url: "/product/list" },
+        { titulo: "Inventarios", url: "/inventory/inventory-list" },
+      ],
+    },
+  ];
+
 
   menuReportes: any = [
     {
       titulo: "Reportes",
       icono: "mdi mdi-bank",
       submenu: [
-        { titulo: "Ventas", url: "/reportes/reporte-ventas" },
+        { titulo: "Ventas", url: "/reports/sales" },
+        { titulo: "Compras", url: "/reports/purchase" },
       ],
     },
   ];

@@ -8,6 +8,8 @@ import { TaskListComponent } from './task/task-list/task-list.component';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SupplierComponent } from '../supplier/supplier.component';
+import { TypesListComponent } from './types/types-list/types-list.component';
+import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
 
 
 const pagesRoutes: Routes = [
@@ -21,6 +23,18 @@ const pagesRoutes: Routes = [
     path: 'tareas',
     component: TaskListComponent,
     data: {titulo: 'Registro de Tareas',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
+
+  },
+  {canActivate:[AuthGuard],
+    path: 'types',
+    component: TypesListComponent,
+    data: {titulo: 'Registro de Categorias',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
+
+  },
+  {canActivate:[AuthGuard],
+    path: 'product-category-list',
+    component: ProductCategoryListComponent,
+    data: {titulo: 'Registro de Categorias de Productos',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
 
   },
   {canActivate:[AuthGuard],

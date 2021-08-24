@@ -9,13 +9,19 @@ export class SpinnerService {
 
   constructor() {
     this.isLoading = false;
+    console.log('SPINNER ', this.isLoading);
+
    }
 
    show(){
+     console.log('SHOW SPINNER', this.isLoading);
+
      this.isLoading=true;
    }
 
    hide(){
+     console.log('HIDE SPINNER ', this.isLoading);
+
      this.isLoading=false;
    }
 }

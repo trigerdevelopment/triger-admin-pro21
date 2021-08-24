@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { SidebarService } from 'src/app/services/shared/sidebar.service';
+import { AppState } from 'src/app/store';
+import { logout } from 'src/app/store/actions/auth.actions';
 import { AuthSessionService } from '../../services/auth/auth-session.service';
 
 @Component({
@@ -22,7 +25,8 @@ export class SidebarComponent implements OnInit {
   private readonly ROLE_ADMIN = 'ROLE_ADMIN';
 
   constructor(public _sidebar: SidebarService,
-              public _authority: AuthSessionService) { }
+              public _authority: AuthSessionService,
+              public _store: Store<AppState>) { }
 
   ngOnInit(): void {
     const roles  = this._authority.getAuthorities();
@@ -50,6 +54,10 @@ export class SidebarComponent implements OnInit {
   });
 
 
+  }
+
+  logout(){
+    this._store.dispatch(logout())
   }
 
 }

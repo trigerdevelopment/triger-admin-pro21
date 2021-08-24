@@ -1,4 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { QueryService } from 'src/app/customer/query.service';
+import { Invoice } from 'src/app/models/customer';
+import { NgxModalService } from 'src/app/services/shared/ngx-modal.service';
+import { SupplierInvoiceState } from '../store/reducers/supplier-invoice.reducer';
+
+import Swal from 'sweetalert2'
+
+import * as invoiceActions from '../store/actions/supplier-invoice.actions'
+import { MultipleFileComponent } from 'src/app/modals/multiple-file/multiple-file.component';
+import { InvoiceFormModalComponent } from 'src/app/modals/invoice-form-modal/invoice-form-modal.component';
+
+import * as invoiceSupplierSelector from '../store/selectors/invoice-supplier.selector';
+import * as invoiceActionsFromCustomer from '../../customer/store/actions/invoice.actions';
+import { environment } from 'src/environments/environment';
+import { ModalUploadXmlSupplierComponent } from 'src/app/modals/modal-upload-xml-supplier/modal-upload-xml-supplier.component';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-supplier-invoice-list',
@@ -7,165 +26,85 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupplierInvoiceListComponent implements OnInit {
 
-  settings = {
-    columns: {
-      id: {
-        title: 'ID'
-      },
-      name: {
-        title: 'Full Name'
-      },
-      username: {
-        title: 'User Name'
-      },
-      email: {
-        title: 'Email'
-      }
-    }
-  };
+  query: string;
+  invoices: Invoice[] = [];
+  orderBy: boolean = true;
+  sortBy: string = '';
+  url: string = '/invoice/supplier-invoice-by-query?';
+  basecontroller = '/invoice/supplier-invoice-by-query?';
 
-  data = [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz"
-    },
-    // ... other rows here
-    {
-      id: 11,
-      name: "Nicholas DuBuque",
-      username: "Nicholas.Stanton",
-      email: "Rey.Padberg@rosamond.biz"
-    }
-  ];
-//   public rows:Array<any> = [];
-//   public columns:Array<any> = [
-//     {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
-//     {
-//       title: 'Position',
-//       name: 'position',
-//       sort: false,
-//       filtering: {filterString: '', placeholder: 'Filter by position'}
-//     },
-//     {title: 'Office', className: ['office-header', 'text-success'], name: 'office', sort: 'asc'},
-//     {title: 'Extn.', name: 'ext', sort: '', filtering: {filterString: '', placeholder: 'Filter by extn.'}},
-//     {title: 'Start date', className: 'text-warning', name: 'startDate'},
-//     {title: 'Salary ($)', name: 'salary'}
-//   ];
-//   public page:number = 1;
-//   public itemsPerPage:number = 10;
-//   public maxSize:number = 5;
-//   public numPages:number = 1;
-//   public length:number = 0;
 
-//   public config:any = {
-//     paging: true,
-//     sorting: {columns: this.columns},
-//     filtering: {filterString: ''},
-//     className: ['table-striped', 'table-bordered']
-//   };
+  vm$: Observable<invoiceSupplierSelector.PaginatorSupport>;
 
-// TableData = ['Jose','Luis','Mex','45','2020/01/01','200']
-
-//   private data:Array<any> = this.TableData;
-
-//   constructor() {  this.length = this.data.length;}
+  constructor(
+    private store: Store<SupplierInvoiceState>,
+    private ngxModalService: NgxModalService,
+    private queryService: QueryService,
+    private invoiceService: InvoiceService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    // this.onChangeTable(this.config);
+
+
+    this.vm$ = this.store.pipe(select(invoiceSupplierSelector.selectInvoiceSupportModel))
+
+
   }
 
-//   public changePage(page:any, data:Array<any> = this.data):Array<any> {
-//     let start = (page.page - 1) * page.itemsPerPage;
-//     let end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
-//     return data.slice(start, end);
-//   }
+  functionSortBy(sortBy: string) {
 
-//   public changeSort(data:any, config:any):any {
-//     if (!config.sorting) {
-//       return data;
-//     }
+    this.orderBy = !this.orderBy;
+    this.sortBy = sortBy;
 
-//     let columns = this.config.sorting.columns || [];
-//     let columnName:string = void 0;
-//     let sort:string = void 0;
+    this.query = this.queryService.createFilterUrl(
+      { iniDate: '', finalDate: '', iniFolio: 0, finalFolio: '', company:'', sucursal:'', total:null, total2:null, pageNo:null,pageSize:null,sortBy:this.sortBy,orderBy:this.orderBy })
+    this.store.dispatch(invoiceActions.loadSupplierInvoices({ query: this.query }))
 
-//     for (let i = 0; i < columns.length; i++) {
-//       if (columns[i].sort !== '' && columns[i].sort !== false) {
-//         columnName = columns[i].name;
-//         sort = columns[i].sort;
-//       }
-//     }
+  }
+  mostrarMultipleModal() {
+    // this._modalService.mostrarMultipleFileUploadModal(this.idModal, this.URL_CUSTOMER);
+    this.ngxModalService.show(ModalUploadXmlSupplierComponent);
+  }
 
-//     if (!columnName) {
-//       return data;
-//     }
+  showInvoiceFormModal(){
+    this.ngxModalService.show(InvoiceFormModalComponent);
 
-//     // simple sorting
-//     return data.sort((previous:any, current:any) => {
-//       if (previous[columnName] > current[columnName]) {
-//         return sort === 'desc' ? -1 : 1;
-//       } else if (previous[columnName] < current[columnName]) {
-//         return sort === 'asc' ? -1 : 1;
-//       }
-//       return 0;
-//     });
-//   }
+  }
 
-//   public changeFilter(data:any, config:any):any {
-//     let filteredData:Array<any> = data;
-//     this.columns.forEach((column:any) => {
-//       if (column.filtering) {
-//         filteredData = filteredData.filter((item:any) => {
-//           return item[column.name].match(column.filtering.filterString);
-//         });
-//       }
-//     });
+  pagarFactura(event){
+      this.router.navigate(['supplier/invoice-details', event.id]);
+    // this.router.navigate(['/invoice'], { queryParams: { order: 'popular' } });
 
-//     if (!config.filtering) {
-//       return filteredData;
-//     }
+  }
 
-//     if (config.filtering.columnName) {
-//       return filteredData.filter((item:any) =>
-//         item[config.filtering.columnName].match(this.config.filtering.filterString));
-//     }
+  deleteInvoice(event:Invoice){
+   const id = event.id
 
-//     let tempArray:Array<any> = [];
-//     filteredData.forEach((item:any) => {
-//       let flag = false;
-//       this.columns.forEach((column:any) => {
-//         if (item[column.name].toString().match(this.config.filtering.filterString)) {
-//           flag = true;
-//         }
-//       });
-//       if (flag) {
-//         tempArray.push(item);
-//       }
-//     });
-//     filteredData = tempArray;
+  Swal.fire({
+    title: 'Estas seguro?',
+    text: "Esta accion no se puede revertir!",
+    icon: 'warning',
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, borrar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Eliminado!',
+        'El Archivo se ha eliminado.',
+        'success'
+      )
+      this.store.dispatch(invoiceActions.deleteSupplierInvoice({id: id}));
+      // this.invoiceService.deleteInvoiceById(id).subscribe(res =>{
 
-//     return filteredData;
-//   }
+      // });
+    }
+  })
 
-//   public onChangeTable(config:any, page:any = {page: this.page, itemsPerPage: this.itemsPerPage}):any {
-//     if (config.filtering) {
-//       Object.assign(this.config.filtering, config.filtering);
-//     }
 
-//     if (config.sorting) {
-//       Object.assign(this.config.sorting, config.sorting);
-//     }
+  }
 
-//     let filteredData = this.changeFilter(this.data, this.config);
-//     let sortedData = this.changeSort(filteredData, this.config);
-//     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
-//     this.length = sortedData.length;
-//   }
-
-//   public onCellClick(data: any): any {
-//     console.log(data);
-//   }
 
 }

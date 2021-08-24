@@ -1,6 +1,7 @@
 
  export const URL = 'http://localhost:8080';
  export const URL_SERVICIOS = 'http://localhost:8080/api';
+//  export const URL_SERVICIOS = 'https://admin-pro20.com/api';
 
 
 /*----------------DIRECCION DEL SERVIDOR EXTERNO-----------------------------*/

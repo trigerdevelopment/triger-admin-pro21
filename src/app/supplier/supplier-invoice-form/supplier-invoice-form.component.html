@@ -1,0 +1,316 @@
+
+    <!-- <app-invoice-form></app-invoice-form> -->
+    <div class="mt-5">
+
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-md-7 ml-2">
+
+          <div class="d-flex align-items-baseline">
+
+            <div class="form-group">
+              <!-- <label for="product">Selecccione el Cliente</label> -->
+              <div formGroupName="supplier">
+                <select class="form-control form-control-sm" id="productName" formControlName="id"
+                placeholder="Seleccionar Producto" name="productName" (change)="selectedCustomer($event)">
+                <option>Seleccione algun Cliente</option>
+                <option *ngFor="let customer of suppliers" [value]="customer.id">{{
+                  customer.company + ' | ' + customer.storeNum
+                }}</option>
+              </select>
+
+              <small id="valid1" *ngIf="!form.controls['supplier'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+              </div>
+            </div>
+
+            <div class="form-group">
+               <label for="product"> </label>
+              <button class="btn btn-primary btn-sm ml-2">agregar Proveedor</button>
+            </div>
+
+          </div>
+
+
+            <div class="form-group">
+
+              <label for="code">Condiciones de Pago</label>
+              <input type="text" formControlName="condicionesDePago" class="form-control form-control-sm" id="code"
+                aria-describedby="emailHelp" placeholder="Condiciones de Pago" />
+              <small id="valid1" *ngIf="!form.controls['condicionesDePago'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+            </div>
+
+            <div class="form-group">
+
+              <label for="code">Numero de Factura</label>
+              <input type="text" formControlName="folio" class="form-control form-control-sm" id="code"
+                aria-describedby="emailHelp" placeholder="Numero de Factura" />
+              <small id="valid1" *ngIf="!form.controls['folio'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+            </div>
+
+
+
+            <!-- <div class="form-group">
+          <label for="lote">Lote de Produccion</label>
+          <input
+            type="text"
+            formControlName="batch"
+            class="form-control form-control-sm"
+            id="lote"
+            aria-describedby="emailHelp"
+            placeholder="Lote de Produccion"
+          />
+          <small id="valid2" *ngIf="!_form.form.controls['batch'].valid" class="text-danger">*Este campo es requerido.</small>
+
+        </div> -->
+          </div>
+
+
+
+          <div class="col-md-3">
+
+            <div class="form-group">
+              <label for="date">Fecha</label>
+              <input type="date" formControlName="fecha" class="form-control form-control-sm" id="initialDate"
+                aria-describedby="emailHelp" placeholder="Fecha" />
+              <small id="valid3" *ngIf="!form.controls['fecha'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="datefinal">Fecha de Pago</label>
+              <input type="date" formControlName="fechaPago" class="form-control form-control-sm" id="finalDate"
+                aria-describedby="emailHelp" placeholder="Fecha de Pago" />
+              <small id="valid4" *ngIf="!form.controls['fechaPago'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+
+            </div>
+
+            <div class="form-group">
+              <label for="lote">Numero de Sucursal</label>
+              <input type="text" formControlName="sucursal" class="form-control form-control-sm" id="quantity"
+                aria-describedby="emailHelp" placeholder="Numero de Sucursal" (keyup)="recalculateCost()" />
+              <small id="valid5" *ngIf="!form.controls['sucursal'].valid" class="text-danger">*Este campo es
+                requerido.</small>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+          <label for="observ">Observaciones</label>
+          <input type="text" formControlName="concept" class="form-control" id="obsev" aria-describedby="emailHelp"
+            placeholder="Observaciones" />
+        </div>
+
+
+        <div class="row pt-4">
+          <!-- <div class="form-gorup col-md-4">
+
+            <label for="costo">Costo Unitario</label>
+            <input  type="number"
+            readonly
+            ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+            formControlName="cost"
+            class="form-control form-control-sm"
+            step="0.01"
+            id="costo" placeholder="Costo Unitario">
+
+          </div>  -->
+
+
+          <!-- <div class="form-group col-md-4">
+
+
+            <label for="costototal">Costo Total</label>
+            <input type="number"
+            readonly
+            ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+            formControlName="totalCost"
+            step="0.01"
+            class="form-control form-control-sm"
+            id="totalCost" placeholder="Costo Total">
+
+          </div> -->
+          <!-- <div class="col-md-6">
+            <div class="poliza-wallet card">
+              <div class="d-flex flex-row">
+                <div class="p-10 bg-primary">
+                  <h3 class="text-white box m-b-0"><i class="ti-package"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                  <h3 class="m-b-0 text-black">{{this._form.form.get('total').value|currency}}</h3>
+                  <h5 class="text-muted m-b-0">Total</h5>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+
+          <div class="col-md-6">
+
+            <!-- <div class="poliza-wallet card">
+              <div class="d-flex flex-row">
+                <div class="p-10 bg-info">
+                  <h3 class="text-white box m-b-0"><i class="ti-money"></i></h3>
+                </div>
+                <div class="align-self-center m-l-20">
+                  <h3 class="m-b-0 text-black">{{this._form.form.get('subTotal').value|currency}}</h3>
+                  <h5 class="text-muted m-b-0">Costo Total de Materiales</h5>
+                </div>
+              </div>
+            </div>
+             -->
+          </div>
+
+        </div>
+
+        <!--
+        <button class="btn btn-primary" (click)="_form.addMaterials()">
+          Agregar Materiales
+        </button> -->
+        <h3>Agrege los detalles de Factura</h3>
+        <hr />
+
+        <!-- SE AGREGAN LOS MATERIALES PARA LA PRODUCCION -->
+
+        <div formArrayName="invoiceItems">
+          <div *ngFor="let material of materials.controls; let i = index">
+            <div [formGroupName]="i">
+              <div class="row">
+
+
+                <div class="col-md-1 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <!-- <label for="exampleInputEmail1">Cantidad a Producir</label> -->
+                  <input type="text" formControlName="cantidad" class="form-control form-control-sm" id="quantity2"
+                    aria-describedby="emailHelp" placeholder="Cantidad" (keyup)="inputChange($event, i)" />
+                  <!-- <small id="quantity2" class="form-text text-muted">Cantidad Utilizada.</small> -->
+                  <!-- </div> -->
+                </div>
+
+                <div class="col-md-1 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <!-- <label for="exampleInputEmail1">Total</label> -->
+                  <input type="text" formControlName="unidad" class="form-control form-control-sm" id="pza"
+                    aria-describedby="emailHelp" placeholder="Unidad" readonly/>
+                  <!-- <small id="total1" class="form-text text-muted" >Total en pesos del material utilizado.</small> -->
+                  <!-- </div> -->
+                </div>
+
+                <div class="col-md-1 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <!-- <label for="exampleInputEmail1">Cantidad a Producir</label> -->
+                  <input type="text" formControlName="claveUnidad" class="form-control form-control-sm" id="calveProdServ"
+                    aria-describedby="emailHelp" placeholder="Clave Unidad" (keyup)="inputChange($event, i)" readonly />
+                  <!-- <small id="quantity2" class="form-text text-muted">Cantidad Utilizada.</small> -->
+                  <!-- </div> -->
+                </div>
+
+                <div class="col-md-3 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <select class="form-control form-control-sm" formControlName="descripcion"
+                    placeholder="Seleccionar Producto" name="nameProduct"
+                    (change)="selectedItem($event,i)">
+                    <option>Seleccione un Producto</option>
+                    <option *ngFor="let product of products" [value]="product.productName">{{ product.productName }}
+                    </option>
+                  </select>
+                  <!-- <small id="prodselect" class="form-text text-muted">Producto.</small> -->
+
+                  <!-- </div> -->
+                </div>
+
+
+                <div class="col-md-2 mt-1">
+                  <input type="text" [attr.disabled]="true" formControlName="descripcion" class="form-control form-control-sm" id="unitCost"
+                    aria-describedby="emailHelp" placeholder="Descripcion" />
+                </div>
+
+                <div class="col-md-1 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <!-- <label for="exampleInputEmail1">Costo Unitario</label> -->
+                  <input type="text" formControlName="valorUnitario" class="form-control form-control-sm" id="unitCost"
+                    aria-describedby="emailHelp" placeholder="Costo Unit" (keyup)="inputChange($event, i)" />
+                  <!-- <small id="namecostunit" class="form-text text-muted">Costo Unitario.</small> -->
+
+                  <!-- </div> -->
+                </div>
+
+                <div class="col-md-2 mt-1">
+                  <!-- <div class="form-group"> -->
+                  <!-- <label for="exampleInputEmail1">Total</label> -->
+                  <input type="number" formControlName="importe" class="form-control form-control-sm" id="total"
+                    aria-describedby="emailHelp" placeholder="Total" readonly />
+                  <!-- <small id="total1" class="form-text text-muted" >Total en pesos del material utilizado.</small> -->
+                  <!-- </div> -->
+                </div>
+
+
+                <div class="col flex flex-box" style="cursor: pointer">
+                  <!-- <button type="button" (click)="this._poliza.addItem()" class="btn btn-outline-primary btn-sm">
+                        Agregar
+                      </button> -->
+                  <a data-toggle="tooltip" class="p-1" (click)="addMaterials()"
+                    data-original-title="Agregar Items"><i class="ti-arrow-down text-info m-r-10"></i> </a>
+
+                  <a data-toggle="tooltip" class="p-1" (click)="removeMaterials(i)"
+                    data-original-title="Borrar Items"><i class="ti-trash text-danger m-r-10"></i> </a>
+                </div>
+
+
+              </div>
+    <hr>
+
+
+            </div>
+
+          </div>
+            <div class="row">
+
+              <div class="col-md-1 mt-1"></div>
+              <div class="col-md-1 mt-1"></div>
+              <div class="col-md-1 mt-1"></div>
+              <div class="col-md-3 mt-1"></div>
+              <div class="col-md-2 mt-1"></div>
+              <div class="col-md-1 mt-1"></div>
+              <div class="col-md-2 mt-1">
+                <div class="poliza-wallet card">
+                  <div class="d-flex flex-row">
+                    <div class="p-10 bg-primary">
+                      <h3 class="text-white box m-b-0"><i class="ti-package"></i></h3>
+                    </div>
+                    <div class="align-self-center m-l-20">
+                      <h3 class="m-b-0 text-black">{{form.get('total').value|currency}}</h3>
+                      <h5 class="text-muted m-b-0">Total</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+
+
+
+        </div>
+        <hr />
+        <button type="button" class="btn btn-primary btn-lg btn-block" [disabled]="!form.valid" type="submit"
+          (click)="submit()">
+          AGREGAR FACTURA
+          <!-- <mat-icon matSuffix>local_atm</mat-icon> -->
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-lg btn-block" type="submit" (click)="cleanForm()">
+          LIMPIAR FORMATO
+          <!-- <mat-icon matSuffix>local_atm</mat-icon> -->
+        </button>
+      </form>
+      <hr>
+      <small>Esta forma es solamente para dar de alta la factura, </small>
+    </div>
+
+

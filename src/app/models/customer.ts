@@ -1,12 +1,14 @@
 export class Customer {
   public id: number;
   public company: string;
-  public customerRfc: string;
+  public rfc: string;
   public storeNum: string;
   public balance: number;
   public budget: number;
   public status: boolean;
   public subAccount: string;
+
+
 }
 
 export class Clientes {
@@ -28,7 +30,7 @@ export class Clientes {
 
 export class Invoice {
 
-  public id: number;
+  public id: string;
   public company;
   public storeNum;
   public sucursal: string;
@@ -56,7 +58,7 @@ export class Invoice {
 
 
 export class Pageable {
-  public content: Invoice[];
+  public content: any[];
   public totalElements: number;
   public totalPages: number=1;
   public number:number;
@@ -68,16 +70,31 @@ export class Pageable {
 }
 
 
+
 export class Filter {
   public iniDate: string;
   public finalDate: string;
   public serie: string;
-  public iniFolio: string;
+  public rfc: string;
+  public categoria: string;
+  public folio: string;
   public finalFolio: string;
   public company: string;
   public sucursal: string;
   public total: string;
   public total2: string;
+  public pageNo: number;
+  public pageSize: string;
+  public sortBy: string;
+  public orderBy: boolean;
+
+}
+export class customerFilter {
+  public company: string;
+  public sucursal: string;
+  public rfc: string;
+  public categoria: string;
+  public total: string;
   public pageNo: number;
   public pageSize: string;
   public sortBy: string;
@@ -91,5 +108,9 @@ export class SalesReportFilter {
   public company: string;
   public sucursal: string;
 
+}
+
+export class customerAddress{
+  public id : number;
 }
 

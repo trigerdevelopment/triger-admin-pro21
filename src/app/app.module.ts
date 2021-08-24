@@ -29,6 +29,12 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store';
 import { AuthEffects } from './store/effects/auth.effects';
+import { SpinnerEffects } from './store/effects/spinner.effects';
+import { AlertEffects } from './store/effects/alert.effects';
+import { RoutesEffects } from './store/effects/routes.effects';
+import { ReportEffects } from './store/effects/report.effects';
+import { ManufactureComponent } from './manufacture/manufacture.component';
+import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
 
 
 
@@ -41,6 +47,8 @@ import { AuthEffects } from './store/effects/auth.effects';
     UserComponent,
     LoginSessionComponent,
     SpinnerComponent,
+    ManufactureComponent,
+
  ],
   imports: [
     BrowserModule,
@@ -53,11 +61,7 @@ import { AuthEffects } from './store/effects/auth.effects';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     BsDatepickerModule.forRoot(),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    APP_ROUTES,
+     APP_ROUTES,
     // MODULES_ROUTES,
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forRoot(reducers, { metaReducers,
@@ -65,22 +69,24 @@ import { AuthEffects } from './store/effects/auth.effects';
         strictStateImmutability: true,
         strictActionImmutability: true,
       }}),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects,SpinnerEffects, AlertEffects,RoutesEffects,ReportEffects,ReportPurchaseEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
 
   ],
   providers: [
     AuthService,
     AuthGuard,
+    ReactiveFormsModule,
     AuthRequestOptions,
-    ErrorhandlerService,
+    // ErrorhandlerService,
     FormUserService,
     AuthSessionService,
 
-    {
-      provide: ErrorHandler,
-      useClass: ErrorhandlerService
-    },
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: ErrorhandlerService
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthRequestOptions,

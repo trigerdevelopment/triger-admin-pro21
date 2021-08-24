@@ -100,8 +100,14 @@ export class ErrorhandlerService implements ErrorHandler {
     if (error.status === 204) {
       // A client-side or network error occurred.
       console.error("An error occurred:", error);
+      Swal.fire({
+        icon: "error",
+        text: error.error,
+        title: "Su Requerimiento no contiene Datos"
+      });
       //  router.navigate(['/login']);
     }
+
     // if (error.status === 409) {
     //   // A client-side or network error occurred.
     //   console.error('An error occurred:', error);

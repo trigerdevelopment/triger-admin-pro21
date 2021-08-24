@@ -1,0 +1,16 @@
+<div class="dataTables_paginate paging_simple_numbers" id="example23_paginate" >
+
+  <a [ngClass]="{'disabled': first}" (click)="restPage()" class="paginate_button previous disabled" aria-controls="example23" data-dt-idx="0" tabindex="0" id="example23_previous">Previous</a>
+  <span *ngFor="let i of totalPages | enumerate, let index=index">
+
+    <a id="current{{i}}" (click)="setPageNo($event, index)" class="paginate_button" aria-controls="example23" data-dt-idx="0" tabindex="0">{{i+1}}</a>
+    <!-- <a class="paginate_button " aria-controls="example23" data-dt-idx="2" tabindex="0">2</a>
+    <a class="paginate_button " aria-controls="example23" data-dt-idx="3" tabindex="0">3</a>
+    <a class="paginate_button " aria-controls="example23" data-dt-idx="4" tabindex="0">4</a>
+    <a class="paginate_button " aria-controls="example23" data-dt-idx="5" tabindex="0">5</a>
+    <a class="paginate_button " aria-controls="example23" data-dt-idx="6" tabindex="0">6</a> -->
+  </span>
+
+  <a [ngClass]="{'disabled': last}" class="paginate_button next" aria-controls="example23" (click)="addPage()"  data-dt-idx="7" tabindex="0" id="example23_next">Next</a>
+</div>
+{{totalPages}}

@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { BANK_ROUTES } from './bank.routes';
 import { BankCsvMovementsComponent } from './bank-csv-movements/bank-csv-movements.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 
@@ -16,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    BANK_ROUTES
+    BANK_ROUTES,
   ]
 })
 export class BankModule { }

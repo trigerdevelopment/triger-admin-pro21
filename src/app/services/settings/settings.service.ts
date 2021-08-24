@@ -53,5 +53,9 @@ export class SettingsService {
 
   }
 
+  setCurrent(i){
+   console.log('ELEMENT ', this._document.getElementById(i));
+  }
+
 }
 

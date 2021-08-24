@@ -1,0 +1,103 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Sample Form with the Icons</h4>
+    <h6 class="card-subtitle">made with bootstrap elements</h6>
+    <form [formGroup]="_formProduct.form" class="form p-t-20">
+
+      <div class="form-group">
+        <label for="inputState">Seleccione una Categoria</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-view-list"></i></div>
+          <select id="inputState" class="form-control" formControlName="category" (click)="getCategories()">
+            <option>Seleccione la Categoria</option>
+            <option *ngFor="let suit of categories" [ngValue]="suit.catName">{{suit.catName}}</option>
+          </select>
+        </div>
+        <!-- <small id="inputState" *ngIf="!_formBank.form.get('subCuenta').valid" class="text-danger">*Este campo es requerido.</small> -->
+      </div>
+
+
+      <div class="form-group">
+        <label for="exampleInputuname">Producto</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-package"></i></div>
+          <input type="text" class="form-control" formControlName="productName" id="exampleInputuname"
+            placeholder="Nombre del Producto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Codigo</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-stamp"></i></div>
+          <input type="text" class="form-control" formControlName="code" id="exampleInputEmail1"
+            placeholder="Codigo del Producto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd1">Precio Unitario</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-money"></i></div>
+          <input type="text" class="form-control" formControlName="unitPrice" id="pwd1" placeholder="Precio Unitario">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd2">Costo Unitario</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-money"></i></div>
+          <input type="text" class="form-control" formControlName="unitCost" id="pwd2" placeholder="Costo Unitario">
+        </div>
+      </div>
+      <div class="checkbox checkbox-success">
+        <input id="checkbox33" type="checkbox">
+        <label for="checkbox33">Check me out !</label>
+    </div>
+      <div class="form-group">
+        <label for="pwd2">Imagen del Producto</label>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ti-money"></i></div>
+          <input class="form-control" (change)="this._formProduct.onFileSelected($event)" type="file" required="" placeholder="File Upload">
+
+        </div>
+      </div>
+
+      <!-- <div class="row form-group">
+        <div formGroupName="productName">
+
+          <select class="form-control" id="productName" formControlName="category" placeholder="Seleccionar Producto"
+            name="category" (click)="getCategories()">
+            <option>Seleccione una Categoria</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat.catName">{{cat.catName}}</option>
+          </select>
+        </div>
+      </div> -->
+
+      <!-- <div class="row form-group">
+          <div class="col-md-10">
+
+         <div formGroupName="productName">
+
+              <select
+                class="form-control"
+                id="productName"
+                formControlName="subCategory"
+                placeholder="Seleccionar Producto"
+                (click)="getSubCategories()"
+                name="subcategory">
+          <option>Seleccione una Sub-Categoria</option>
+          <option *ngFor ="let cat of subcategories" [ngValue] ="cat.subCatName">{{cat.subCatName}}</option>
+
+        </select>
+        <small id="valid1" *ngIf="!_form.form.controls['productName'].valid" class="text-danger">*Este campo es requerido.</small>
+
+  </div>
+</div>
+
+</div> -->
+
+
+<button type="submit" (click)="_formProduct.onSubmit()"
+  class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+<button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+</form>
+</div>
+</div>

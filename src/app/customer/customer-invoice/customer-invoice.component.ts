@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { GraphState } from '../store/reducers/graph.reducer';
+import * as GraphActions from '../store/actions/graph.actions';
 @Component({
   selector: 'app-customer-invoice',
   templateUrl: './customer-invoice.component.html',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerInvoiceComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<GraphState>) { }
 
   ngOnInit(): void {
+    this.store.dispatch(GraphActions.loadGraphics())
   }
 
 }

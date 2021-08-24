@@ -1,8 +1,15 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { QueryService } from 'src/app/customer/query.service';
+import { InvoiceState } from 'src/app/customer/store/reducers/invoice.reducer';
 import { NgxModalService } from 'src/app/services/shared/ngx-modal.service';
 import { UploadService } from 'src/app/services/shared/upload.service';
+import { environment } from 'src/environments/environment';
+import * as InvoiceActions from '../../customer/store/actions/invoice.actions';
+
+
 export class  progressInfo {
   value : number=0;
   fileName:string;
@@ -14,7 +21,7 @@ export class  progressInfo {
 })
 export class MultipleFileComponent implements OnInit {
 
-
+  query:string;
   selectedFiles: any[] = [];
   progressInfos: progressInfo[] = [];
 
@@ -31,7 +38,9 @@ export class MultipleFileComponent implements OnInit {
 
   constructor(public _modalService: NgxModalService,
     public _uploadService: UploadService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private store: Store<InvoiceState>,
+    private queryService: QueryService) {
 
   }
 
@@ -58,11 +67,14 @@ export class MultipleFileComponent implements OnInit {
       console.log('TERMINO CON EL ENVIO DE FACTURAS');
       this.secuenceFile = 0;
       this.fileUploader.nativeElement.value = null;
-      this._uploadService.refreshForInvoice.next();
+      // this._uploadService.refreshForInvoice.next();
       this.select = false;
       // this.deleteAllFiles();
 
       //  this.selectedFiles=null;
+      this.query = this.queryService.createFilterUrl(
+        { iniDate: '', finalDate: '', iniFolio: 0, finalFolio: '', company:'', sucursal:'', total:null, total2:null, pageNo:null,pageSize:null,sortBy:'',orderBy:true })
+        // this.store.dispatch(InvoiceActions.loadInvoices({ query: this.query }))
     }
   }
 
@@ -99,6 +111,10 @@ export class MultipleFileComponent implements OnInit {
     this._modalService.hide();
     this.fileUploader.nativeElement.value = null;
     this.deleteAllFiles();
+    this.query = this.queryService.createFilterUrl(
+      { iniDate: '', finalDate: '', iniFolio: 0, finalFolio: '', company:'', sucursal:'', total:null, total2:null, pageNo:null,pageSize:null,sortBy:'',orderBy:true })
+      this.store.dispatch(InvoiceActions.loadInvoices({ query: this.query }))
+
   }
 
   borrarUnArchivo(index) {

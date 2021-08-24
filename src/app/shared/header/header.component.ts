@@ -12,8 +12,11 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { GetService } from 'src/app/services/get-service/get-service.service';
 import { ModalService } from 'src/app/services/shared/modal.service';
+import { AppState } from 'src/app/store';
+import { logout } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -22,10 +25,14 @@ import { ModalService } from 'src/app/services/shared/modal.service';
 })
 export class HeaderComponent implements OnInit {
 
-   constructor() { }
+   constructor(private store:Store<AppState>) { }
 
   ngOnInit(): void {
 
+  }
+
+  logout(){
+    this.store.dispatch(logout())
   }
 
 }

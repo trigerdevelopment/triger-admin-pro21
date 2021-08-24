@@ -12,6 +12,10 @@ import { ModalUserCardComponent } from '../modals/modal-user-card/modal-user-car
 import { ModalTaskComponent } from '../modals/modal-task/modal-task.component';
 import { FormTaskComponent } from '../modals/modal-task/form-task/form-task.component';
 import { ModalUploadComponent } from '../modals/modal-upload/modal-upload.component';
+import { InvoiceFormComponent } from '../forms/invoice-form/invoice-form.component';
+import { EnumeratePipe } from '../customer/enumerate.pipe';
+import { NgxModalService } from '../services/shared/ngx-modal.service';
+import { ModalProductCategoryComponent } from '../modals/modal-product-category/modal-product-category.component';
 
 
 
@@ -26,7 +30,10 @@ import { ModalUploadComponent } from '../modals/modal-upload/modal-upload.compon
     ModalUserCardComponent,
     ModalUploadComponent,
     ModalTaskComponent,
+    ModalProductCategoryComponent,
     FormTaskComponent,
+    InvoiceFormComponent,
+    EnumeratePipe,
   ],
   exports: [
     BredcrumbsComponent,
@@ -38,7 +45,10 @@ import { ModalUploadComponent } from '../modals/modal-upload/modal-upload.compon
     ModalUserCardComponent,
     ModalUploadComponent,
     ModalTaskComponent,
+    ModalProductCategoryComponent,
     FormTaskComponent,
+    InvoiceFormComponent,
+    EnumeratePipe,
   ],
 
   imports: [
@@ -48,6 +58,10 @@ import { ModalUploadComponent } from '../modals/modal-upload/modal-upload.compon
     ReactiveFormsModule,
 
   ],
+
+  providers:[
+    NgxModalService
+  ]
 
 
 })

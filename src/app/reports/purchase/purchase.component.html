@@ -1,0 +1,148 @@
+<p>sales works!</p>
+<!-- <app-filter-report></app-filter-report> -->
+
+
+
+<div class="card">
+  <!-- <div class="card-body" *ngIf="vm$ |async as vm"> -->
+  <div class="card-body">
+
+      <div class="table-responsive">
+        <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+
+          <app-purchase-filter-report [totalSales]=totalSales></app-purchase-filter-report>
+
+          <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
+          aria-describedby="myTable_info">
+          <thead>
+
+            <tr role="row">
+
+                <!-- <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:40%; height:auto;">Id</th> -->
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:40%; height:auto;">Nombre Cliente</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Enero</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Febrero</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Marzo</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Abril</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Mayo</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Junio</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Julio</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Agosto</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" style="width:2%; height:auto;">Septiembre</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending"style="width:2%; height:auto;">Octubre</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending"style="width:2%; height:auto;">Noviembre</th>
+                <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending"style="width:2%; height:auto;">Diciembre</th>
+
+
+            </tr>
+
+
+          </thead>
+
+          <tbody>
+            <hr>
+            <tr role="row" class="odd" *ngFor="let inv of suppliers">
+
+              <!-- <td>{{inv.id | number}}</td> -->
+              <td>{{inv.objName}} | {{inv.sucursal}}</td>
+              <td>{{inv.january | currency}}</td>
+              <td>{{inv.february | currency}}</td>
+              <td>{{inv.march | currency}}</td>
+              <td>{{inv.april | currency}}</td>
+              <td>{{inv.may | currency}}</td>
+              <td>{{inv.june | currency}}</td>
+              <td>{{inv.july | currency}}</td>
+              <td>{{inv.august | currency}}</td>
+              <td>{{inv.september | currency}}</td>
+              <td>{{inv.october | currency}}</td>
+              <td>{{inv.november | currency}}</td>
+              <td>{{inv.december | currency}}</td>
+
+            </tr>
+            <tr>
+              <!-- <td></td> -->
+              <td><h3>Totales</h3></td>
+              <td>
+                <h4>
+                  {{this.sumJaun | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumFeb | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumMar | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumApr | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumMay | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumJun | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumJul | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumAug | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumSep | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumOct | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumNov | currency}}
+                </h4>
+              </td>
+              <td>
+                <h4>
+                  {{this.sumDic| currency}}
+                </h4>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+

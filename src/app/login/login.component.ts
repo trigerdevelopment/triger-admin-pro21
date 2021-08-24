@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { JwtDTO } from '../models/jwt-dto';
 import { SpinnerService } from '../services/spiner.service';
+import { AppState } from '../store';
+import * as AuthActions from '../store/actions/auth.actions';
 
 declare function init_plugins(): void;
 
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
     private authservice: AuthService,
     public spinnerService: SpinnerService,
     private router: Router,
-    // private store: Store<AppState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
@@ -63,8 +65,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('ENTREMOS PUES');
+
     this.isspinner = true;
-    // this.store.dispatch(AuthActions.loginComponent({ user: this.form.value }));
+    this.store.dispatch(AuthActions.loginComponent({ user: this.form.value }));
     // this.store.dispatch(AuthActions.isLoading())
 
 
