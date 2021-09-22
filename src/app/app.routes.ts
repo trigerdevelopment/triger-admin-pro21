@@ -33,6 +33,12 @@ const appRoutes: Routes = [
 
   },
   {
+    path: 'bank',
+    component: SupplierComponent,
+    loadChildren: () => import('./bank/bank.module').then(m => m.BankModule),
+
+  },
+  {
     path: 'dashboard',
     component: PagesComponent,
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),

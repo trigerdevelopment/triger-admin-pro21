@@ -4,6 +4,8 @@ import { ReportsService } from 'src/app/services/shared/reports.service';
 import { ReportState } from 'src/app/store/reducers/report.reducers';
 
 import * as ReportSelector from '../../store/selectors/report.selectors';
+import * as ExpensesSelector from '../../store/selectors/expenses.selectors';
+import { ExpensesState } from 'src/app/store/reducers/expenses.reducers';
 
 @Component({
   selector: 'app-sales',
@@ -14,24 +16,31 @@ export class SalesComponent implements OnInit {
 
   constructor(
     public reportServcie: ReportsService,
-    public store: Store<ReportState>) {
+    public store: Store<ReportState>,
+    public storeExpenses: Store<ExpensesState>
+
+    ) {
 
       this.store.pipe(select(ReportSelector.selectorReportState)).subscribe(res => {
         this.customers = [];
-        console.log('VENTAS ES ', res.data);
         this.customers = res.data;
-        console.log('CUSTOMERS ', this.customers);
         if(this.customers){
           this.initialSum();
           this.getSales(this.customers);
         }
-        // console.log('CUSTOMERS ', this.customers.length);
-        // this.getSum();
+
+      })
+
+      this.store.pipe(select(ExpensesSelector.selectorExpensesState)).subscribe(res => {
+        if(res.data){
+          this.totalCosts = res.data;
+        }
 
       })
     }
 
   customers:any[] =[];
+  ceroValue=0;
   newCustomers :any[] = [];
   sumJaun:number=0;
   sumFeb:number=0;
@@ -46,17 +55,19 @@ export class SalesComponent implements OnInit {
   sumNov:number=0;
   sumDic:number=0;
   totalSales:number=0;
+  totalCosts:any;
 
   ngOnInit(): void {
 
     this.initialSum();
     this.reportServcie.getSalesByMonthByCustomer('').subscribe(res => {
-      console.log('RES ', res);
       this.customers = res;
       this.getSales(this.customers);
+    });
+
+    this.reportServcie.getSalesCostByMonth('').subscribe(res => {
+      this.totalCosts = res;
     })
-
-
   }
 
   ngOnDestroy() {
@@ -64,7 +75,6 @@ export class SalesComponent implements OnInit {
   }
 
   initialSum() {
-    // let sumJaun = 0;
 
       this.sumJaun =0;
       this.sumFeb =0;
@@ -85,9 +95,7 @@ export class SalesComponent implements OnInit {
 
   getSales(arr: any[]) {
 
-    console.log('this arr ', arr.length);
     for(let i = 0; i < this.customers.length; i++) {
-      console.log('CUSTOMER ', this.customers[i]);
 
       this.sumJaun += this.customers[i].january;
       this.sumFeb += this.customers[i].february;

@@ -1,0 +1,44 @@
+<div class="row p-3">
+  <div class="col-md-5"></div>
+  <div class="col-md-5"></div>
+  <!-- <div class="col-md-2"> -->
+    <div id="myTable_filter" class="dataTables_filter">
+
+      <button class="btn btn-info mr-2" (click)="mostrarModal()">Cargar desde Archivo</button>
+      <button class="btn btn-primary" (click)="showForm()">Agregar una Categoria</button>
+    </div>
+  <!-- </div> -->
+
+</div>
+<div class="table-responsive">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre Categoria</th>
+        <!-- <th scope="col">Asignado a</th> -->
+        <!-- <th scope="col">Requerido por</th> -->
+        <!-- <th scope="col">Estado</th> -->
+        <!-- <th scope="col">Prioridad</th> -->
+        <!-- <th scope="col">Fecha inicial</th> -->
+        <!-- <th scope="col">Fecha final</th> -->
+        <!-- <th scope="col">Tarea Finalizada</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let u of expenseType">
+        <th scope="row">{{u.id}}</th>
+        <td>{{u.expense}}</td>
+
+    <td class="text-nowrap">
+      <!-- <a data-toggle="tooltip" (click)="edit(u)" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a> -->
+      <a data-toggle="tooltip" (click)="deleteType(u.id)" data-original-title="Close"> <i class="fa fa-close text-danger"></i> </a>
+  </td>
+
+   </tr>
+
+  </tbody>
+</table>
+</div>
+

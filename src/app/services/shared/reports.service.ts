@@ -30,6 +30,20 @@ export class ReportsService {
       );
   }
 
+
+  getSalesCostByMonth(query: string): Observable<any> {
+    // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+  this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${URL_SERVICIOS}/report/get-sales-cost/${query}`, { headers: this.httpHeaders })
+      .pipe(
+     catchError(err =>{
+       console.error(err);
+      this.alertService.error('mensaje de error enviado desde el Servidor', `${err.error.message}`);
+       return throwError(err)
+     })
+      );
+  }
+
   getPurchaseByMonthByCustomer(query: string): Observable<any> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });

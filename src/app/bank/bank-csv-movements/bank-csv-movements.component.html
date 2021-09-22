@@ -252,7 +252,8 @@
               <td>{{inv.impuesto|currency}}</td>
               <td>{{inv.total|currency}}</td>
               <!-- <td>{{inv.nombreArchivo}}</td> -->
-              <td><span class="label label-warning">pagar</span></td>
+
+              <td><span class="label label-warning"(click)="edit(inv)">editar</span></td>
               <td><span class="label label-info">admin</span></td>
 
             </tr>

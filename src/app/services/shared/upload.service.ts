@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {  HttpEvent, HttpHeaders, HttpClient, HttpRequest } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { catchError, delay, tap } from 'rxjs/operators';
 import { URL_SERVICIOS } from '../settings/url';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class UploadService {
   private _refreshNeeded$ = new Subject<void>();
   private _refreshForInvoice = new Subject<void>();
   private _regreshSendFiles = new Subject<void>();
+  private _regreshBankFiles = new Subject<void>();
 
   get refreshNeeded$() {
     return this._refreshNeeded$;
@@ -23,6 +24,10 @@ export class UploadService {
 
   get refreshSendFiles(){
     return this._regreshSendFiles;
+  }
+
+  get refreshBankFiles(){
+    return this._regreshBankFiles;
   }
 
   httpHeaders: HttpHeaders;
@@ -59,6 +64,28 @@ export class UploadService {
     return this.http.request(req);
   }
 
+  pushFileBankToStorage(file: File): Observable<HttpEvent<{}>> {
+    console.log('file', file);
+    const formdata: FormData = new FormData();
+    this.httpHeaders = new HttpHeaders({ Accept: "application/json" });
+    formdata.append("file", file);
+    const req = new HttpRequest(
+      "POST",
+      `${URL_SERVICIOS}/bank/upload-service`,
+      formdata,
+      {
+        headers: this.httpHeaders,
+        reportProgress: true,
+        responseType: "text"
+      }
+    );
+    return this.http.request(req).pipe(
+      tap(() => {
+        this.refreshBankFiles.next()
+      })
+    );
+  }
+
 
   sendXmlInvoice(file: File, url:string): Observable<any> {
 
@@ -68,6 +95,28 @@ export class UploadService {
     console.log('FORM DATA ', formdata);
 
     const req = new HttpRequest('POST', `${URL_SERVICIOS}/`+ url, file,  {
+      headers: this.httpHeaders,
+      reportProgress: true,
+      responseType: 'text'
+    });
+    return this.http.request(req).pipe(
+
+      tap(() => {
+        console.log('IS REFRESHHHEEEEDDDD?????');
+           this._refreshForInvoice.next();
+      } )
+
+      )
+  }
+
+  sendBankMov(file: File): Observable<any> {
+
+    const formdata: FormData = new FormData();
+    this.httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    formdata.append('file', file);
+    console.log('FORM DATA ', formdata);
+
+    const req = new HttpRequest('POST', `${URL_SERVICIOS}/bank/upload-service`, file,  {
       headers: this.httpHeaders,
       reportProgress: true,
       responseType: 'text'

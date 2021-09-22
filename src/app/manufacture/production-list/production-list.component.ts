@@ -27,6 +27,7 @@ export class ProductionListComponent implements OnInit {
   totalSales: number = 0;
   volume:number =0;
   isFilter:boolean=false;
+  totals:number =0;
   vm$: Observable<ProductionSelector.PaginatorSupport>;
   pages = [
     { id: 10, name: "10" },

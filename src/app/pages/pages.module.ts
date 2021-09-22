@@ -17,6 +17,8 @@ import { TypesComponent } from './types/types.component';
 import { TypesListComponent } from './types/types-list/types-list.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
+import { ExpenseTypeComponent } from './expense-type/expense-type.component';
+import { ExpenseTypeListComponent } from './expense-type/expense-type-list/expense-type-list.component';
 
 
 
@@ -34,6 +36,8 @@ import { ProductCategoryListComponent } from './product-category/product-categor
     TypesListComponent,
     ProductCategoryComponent,
     ProductCategoryListComponent,
+    ExpenseTypeComponent,
+    ExpenseTypeListComponent,
   ],
   imports: [
     CommonModule,

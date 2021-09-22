@@ -137,6 +137,39 @@
                 </h4>
               </td>
             </tr>
+          <tr *ngIf="totalCosts">
+              <td>Costo de venta</td>
+              <td></td>
+              <td ><h4>{{totalCosts.january |currency}}</h4></td>
+              <td><h4>{{totalCosts.february |currency}}</h4></td>
+              <td><h4>{{totalCosts.march |currency}}</h4></td>
+              <td><h4>{{totalCosts.april |currency}}</h4></td>
+              <td><h4>{{totalCosts.may |currency}}</h4></td>
+              <td><h4>{{totalCosts.june |currency}}</h4></td>
+              <td><h4>{{totalCosts.july |currency}}</h4></td>
+              <td><h4>{{totalCosts.august |currency}}</h4></td>
+              <td><h4>{{totalCosts.september |currency}}</h4></td>
+              <td><h4>{{totalCosts.october |currency}}</h4></td>
+              <td><h4>{{totalCosts.november |currency}}</h4></td>
+              <td><h4>{{totalCosts.december |currency}}</h4></td>
+
+          </tr>
+          <tr>
+              <td>Utilidad Bruta</td>
+              <td></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumJaun-totalCosts.january |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumFeb-totalCosts.february |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumMar-totalCosts.march |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumApr-totalCosts.april |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumMay-totalCosts.may |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumJun-totalCosts.june |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumJul-totalCosts.july |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumAug-totalCosts.august |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumSep-totalCosts.september |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumOct-totalCosts.october |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumNov-totalCosts.november |currency}}</h4></td>
+              <td *ngIf="totalCosts"><h4> {{this.sumDic-totalCosts.december |currency}}</h4></td>
+          </tr>
 
           </tbody>
         </table>

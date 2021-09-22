@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Pageable } from 'src/app/models/customer';
 import { GetService } from 'src/app/services/get-service/get-service.service';
 import { ModalService } from 'src/app/services/shared/modal.service';
@@ -67,6 +68,7 @@ export class BankCsvMovementsComponent implements OnInit {
     public _modalService: ModalService,
     public _uploadService: UploadService,
     public _getinvoice: GetService,
+    private router: Router
   ) {
 
    }
@@ -300,6 +302,11 @@ export class BankCsvMovementsComponent implements OnInit {
     this._getinvoice.getSalesByCurrentDate(this.urlSalsByCurrDte).subscribe(res=> {
       this.totalSales = res;
     })
+  }
+
+  edit(obj){
+    // this.store.dispatch(CustomerActions.loadCustomerById({id: customer.id}));
+    this.router.navigate(['bank/bank-movements-edit', obj.id]);
   }
 
 

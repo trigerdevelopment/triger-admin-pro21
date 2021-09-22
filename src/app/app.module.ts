@@ -35,6 +35,9 @@ import { RoutesEffects } from './store/effects/routes.effects';
 import { ReportEffects } from './store/effects/report.effects';
 import { ManufactureComponent } from './manufacture/manufacture.component';
 import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
+import { ExpensesEffects } from './store/effects/expenses.effects';
+import { ModalExpenseTypeComponent } from './modals/modal-expense-type/modal-expense-type.component';
+import { ModalExpenseTypeFileUploadComponent } from './modals/modal-expense-type-file-upload/modal-expense-type-file-upload.component';
 
 
 
@@ -48,6 +51,7 @@ import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
     LoginSessionComponent,
     SpinnerComponent,
     ManufactureComponent,
+    ModalExpenseTypeComponent,
 
  ],
   imports: [
@@ -69,7 +73,7 @@ import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
         strictStateImmutability: true,
         strictActionImmutability: true,
       }}),
-    EffectsModule.forRoot([AuthEffects,SpinnerEffects, AlertEffects,RoutesEffects,ReportEffects,ReportPurchaseEffects]),
+    EffectsModule.forRoot([AuthEffects,SpinnerEffects, AlertEffects,RoutesEffects,ReportEffects,ExpensesEffects,ReportPurchaseEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
 

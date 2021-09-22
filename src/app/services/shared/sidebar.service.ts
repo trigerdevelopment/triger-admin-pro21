@@ -14,6 +14,7 @@ export class SidebarService {
         { titulo: "Listado de Tareas", url: "/dashboard/tareas" },
         { titulo: "Lista de Categorias", url: "/dashboard/types" },
         { titulo: "Categorias de Productos", url: "/dashboard/product-category-list" },
+        { titulo: "Categorias de Gastos", url: "/dashboard/expenses-type" },
         // { titulo: "Lista de Usuarios Registrados", url: "/usuarios-registrados" },
 
       ],
@@ -40,8 +41,10 @@ export class SidebarService {
       icono: "mdi mdi-bank",
       submenu: [
         { titulo: "Dashboard", url: "/dashboard" },
-        { titulo: "Cuentas Bancarias", url: "/bancos/lista-cuentas" },
-        { titulo: "Movimientos Bancarios", url: "/bancos/movimientos-bancarios" },
+        { titulo: "Cuentas Bancarias", url: "/bank/account-list" },
+        { titulo: "Movimientos Bancarios", url: "/bank/banking-transactions" },
+        { titulo: "Movimientos de Cuentas", url: "/bank/bank-transactions" },
+        { titulo: "Movimientos detalles", url: "/bank/bank-movements-edit" },
 
       ],
     },

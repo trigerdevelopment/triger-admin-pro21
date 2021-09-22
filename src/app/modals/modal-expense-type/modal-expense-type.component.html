@@ -1,0 +1,23 @@
+<div class="col-md-12">
+  <div class="card card-body">
+      <h3 class="box-title m-b-0">Agrege un Tipo de Categoria de Gasto</h3>
+      <p class="text-muted m-b-30 font-13"> ejemplo Electricidad, Gastos Venta, Etc. </p>
+      <div class="row">
+          <div class="col-sm-12 col-xs-12">
+              <form [formGroup]="formService.form">
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Nombre de la Categoria del Gasto</label>
+                      <input type="text" class="form-control" formControlName="expense" id="exampleInputEmail1" placeholder="Nombre de la Categoria del Gasto">
+                  </div>
+
+                  <button  [disabled]="!formService.form.valid"  (click)="formService.onSubmit()" class="btn btn-primary waves-effect waves-light m-r-10">Enviar</button>
+                  <button (click)="closeModal()" class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+</div>
+<hr>
+
+

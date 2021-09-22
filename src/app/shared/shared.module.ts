@@ -16,6 +16,7 @@ import { InvoiceFormComponent } from '../forms/invoice-form/invoice-form.compone
 import { EnumeratePipe } from '../customer/enumerate.pipe';
 import { NgxModalService } from '../services/shared/ngx-modal.service';
 import { ModalProductCategoryComponent } from '../modals/modal-product-category/modal-product-category.component';
+import { ModalExpenseTypeFileUploadComponent } from '../modals/modal-expense-type-file-upload/modal-expense-type-file-upload.component';
 
 
 
@@ -31,6 +32,7 @@ import { ModalProductCategoryComponent } from '../modals/modal-product-category/
     ModalUploadComponent,
     ModalTaskComponent,
     ModalProductCategoryComponent,
+    ModalExpenseTypeFileUploadComponent,
     FormTaskComponent,
     InvoiceFormComponent,
     EnumeratePipe,
@@ -46,6 +48,7 @@ import { ModalProductCategoryComponent } from '../modals/modal-product-category/
     ModalUploadComponent,
     ModalTaskComponent,
     ModalProductCategoryComponent,
+    ModalExpenseTypeFileUploadComponent,
     FormTaskComponent,
     InvoiceFormComponent,
     EnumeratePipe,

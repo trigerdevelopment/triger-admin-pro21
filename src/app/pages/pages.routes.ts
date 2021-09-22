@@ -10,6 +10,8 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { SupplierComponent } from '../supplier/supplier.component';
 import { TypesListComponent } from './types/types-list/types-list.component';
 import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
+import { ExpenseTypeComponent } from './expense-type/expense-type.component';
+import { ExpenseTypeListComponent } from './expense-type/expense-type-list/expense-type-list.component';
 
 
 const pagesRoutes: Routes = [
@@ -29,6 +31,12 @@ const pagesRoutes: Routes = [
     path: 'types',
     component: TypesListComponent,
     data: {titulo: 'Registro de Categorias',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
+
+  },
+  {canActivate:[AuthGuard],
+    path: 'expenses-type',
+    component: ExpenseTypeListComponent,
+    data: {titulo: 'Registro de las Categorias de Gastos',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
 
   },
   {canActivate:[AuthGuard],

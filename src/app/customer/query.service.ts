@@ -26,6 +26,23 @@ export class QueryService {
     'orderBy': true
 
   }
+  filter3: any = {
+    'iniDate': '',
+    'finalDate': '',
+    'cuenta': '',
+    'referencia':'',
+    'descripcion':'',
+    'codTransac': '',
+    'depositos': '',
+    'retiros': '',
+    'movimiento': '',
+    'descripcionDetallada': '',
+    'pageNo': 0,
+    'pageSize': '',
+    'sortBy': '',
+    'orderBy': true
+
+  }
 
   filter2: any = {
     'initialDate': '',
@@ -121,6 +138,77 @@ export class QueryService {
     }
     if (quantity) {
       query = `${query}` + prepend + `quantity=${quantity}`;
+      prepend = '&';
+    }
+
+    if (pageNo) {
+      query = `${query}` + prepend + `pageNo=${pageNo}`;
+      prepend = '&';
+    }
+    if (pageSize) {
+      query = `${query}` + prepend + `pageSize=${pageSize}`;
+      prepend = '&';
+    }
+    if (sortBy) {
+      query = `${query}` + prepend + `sortBy=${sortBy}`;
+      prepend = '&';
+    }
+    if (orderBy) {
+      query = `${query}` + prepend + `orderBy=${orderBy}`;
+      prepend = '&';
+    }else{
+      query = `${query}` + prepend + `orderBy=false`;
+      prepend = '&';
+    }
+
+    // query = `${query}` + prepend + `_sort=price`;
+    this.queryData = query;
+    return query;
+  }
+
+ bankFilter(
+{ initialDate = '', finalDate = '', cuenta = '', referencia='', descripcion= '', codTransac = '',depositos='', retiros='',movimiento='',descripcionDetallada='',pageNo = null, pageSize = '', sortBy = '', orderBy = true}: { initialDate?: string; finalDate?: string; cuenta?:string,referencia?:string, descripcion?: string; codTransac?:string; depositos?:string;retiros?:string;movimiento?:string;descripcionDetallada?: string;pageNo?: number; pageSize?: string; sortBy?: string; orderBy?: boolean }
+  ): string {
+    var prepend = '';
+    var query = '';
+    if (initialDate) {
+      query = `${query}` + prepend + `initialDate=${initialDate}`;
+      prepend = '&';
+    }
+    if (finalDate) {
+      query = `${query}` + prepend + `finalDate=${finalDate}`;
+      prepend = '&';
+    }
+    if (cuenta) {
+      query = `${query}` + prepend + `cuenta=${cuenta}`;
+      prepend = '&';
+    }
+    if (referencia) {
+      query = `${query}` + prepend + `referencia=${referencia}`;
+      prepend = '&';
+    }
+    if (descripcion) {
+      query = `${query}` + prepend + `descripcion=${descripcion}`;
+      prepend = '&';
+    }
+    if (codTransac) {
+      query = `${query}` + prepend + `codTransac=${codTransac}`;
+      prepend = '&';
+    }
+    if (depositos) {
+      query = `${query}` + prepend + `depositos=${depositos}`;
+      prepend = '&';
+    }
+    if (retiros) {
+      query = `${query}` + prepend + `retiros=${retiros}`;
+      prepend = '&';
+    }
+    if (movimiento) {
+      query = `${query}` + prepend + `movimiento=${movimiento}`;
+      prepend = '&';
+    }
+    if (descripcionDetallada) {
+      query = `${query}` + prepend + `descripcionDetallada=${descripcionDetallada}`;
       prepend = '&';
     }
 

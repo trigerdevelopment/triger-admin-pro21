@@ -114,7 +114,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
           'success'
         )
       }
-    })
+    });
   }
 
   edit(user){

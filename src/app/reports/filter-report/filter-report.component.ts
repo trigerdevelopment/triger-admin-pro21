@@ -5,6 +5,7 @@ import { QueryService } from 'src/app/customer/query.service';
 import { ReportState } from 'src/app/store/reducers/report.reducers';
 
 import * as ReportActions from '../../store/actions/report.actions';
+import * as ExpensesActions from '../../store/actions/expenses.actions';
 
 @Component({
   selector: 'app-filter-report',
@@ -37,9 +38,7 @@ export class FilterReportComponent implements OnInit {
   }
 
   selectYear(event){
-    console.log('EVENT 0', event.target.value);
     this.query = '?date='.concat(event.target.value);
-    console.log('QUERY ', this.query);
     this.dispatchAction();
 
   }
@@ -47,5 +46,6 @@ export class FilterReportComponent implements OnInit {
   dispatchAction() {
 
     this.store.dispatch(ReportActions.loadSalesByMonth({ query: this.query }));
+    this.store.dispatch(ExpensesActions.loadExpensesByMonth({ query: this.query }));
   }
 }

@@ -113,10 +113,10 @@
               <td>{{inv.quantity}}</td>
               <td>{{inv.cost|currency}}</td>
               <td>{{inv.totalCost|currency}}</td>
+
               <!-- <td>{{inv.nombreArchivo}}</td> -->
               <td><button class="btn btn-primary btn-sm" (click)="invoiceDetail(inv)">detalle</button></td>
               <td><button class="btn btn-danger btn-sm" (click)="deleteInvoice(inv)">borrar</button></td>
-
             </tr>
 
           </tbody>
