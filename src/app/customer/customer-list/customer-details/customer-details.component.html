@@ -43,9 +43,9 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
-            <label class="control-label text-right col-md-3">Gender:</label>
+            <label class="control-label text-right col-md-3">Credito:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> Male </p>
+              <p class="form-control-static">{{customer.creditDays}} </p>
             </div>
           </div>
         </div>
@@ -84,14 +84,13 @@
       <!--/row-->
       <h3 class="box-title">Direccion</h3>
       <hr class="m-t-0 m-b-40">
-      <div class="row" *ngIf="!customer.customerAddress" >**<h3>El Cliente no tiene dada de Alta la Direccion</h3></div>
 
-        <div class="row" *ngIf="customer.customerAddress" >
+        <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Calle:</label>
             <div class="col-md-9">
-              <p  class="form-control-static">{{customer.customerAddress.street}}</p>
+              <p  class="form-control-static">{{customer.street}}</p>
             </div>
           </div>
         </div>
@@ -99,18 +98,18 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Num:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.number}} </p>
+              <p class="form-control-static"> {{customer.streetNumber}} </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row" *ngIf="customer.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Colonia:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.suburb}} </p>
+              <p class="form-control-static"> {{customer.suburb}} </p>
             </div>
           </div>
         </div>
@@ -120,19 +119,19 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">CP:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.code}} </p>
+              <p class="form-control-static"> {{customer.code}} </p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
       <!--/row-->
-      <div class="row" *ngIf="customer.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Telefono:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.phone}} </p>
+              <p class="form-control-static"> {{customer.phone}} </p>
             </div>
           </div>
         </div>
@@ -141,19 +140,19 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Email:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.email}}</p>
+              <p class="form-control-static"> {{customer.email}}</p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
 
-      <div class="row" *ngIf="customer.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Ciudad:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.city}} </p>
+              <p class="form-control-static"> {{customer.municipio}} </p>
             </div>
           </div>
         </div>
@@ -162,28 +161,35 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Estado:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.state}}</p>
+              <p class="form-control-static"> {{customer.estado}}</p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
 
-      <div class="row" *ngIf="customer.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Pais:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.country}} </p>
+              <p class="form-control-static"> {{customer.pais}} </p>
             </div>
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group row">
-            <label class="control-label text-right col-md-3">Notas:</label>
-            <div class="col-md-9">
-              <p class="form-control-static"> {{customer.customerAddress.notes}}</p>
+            <label class="control-label text-right col-md-3">Activo:</label>
+            <div class="col-md-9" *ngIf="!customer.status">
+             <h3>
+               <span class="badge badge-danger form-control-static">{{customer.status}}</span>
+             </h3>
+            </div>
+            <div class="col-md-9" *ngIf="customer.status">
+             <h3>
+               <span class="badge badge-success form-control-static">{{customer.status}}</span>
+             </h3>
             </div>
           </div>
         </div>

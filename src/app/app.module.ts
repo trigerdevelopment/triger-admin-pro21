@@ -37,7 +37,6 @@ import { ManufactureComponent } from './manufacture/manufacture.component';
 import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
 import { ExpensesEffects } from './store/effects/expenses.effects';
 import { ModalExpenseTypeComponent } from './modals/modal-expense-type/modal-expense-type.component';
-import { ModalExpenseTypeFileUploadComponent } from './modals/modal-expense-type-file-upload/modal-expense-type-file-upload.component';
 
 
 

@@ -1,0 +1,163 @@
+<div class="col-md-12">
+  <div class="card card-body">
+    <form [formGroup]="form.formBankMov" class="form-horizontal">
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Numero de la Cuenta</label>
+        <div class="col-sm-9">
+
+         <input type="text" class="form-control" formControlName="accountNumber" id="company"
+            placeholder="Numero de la Cuenta">
+          <!-- <input type="text" [required]='' class="form-control" id="inputEmail3" placeholder="Nombre del Cliente" [(ngModel)]="custom.company" [ngModelOptions]="{standalone: true}"> -->
+          <div *ngIf="form.formBankMov.get('accountNumber').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+          <div *ngIf="form.formBankMov.get('accountNumber').hasError('minlength')" class="form-control-feedback text-danger">
+            *Agrege 3 Caracteres minimo</div>
+          <div *ngIf="form.formBankMov.get('accountNumber').hasError('maxlength')" class="form-control-feedback text-danger">
+            *Agrege 50 Caracteres maximo</div>
+          <!-- <div *ngIf="company.invalid && (name.dirty || name.touched)" class="alert alert-danger"></div> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Fecha</label>
+        <div class="col-sm-9">
+
+         <input type="date" class="form-control" formControlName="date" id="fecha"
+            placeholder="Numero de la Cuenta">
+          <div *ngIf="form.formBankMov.get('date').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Fecha Operacion</label>
+        <div class="col-sm-9">
+
+         <input type="date" class="form-control" formControlName="dateTransactions" id="company"
+            placeholder="Numero de la Cuenta">
+          <div *ngIf="form.formBankMov.get('dateTransactions').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Referencia</label>
+        <div class="col-sm-9">
+         <input type="calendar" class="form-control" formControlName="reference" id="company"
+            placeholder="Numero de la Cuenta">
+          <div *ngIf="form.formBankMov.get('reference').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+          <div *ngIf="form.formBankMov.get('reference').hasError('minlength')" class="form-control-feedback text-danger">
+            *Agrege 3 Caracteres minimo</div>
+          <div *ngIf="form.formBankMov.get('reference').hasError('maxlength')" class="form-control-feedback text-danger">
+            *Agrege 50 Caracteres maximo</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Movimiento</label>
+        <div class="col-sm-9">
+
+         <input type="calendar" class="form-control" formControlName="movement" id="company"
+            placeholder="Numero de la Cuenta">
+          <div *ngIf="form.formBankMov.get('movement').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+          <div *ngIf="form.formBankMov.get('movement').hasError('minlength')" class="form-control-feedback text-danger">
+            *Agrege 1 Caracteres minimo</div>
+          <div *ngIf="form.formBankMov.get('movement').hasError('maxlength')" class="form-control-feedback text-danger">
+            *Agrege 12 Caracteres maximo</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Deposito</label>
+        <div class="col-sm-9">
+         <input type="calendar" class="form-control" formControlName="deposit" id="company"
+            placeholder="Numero de la Cuenta">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Retiro</label>
+        <div class="col-sm-9">
+
+         <input type="calendar" class="form-control" formControlName="bankWithdrawals" id="bankWithdrawals"
+            placeholder="Numero de la Cuenta">
+           </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Descripcion</label>
+        <div class="col-sm-9">
+
+         <textarea type="calendar" class="form-control" formControlName="details" id="company"
+            placeholder="Numero de la Cuenta" rows="5"></textarea>
+          <div *ngIf="form.formBankMov.get('details').hasError('required')" class="form-control-feedback text-danger">
+            *Este campo es requerido</div>
+          <div *ngIf="form.formBankMov.get('details').hasError('minlength')" class="form-control-feedback text-danger">
+            *Agrege 5 Caracteres minimo</div>
+          <div *ngIf="form.formBankMov.get('details').hasError('maxlength')" class="form-control-feedback text-danger">
+            *Agrege 500 Caracteres maximo</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Tipo de Gasto</label>
+        <div class="col-sm-9">
+          <select formControlName="typeOfExpense">
+            <option *ngFor="let c of expenseType" [value]="c.expense" >{{c.expense}}</option>
+          </select>
+          <div *ngIf="form.formBankMov.get('typeOfExpense').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+      </div>
+  </div>
+
+  <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Pago al Proveedor</label>
+        <div class="col-sm-9">
+          <select formControlName="supplierName">
+            <option *ngFor="let c of suppliers" [value]="c.company" >{{c.company}}</option>
+          </select>
+      </div>
+  </div>
+
+  <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-3 text-right control-label col-form-label">Deposito del Cliente</label>
+        <div class="col-sm-9">
+          <!-- <input type="text" class="form-control" formControlName="rfc" id="inputEmail3" placeholder="Registro Federal de Contribuyente"> -->
+          <select formControlName="customerName">
+            <option>Seleccione una Opcion</option>
+            <option *ngFor="let c of customers" [value]="c.company" >{{c.company}}</option>
+          </select>
+          <!-- <div *ngIf="form.formBankMov.get('').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div> -->
+
+      </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="offset-sm-3 col-sm-9">
+      <div class="checkbox checkbox-success">
+        <input id="checkbox33" formControlName="enabled" type="checkbox">
+        <!-- <input id="checkbox33" type="checkbox" [(ngModel)]="custom.status" [ngModelOptions]="{standalone: true}"> -->
+            <label for="checkbox33">Activo</label>
+        </div>
+    </div>
+</div>
+
+  <div class="form-group m-b-0 row">
+    <div  class="col-sm-4">
+        <button *ngIf="!form.isEdit"  [disabled]="!form.formBankMov.valid" (click)="form.submit()" class="btn btn-info waves-effect waves-light m-t-10">Agregar Movimiento</button>
+        <!-- <button  *ngIf="form.isEdit"  type=submit class="btn btn-info waves-effect waves-light m-t-10">Agregar Cliente</button> -->
+      </div>
+    <div *ngIf="form.isEdit" class="col-sm-4">
+        <button  type=submit class="btn btn-warning waves-effect waves-light m-t-10" (click)="form.edit()">Editar Movimiento</button>
+      </div>
+    <div class="col-sm-3">
+        <button (click)="form.cleanForm()" class="btn btn-danger waves-effect waves-light m-t-10">Borrar Forma</button>
+      </div>
+</div>
+
+
+    </form>
+  </div>
+</div>

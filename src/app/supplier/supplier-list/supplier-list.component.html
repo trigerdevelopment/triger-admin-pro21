@@ -58,7 +58,7 @@
                 aria-label="Salary: activate to sort column ascending" style="width:5%;">Nombre Cliente</th> -->
                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
                 aria-label="Position: activate to sort column ascending" (click)="functionSortBy('company')"
-                >Nombre Cliente</th>
+                >Nombre Proveedor</th>
                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
                 aria-label="Position: activate to sort column ascending" (click)="functionSortBy('storeNum')"
                 >RFC</th>
@@ -69,8 +69,23 @@
                 aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
                 >Categoria</th>
                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
+                >Calle</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
+                >Numero</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
+                >CP</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
+                >Telefono</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('rfc')"
+                >Email</th>
+                <!-- <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
                 aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
-                >Categoria</th>
+                >Categoria</th> -->
               <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
                 aria-label="Salary: activate to sort column ascending" style="width:5%;">Acciones</th>
 
@@ -126,7 +141,11 @@
               <!-- <td>{{inv.storeNum}}</td> -->
               <td>{{inv.rfc}}</td>
               <td>{{inv.categoria}}</td>
-              <!-- <td>{{inv.customerAddress.street}}</td> -->
+              <td>{{inv.street}}</td>
+              <td>{{inv.streetNumber}}</td>
+              <td>{{inv.code}}</td>
+              <td>{{inv.phone}}</td>
+              <td>{{inv.email}}</td>
               <!-- <td>{{inv.impuesto|currency}}</td> -->
               <!-- <td>{{inv.total|currency}}</td> -->
               <!-- <td>{{inv.pago|currency}}</td> -->

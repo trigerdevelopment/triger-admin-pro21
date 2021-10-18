@@ -33,18 +33,37 @@ export class BankService {
       );
   }
 
-  updateBankMovement(inv: string): Observable<any> {
+  updateBankMovement(inv: any): Observable<any> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(URL_SERVICIOS+'/bank/bank-movement/update',inv, { headers: this.httpHeaders })
-      .pipe(
+      .pipe( tap(() => {
+        this._refreshNeeded$.next();
+      }),
      catchError(err =>{
        console.error(err);
-      this.alertService.error('mensaje de error enviado desde el Servidor', `${err.error.message}`);
+      // this.alertService.error('mensaje de error enviado desde el Servidor', `${err.error.message}`);
+      this.alertService.error('mensaje de error enviado desde el Servidor');
        return throwError(err)
      })
       );
   }
+
+  updateBankingTransaction(bankingTransaction: any): Observable<any> {
+    // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+  this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(URL_SERVICIOS+'/bank/bank-movement/update',bankingTransaction, { headers: this.httpHeaders })
+      .pipe(tap(() => {
+        this._refreshNeeded$.next();
+      }),
+        catchError(err =>{
+          console.error(err);
+         this.alertService.error('mensaje de error enviado desde el Servidor');
+          return throwError(err)
+        })
+      )
+  }
+
 
   getBankMovByQuery(query: string): Observable<Pageable> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});

@@ -47,6 +47,8 @@ export class FormTaskService {
     this.form.get('asignedTo')!.setValue(task.asignedTo);
     this.form.get('status')!.setValue(task.status);
     this.form.get('priority')!.setValue(task.priority);
+    console.log('DATE ', task.date);
+
     var date = this.getDate(task.date);
     var completedDate = this.getDate(task.completedDate);
     this.form.get('date').setValue(date);
@@ -57,6 +59,8 @@ export class FormTaskService {
 
   onSubmit() {
     this.isspinner=true;
+    console.log('FORM ', this.form.value);
+
     this.form.get('requestby').setValue(this._authService.getUserDetails());
      this._crud.createObject(this.form.value, 'task/new').subscribe(res => {
        this.tasks = res;

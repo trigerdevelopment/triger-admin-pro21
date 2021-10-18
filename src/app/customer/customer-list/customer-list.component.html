@@ -70,6 +70,21 @@
                 <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
                 aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
                 >Categoria</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
+                >Calle</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
+                >Numero</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
+                >CP</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
+                >Telefono</th>
+                <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('categoria')"
+                >Email</th>
               <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
                 aria-label="Salary: activate to sort column ascending" style="width:5%;">Acciones</th>
 
@@ -125,8 +140,11 @@
               <td>{{inv.storeNum}}</td>
               <td>{{inv.rfc}}</td>
               <td>{{inv.categoria}}</td>
-              <!-- <td>{{inv.customerAddress.street}}</td> -->
-              <!-- <td>{{inv.impuesto|currency}}</td> -->
+              <td>{{inv.street}}</td>
+              <td>{{inv.streetNumber}}</td>
+              <td>{{inv.code}}</td>
+              <td>{{inv.phone}}</td>
+              <td>{{inv.email}}</td>
               <!-- <td>{{inv.total|currency}}</td> -->
               <!-- <td>{{inv.pago|currency}}</td> -->
               <!-- <td>{{inv.nombreArchivo}}</td> -->

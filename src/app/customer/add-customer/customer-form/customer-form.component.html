@@ -43,7 +43,7 @@
                   <!-- <input type="text" class="form-control" formControlName="rfc" id="inputEmail3" placeholder="Registro Federal de Contribuyente"> -->
                   <select formControlName="categoria">
                     <!-- <option>Seleccione una Opcion</option> -->
-                    <option *ngFor="let c of customerType"[value]="c.name" >{{c.name}}</option>
+                    <option *ngFor="let c of customerType" [value]="c.name" >{{c.name}}</option>
                   </select>
                   <div *ngIf="form.formCustomer.get('categoria').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
                   <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarTypeModal()" title
@@ -55,7 +55,7 @@
 
           <h3>Datos de Direccion</h3>
           <hr>
-          <div class="card card-body" formGroupName="customerAddress">
+          <div class="card card-body">
           <!-- <div class="card card-body"> -->
 
             <!-- <div class="form-group row">
@@ -69,15 +69,15 @@
               <label for="street" class="col-sm-3 text-right control-label col-form-label">Calle</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" formControlName="street" id="street" placeholder="Calle">
-                <div *ngIf="form.formCustomer.get('customerAddress.street').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <div *ngIf="form.formCustomer.get('street').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="number" class="col-sm-3 text-right control-label col-form-label">Numero</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="number" id="number" placeholder="Numero">
-                <div *ngIf="form.formCustomer.get('customerAddress.number').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <input type="text" class="form-control" formControlName="streetNumber" id="number" placeholder="Numero">
+                <div *ngIf="form.formCustomer.get('streetNumber').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
@@ -85,39 +85,39 @@
               <label for="code" class="col-sm-3 text-right control-label col-form-label">Codigo Postal</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" formControlName="code" id="code" placeholder="Codigo Postal">
-                <div *ngIf="form.formCustomer.get('customerAddress.code').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <div *ngIf="form.formCustomer.get('code').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
             <div class="form-group row">
               <label for="code" class="col-sm-3 text-right control-label col-form-label">Colonia</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="suburb" id="suburb" placeholder="Colonia">
-                <div *ngIf="form.formCustomer.get('customerAddress.suburb').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <input type="text" class="form-control" formControlName="colonia" id="suburb" placeholder="Colonia">
+                <div *ngIf="form.formCustomer.get('colonia').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
             <div class="form-group row">
               <label for="code" class="col-sm-3 text-right control-label col-form-label">Ciudad</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="city" id="city" placeholder="Ciudad">
-                <div *ngIf="form.formCustomer.get('customerAddress.city').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <input type="text" class="form-control" formControlName="municipio" id="city" placeholder="Ciudad">
+                <div *ngIf="form.formCustomer.get('municipio').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
             <div class="form-group row">
               <label for="code" class="col-sm-3 text-right control-label col-form-label">Estado</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="state" id="estado" placeholder="Estado">
-                <div *ngIf="form.formCustomer.get('customerAddress.state').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <input type="text" class="form-control" formControlName="estado" id="estado" placeholder="Estado">
+                <div *ngIf="form.formCustomer.get('estado').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
             <div class="form-group row">
               <label for="code" class="col-sm-3 text-right control-label col-form-label">Pais</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" formControlName="country" id="country" placeholder="Pais">
-                <div *ngIf="form.formCustomer.get('customerAddress.country').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
+                <input type="text" class="form-control" formControlName="pais" id="country" placeholder="Pais">
+                <div *ngIf="form.formCustomer.get('pais').hasError('required')" class="form-control-feedback text-danger">*Este campo es requerido</div>
 
               </div>
             </div>
@@ -137,14 +137,14 @@
 
               </div>
             </div>
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label for="notes" class="col-sm-3 text-right control-label col-form-label">Notas</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" formControlName="notes"id="notes" placeholder="Notas">
-                <!-- <input type="text" class="form-control" name="notes" id="notes" placeholder="Notas" [(ngModel)]="custom.customerAddress.notes" [ngModelOptions]="{standalone: true}"> -->
+                <input type="text" class="form-control" name="notes" id="notes" placeholder="Notas" [(ngModel)]="custom.customerAddress.notes" [ngModelOptions]="{standalone: true}">
 
               </div>
-            </div>
+            </div> -->
 
           </div>
 

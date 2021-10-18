@@ -43,18 +43,18 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
-            <label class="control-label text-right col-md-3">Gender:</label>
+            <label class="control-label text-right col-md-3">RFC:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> Male </p>
+              <p class="form-control-static"> {{supplier.rfc}} </p>
             </div>
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group row">
-            <label class="control-label text-right col-md-3">Fecha:</label>
+            <label class="control-label text-right col-md-3">Credito:</label>
             <div class="col-md-9">
-              <!-- <p class="form-control-static"> {{invoice.fecha|date}} </p> -->
+              <p class="form-control-static"> {{supplier.creditDays}} </p>
             </div>
           </div>
         </div>
@@ -84,14 +84,12 @@
       <!--/row-->
       <h3 class="box-title">Direccion</h3>
       <hr class="m-t-0 m-b-40">
-      <div class="row" *ngIf="!supplier.customerAddress" >**<h3>El Cliente no tiene dada de Alta la Direccion</h3></div>
-
-        <div class="row" *ngIf="supplier.customerAddress" >
+        <div class="row" >
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Calle:</label>
             <div class="col-md-9">
-              <p  class="form-control-static">{{supplier.customerAddress.street}}</p>
+              <p  class="form-control-static">{{supplier.street}}</p>
             </div>
           </div>
         </div>
@@ -99,18 +97,18 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Num:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.number}} </p>
+              <p class="form-control-static"> {{supplier.streetNumber}} </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row" *ngIf="supplier.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Colonia:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.suburb}} </p>
+              <p class="form-control-static"> {{supplier.colonia}} </p>
             </div>
           </div>
         </div>
@@ -120,19 +118,19 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">CP:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.code}} </p>
+              <p class="form-control-static"> {{supplier.code}} </p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
       <!--/row-->
-      <div class="row" *ngIf="supplier.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Telefono:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.phone}} </p>
+              <p class="form-control-static"> {{supplier.phone}} </p>
             </div>
           </div>
         </div>
@@ -141,19 +139,19 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Email:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.email}}</p>
+              <p class="form-control-static"> {{supplier.email}}</p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
 
-      <div class="row" *ngIf="supplier.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Ciudad:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.city}} </p>
+              <p class="form-control-static"> {{supplier.municipio}} </p>
             </div>
           </div>
         </div>
@@ -162,28 +160,35 @@
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Estado:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.state}}</p>
+              <p class="form-control-static"> {{supplier.estado}}</p>
             </div>
           </div>
         </div>
         <!--/span-->
       </div>
 
-      <div class="row" *ngIf="supplier.customerAddress">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group row">
             <label class="control-label text-right col-md-3">Pais:</label>
             <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.country}} </p>
+              <p class="form-control-static"> {{supplier.pais}} </p>
             </div>
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group row">
-            <label class="control-label text-right col-md-3">Notas:</label>
-            <div class="col-md-9">
-              <p class="form-control-static"> {{supplier.customerAddress.notes}}</p>
+            <label class="control-label text-right col-md-3">Activo:</label>
+            <div class="col-md-9" *ngIf="!supplier.status">
+             <h3>
+               <span class="badge badge-danger form-control-static">{{supplier.status}}</span>
+             </h3>
+            </div>
+            <div class="col-md-9" *ngIf="supplier.status">
+             <h3>
+               <span class="badge badge-success form-control-static">{{supplier.status}}</span>
+             </h3>
             </div>
           </div>
         </div>

@@ -65,6 +65,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
   getTasks() {
     this._crudService.getAllObjects('get-tasks').subscribe(res => {
       this.tasks = res;
+      console.log('TASK ', this.tasks);
+
 
     })
   }

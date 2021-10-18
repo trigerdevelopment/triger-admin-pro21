@@ -1,163 +1,89 @@
 
-<h2>Transactions</h2>
-<div class="card" *ngIf="vm$ | async as vm">
-  <div class="card-body"  >
+<h2>Movimientos Bancarios</h2>
 
-    <div class="table-responsive">
-      <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+<app-bank-filter [basecontroller]="basecontroller"></app-bank-filter>
+<div class="table-responsive m-t-40" *ngIf="vm$ | async as vm">
+  <div id="example23_wrapper" class="dataTables_wrapper">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" readonly class="custom-control-input" id="checkedSelect"
+       name="example1" [(ngModel)]="masterSelected" (change)="checkUncheckAll()">
+      <label class="custom-control-label" for=checkedSelect>Seleccionar</label>
+     </div>
+    <div class="dt-buttons"><a class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="example23" (click)="create()"><span>Agregar un Movimiento</span></a><a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example23" href="#"><span>CSV</span></a><a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example23" href="#"><span>Excel</span></a><a class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example23" href="#"><span>PDF</span></a><a class="dt-button buttons-print" tabindex="0" aria-controls="example23" href="#"><span>Print</span></a></div><div id="example23_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="example23"></label></div><table id="example23" class="display nowrap table table-hover table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example23_info" style="width: 100%;">
+    <thead>
+     <!-- <tr>
 
-
-        <app-bank-filter [basecontroller]="basecontroller"></app-bank-filter>
-
-     <div class="dataTables_length ml-2" id="myTable_length">
+       <div class="custom-control custom-checkbox">
+         <input type="checkbox" readonly class="custom-control-input" id="checkedSelect"
+          name="example1" [(ngModel)]="masterSelected" (change)="checkUncheckAll()">
+         <label class="custom-control-label" for=checkedSelect>Seleccionar</label>
         </div>
-        <div id="myTable_filter" class="dataTables_filter">
-          <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarMultipleModal()" title
-            data-original-title="agregar multiple-facutras" class="btn btn-warning btn-circle btn-sm"><i
-              class="fa fa-plus"></i>
-          </button>
-          <button type="button" data-toggle="tooltip" data-placement="top" (click)="showInvoiceFormModal()" title
-            data-original-title="agregar Factura" class="btn btn-info btn-sm ml-2">
-            <i class="fa fa-plus"> Agregar Factura</i>
-          </button>
+      </tr> -->
+       <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width:12px;">Id</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 50px;">Fecha</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 114px;">FechaOperacion</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 114px;">Cuenta</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 100px;">Referencia</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 100px;">Movimiento</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;">Depositos</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;">Retiros</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 50px;">Saldo</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 200px;">Descripcion Detallada</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 200px;">Tipo de Gasto</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 200px;">Proveedor</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 200px;">Cliente</th><th class="sorting" tabindex="0" aria-controls="example23" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 200px;">Acciones</th></tr>
+      </thead>
+      <tfoot>
+          <tr><th rowspan="1" colspan="1">Id</th><th rowspan="1" colspan="1">Fecha</th><th rowspan="1" colspan="1">FechaOperacion</th><th rowspan="1" colspan="1">Cuenta</th><th rowspan="1" colspan="1">Referencia</th><th rowspan="1" colspan="1">Movimiento</th><th rowspan="1" colspan="1">Depositos</th><th rowspan="1" colspan="1">Retiros</th><th rowspan="1" colspan="1">Saldo</th><th rowspan="1" colspan="1">DescripcionDetallada</th><th rowspan="1" colspan="1">Tipo De Gasto</th><th rowspan="1" colspan="1">Proveedor</th><th rowspan="1" colspan="1">Cliente</th><th rowspan="1" colspan="1">Acciones</th></tr>
+      </tfoot>
+      <tbody>
 
-          <button class="btn btn-primary btn-sm ml-2" >Pagar Factura</button>
-
-        </div>
-
-
-
-          <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
-          aria-describedby="myTable_info">
-          <thead>
-            <!-- <app-filter-order-by></app-filter-order-by> -->
-            <tr role="row">
-              <th class="sorting_asc" tabindex="0" aria-controls="myTable" aria-sort="ascending"
-                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">#</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fecha')"
-                >Fecha</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fechaPago')"
-                >Fecha Operacion</th>
-              <!-- <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Office: "
-                style="width:2%;">#</th> -->
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Age: activate to sort column ascending" (click)="functionSortBy('cuenta')"
-                style="width: 2%;">Cuenta</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('referencia')"
-                style="width:30%;">Referencia</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('movimiento')"
-                style="width:20%;">Movimiento</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('descripcion')"
-                style="width:20%;">Descripcion</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('depositos')"
-                style="width:20%;">Depositos</th>
-              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('retiros')"
-                style="width:20%;">Retiros</th>
-
-
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">Saldo</th>
-
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">Descripcion Detalle</th>
-
-
-                <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">Tipo Gasto</th>
-
-                <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">Acciones</th>
-
-              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
-                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
-              </th>
-              <th class="form-group" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fecha')"
-                style="width:1%;">
-              </th>
-            </tr>
-
-              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
-                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
-              </th>
-              <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 5%;">
-              </th>
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Start date: activate to sort column ascending" style="width:30%;">
-              </th>
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">
-              </th>
-
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">
-              </th>
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">
-              </th>
-
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">
-              </th>
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;">
-              </th>
-
-              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;"></th>
-
-                <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
-                aria-label="Salary: activate to sort column ascending" style="width:5%;"></th>
-
-
-          </thead>
-
-          <tbody>
-            <hr>
-            <tr role="row" class="odd" *ngFor="let inv of vm.pageable.content">
-              <td>{{inv.id}}</td>
-              <td>{{inv.fechag|date:'yyyy/MM/dd'}}</td>
-              <td>{{inv.fechaOpg|date:'yyyy/MM/dd'}}</td>
-              <td>{{inv.cuenta}}</td>
-              <td>{{inv.referencia}}</td>
-              <td>{{inv.movimiento}}</td>
-              <td>{{inv.descripcion}}</td>
-              <td>{{inv.depositos|currency}}</td>
-              <td>{{inv.retiros|currency}}</td>
-              <td>{{inv.saldo|currency}}</td>
-              <td>{{inv.descripcionDetallada}}</td>
-              <td>
-                <select (change)="typeOfCost(inv)" name="miselect" [(ngModel)]="inv.typeOfCost">
-                  <option [value]="item.expense" *ngFor="let item of expenseType">{{item.expense}}</option>
-                  </select>
+      <!-- <tr role="row" class="odd" *ngFor="let inv of vm.pageable.content"> -->
+      <tr role="row" class="odd" *ngFor="let inv of transactions">
+              <!-- <td class="sorting_1">{{inv.id}}</td> -->
+              <td class="sorting_1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" readonly class="custom-control-input" [checked]="inv.enabled"
+                    id="{{inv.id}}" name="example1" [(ngModel)]="inv.enabled" (change)="isAllSelected()">
+                  <label class="custom-control-label" for="{{inv.id}}"></label>
+                </div>
               </td>
-              <!-- <td>{{inv.nombreArchivo}}</td> -->
-              <td><button class="btn btn-primary btn-sm" (click)="detail(inv)">editar</button></td>
-              <td><button class="btn btn-danger btn-sm" (click)="delete(inv)">borrar</button></td>
 
+              <td>{{inv.date | date:'yyyy/MM/dd'}}</td>
+              <td>{{inv.dateTransactions | date:'yyyy/MM/dd'}}</td>
+              <td>{{inv.accountNumber}}</td>
+              <td>{{inv.reference}}</td>
+              <td>{{inv.movement}}</td>
+              <!-- <td>
+                <textarea class="form-control rounded-0" (blur)="typeOfCost(inv)" [(ngModel)]="inv.description" id="description" cols="300" rows="2"></textarea>
+              </td> -->
+              <td>{{inv.deposit |currency}}</td>
+              <td>{{inv.bankWithdrawals | currency}}</td>
+              <td>{{inv.balance | currency}}</td>
+              <td>
+                <textarea class="form-control rounded-0" (blur)="typeOfCost(inv)" [(ngModel)]="inv.details" id="description" cols="300" rows="2"></textarea>
+              </td>
+              <td>
+                 <select (change)="typeOfCost(inv)" name="miselect" [(ngModel)]="inv.typeOfExpense">
+                <option [value]="item.expense" *ngFor="let item of expenseType">{{item.expense}}</option>
+                </select>
+              </td>
+              <td>
+                  <select (change)="typeOfCost(inv)" name="miselect" [(ngModel)]="inv.supplierName">
+                <option value=""></option>
+                <option [value]="item.company" *ngFor="let item of suppliers">{{item.company}}</option>
+                </select>
+              </td>
+              <td> <select (change)="typeOfCost(inv)" name="miselect" [(ngModel)]="inv.customerName">
+                <option value=""></option>
+                <option [value]="item.company" *ngFor="let item of customers">{{item.company}}</option>
+                </select>
+              </td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="detail(inv)">detalle</button>
+                <button class="btn btn-danger btn-sm" (click)="edit(inv)">editar</button>
+
+              </td>
             </tr>
+      </tbody>
+  </table>
+  <!-- <div class="dataTables_info" id="example23_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div> -->
+  <!-- <div class="dataTables_paginate paging_simple_numbers" id="example23_paginate"><a class="paginate_button previous disabled" aria-controls="example23" data-dt-idx="0" tabindex="0" id="example23_previous">Previous</a><span><a class="paginate_button current" aria-controls="example23" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="example23" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="example23" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="example23" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="example23" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="example23" data-dt-idx="6" tabindex="0">6</a></span><a class="paginate_button next" aria-controls="example23" data-dt-idx="7" tabindex="0" id="example23_next">Next</a>
+  </div> -->
+  <app-bank-paginator [url]="url"  [totalPages]="vm.pageable.totalPages" [first]="vm.pageable.first" [number]="vm.pageable.number" [last]="vm.pageable.last" [orderBy]="orderBy" [sortBy]="sortBy"></app-bank-paginator>
 
-          </tbody>
-        </table>
-
-
-        <!-- <div *ngIf="pageable.content.length === 0" class="alert alert-success text-center">No existen Facturas del mes en
-          curso. </div> -->
-
-        <app-bank-paginator [url]="url"  [totalPages]="vm.pageable.totalPages" [first]="vm.pageable.first" [number]="vm.pageable.number" [last]="vm.pageable.last" [orderBy]="orderBy" [sortBy]="sortBy"></app-bank-paginator>
-            <!-- <app-shared-paginator [url]="url"  [totalPages]="vm.pageable.totalPages" [first]="vm.pageable.first" [number]="vm.pageable.number" [last]="vm.pageable.last" [orderBy]="orderBy" [sortBy]="sortBy"></app-shared-paginator> -->
-
-        </div>
-    </div>
-  </div>
+<!-- </div> -->
 </div>
+
+<app-modal-bank-trans></app-modal-bank-trans>
 
 
 

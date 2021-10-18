@@ -53,7 +53,7 @@ export class AddCustomerFormService {
       "",
       [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
     ],
-    storeNum: ["", Validators.required],
+    storeNum: [""],
     balance: [""],
     rfc: [
       "",
@@ -63,20 +63,17 @@ export class AddCustomerFormService {
     monthSales: [""],
     creditDays: [""],
     // productName: [''],
-    categoria: ["", Validators.required],
-    customerAddress: this.formBuilder.group({
-      id: [""],
-      street: ["", Validators.required],
-      number: ["", Validators.required],
-      code: ["", Validators.required],
-      phone: [""],
-      email: [""],
-      city: ["", Validators.required],
-      state: ["", Validators.required],
-      country: ["", Validators.required],
-      suburb: ["", Validators.required],
-      notes: [""],
-    }),
+    categoria: [""],
+    street: ["" ],
+    streetNumber: [""],
+    code: [""],
+    phone: [""],
+    email: [""],
+    municipio: [""],
+    estado: [""],
+    pais: [""],
+    colonia: [""],
+
   });
 
   cleanForm() {

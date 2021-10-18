@@ -12,7 +12,7 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         { titulo: "Listado de Tareas", url: "/dashboard/tareas" },
-        { titulo: "Lista de Categorias", url: "/dashboard/types" },
+        { titulo: "Categoria de Clientes", url: "/dashboard/types" },
         { titulo: "Categorias de Productos", url: "/dashboard/product-category-list" },
         { titulo: "Categorias de Gastos", url: "/dashboard/expenses-type" },
         // { titulo: "Lista de Usuarios Registrados", url: "/usuarios-registrados" },
@@ -109,6 +109,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Ventas", url: "/reports/sales" },
         { titulo: "Compras", url: "/reports/purchase" },
+        { titulo: "Estados de Resultados", url: "/reports/income-statements" },
       ],
     },
   ];

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BankComponent } from './bank.component';
 import { BankAccountsComponent } from './bank-accounts/bank-accounts.component';
 import { SharedModule } from '../shared/shared.module';
-import { BankCsvMovementsComponent } from './bank-csv-movements/bank-csv-movements.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,12 +16,20 @@ import { ChartsModule } from 'ng2-charts';
 import { BankMovCsvModalComponent } from '../modals/bank-mov-csv-modal/bank-mov-csv-modal.component';
 import { NgxProductModalService } from '../services/shared/ngx-product-modal.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { BankMovementsDetailsComponent } from './bank-movements-details/bank-movements-details.component';
-import { BankMovementsEditComponent } from './bank-movements-edit/bank-movements-edit.component';
+import { ModalBankTransComponent } from '../modals/modal-bank-trans/modal-bank-trans.component';
+import { FormBankTransComponent } from '../modals/modal-bank-trans/form-bank-trans/form-bank-trans.component';
 
 
 @NgModule({
-  declarations: [BankComponent, BankAccountsComponent, BankCsvMovementsComponent, BankTransactionsComponent, BankFilterComponent, BankPaginatorComponent,BankMovCsvModalComponent, BankMovementsDetailsComponent, BankMovementsEditComponent],
+  declarations: [
+    BankComponent,
+    BankAccountsComponent,
+    BankTransactionsComponent,
+    BankFilterComponent,
+    BankPaginatorComponent,
+    BankMovCsvModalComponent,
+    ModalBankTransComponent,
+  FormBankTransComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

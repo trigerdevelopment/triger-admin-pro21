@@ -57,4 +57,17 @@ export class ReportsService {
       );
   }
 
+  getIncomeStatements(query: string): Observable<any> {
+    // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+  this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${URL_SERVICIOS}/expense-type/get-expenses-by-month/${query}`, { headers: this.httpHeaders })
+      .pipe(
+     catchError(err =>{
+       console.error(err);
+      this.alertService.error('mensaje de error enviado desde el Servidor', `${err.error.message}`);
+       return throwError(err)
+     })
+      );
+  }
+
 }

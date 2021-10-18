@@ -23,6 +23,7 @@
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.1.2",
     "chart.js": "^2.9.4",
+    "datejs": "^1.0.0-rc3",
     "jw-angular-pagination": "^1.2.0",
     "jw-paginate": "^1.0.4",
     "ng-pick-datetime": "^7.0.0",

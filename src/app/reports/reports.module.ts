@@ -9,10 +9,11 @@ import { FilterReportComponent } from './filter-report/filter-report.component';
 import { FormsModule } from '@angular/forms';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { PurchaseFilterReportComponent } from './purchase-filter-report/purchase-filter-report.component';
+import { IncomeStatementsComponent } from './income-statements/income-statements.component';
 
 
 @NgModule({
-  declarations: [ReportsComponent, SalesComponent, FilterReportComponent, PurchaseComponent, PurchaseFilterReportComponent],
+  declarations: [ReportsComponent, SalesComponent, FilterReportComponent, PurchaseComponent, PurchaseFilterReportComponent, IncomeStatementsComponent],
   imports: [
     CommonModule,
     FormsModule,
