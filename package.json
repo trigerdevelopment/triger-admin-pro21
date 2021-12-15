@@ -3,17 +3,22 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start" : "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build — prod"
+
   },
+  "engines": { "node": "12.16.1", "npm": "6.13.4"},
   "private": true,
   "dependencies": {
     "@angular/animations": "^9.1.12",
     "@angular/common": "~9.0.3",
     "@angular/compiler": "~9.0.3",
+    "@angular/cli": "~9.0.4",
+    "@angular/compiler-cli": "~9.0.3",
     "@angular/core": "~9.0.3",
     "@angular/forms": "~9.0.3",
     "@angular/platform-browser": "~9.0.3",
@@ -24,7 +29,6 @@
     "@ngrx/store-devtools": "^10.1.2",
     "chart.js": "^2.9.4",
     "datejs": "^1.0.0-rc3",
-    "express": "^4.17.1",
     "jw-angular-pagination": "^1.2.0",
     "jw-paginate": "^1.0.4",
     "ng-pick-datetime": "^7.0.0",
@@ -38,10 +42,10 @@
     "ngx-mask": "^10.0.1",
     "ngx-pagination": "^5.0.0",
     "ngx-toastr": "^13.2.0",
-    "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "typescript": "~3.7.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.2",
