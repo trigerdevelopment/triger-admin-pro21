@@ -71,7 +71,7 @@ export class UploadService {
     formdata.append("file", file);
     const req = new HttpRequest(
       "POST",
-      `${URL_SERVICIOS}/bank/upload-service`,
+      `${URL_SERVICIOS}/excel/upload-bank-movements`,
       formdata,
       {
         headers: this.httpHeaders,
@@ -209,6 +209,30 @@ export class UploadService {
       })
     );
   }
+
+/* Carga el Archivo de Datos: Clientes, Proveedores, Productos etc., El nombre del Archivo: "Archivo de Admin-pro"*/
+
+uploadDataFile(file: File): Observable<HttpEvent<{}>> {
+  console.log('file', file);
+  const formdata: FormData = new FormData();
+  this.httpHeaders = new HttpHeaders({ Accept: "application/json" });
+  formdata.append("file", file);
+  const req = new HttpRequest(
+    "POST",
+    `${URL_SERVICIOS}/excel/upload-file`,
+    formdata,
+    {
+      headers: this.httpHeaders,
+      reportProgress: true,
+      responseType: "text"
+    }
+  );
+  return this.http.request(req).pipe(
+    tap(() => {
+      this.refreshBankFiles.next()
+    })
+  );
+}
 
   uploadSupplierXMLFile(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();

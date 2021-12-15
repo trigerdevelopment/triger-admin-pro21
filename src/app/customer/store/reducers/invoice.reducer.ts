@@ -1,5 +1,5 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { Customer, Filter, Invoice, Pageable } from 'src/app/models/customer';
+import { createReducer, on } from '@ngrx/store';
+import { Customer,  Invoice, Pageable } from 'src/app/models/customer';
 import * as InvoiceActions from '../actions/invoice.actions';
 
 export const invoiceFeatureKey = 'invoice';

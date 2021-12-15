@@ -23,10 +23,31 @@ export class ProductService {
 
   // }
 
-  getProductsByQuery(url: string): Observable<Pageable> {
+  getProductsByQuery(url: string): Observable<any> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Pageable>(URL_SERVICIOS+'/product/get-products-by-query?'+url, { headers: this.httpHeaders })
+    return this.http.get<any>(URL_SERVICIOS+'/product/get-products-by-query?'+url, { headers: this.httpHeaders })
+      .pipe(
+        tap(() => {
+          // this._refreshNeeded$.next;
+        })
+      )
+  }
+
+  getProducts(): Observable<any> {
+    // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+  this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any>(URL_SERVICIOS+'/product/get-all-products', { headers: this.httpHeaders })
+      .pipe(
+        tap(() => {
+          // this._refreshNeeded$.next;
+        })
+      )
+  }
+  getRawMaterialByQuery(url: string): Observable<any> {
+    // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
+  this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get<any>(URL_SERVICIOS+'/raw-material/get-raw-material-by-query?'+url, { headers: this.httpHeaders })
       .pipe(
         tap(() => {
           // this._refreshNeeded$.next;

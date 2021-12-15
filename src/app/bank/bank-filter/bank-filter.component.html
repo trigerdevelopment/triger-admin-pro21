@@ -110,7 +110,7 @@
 
   <label>
     Mostrar
-    <select name="myTable_length" [(ngModel)]="queryService.filter1.pageSize" (change)="setEventPageSize($event)" aria-controls="myTable">
+    <select name="myTable_length" [(ngModel)]="queryService.filter3.pageSize" (change)="setEventPageSize($event)" aria-controls="myTable">
       <option *ngFor="let c of pages" [value]="c.id" >{{c.name}}</option>
     </select>entradas </label>
   </div>

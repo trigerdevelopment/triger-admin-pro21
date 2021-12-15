@@ -21,7 +21,7 @@ export class InventoryService {
 
   getRawMaterial(query: string): Observable<any> {
     this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.get<any>(URL_SERVICIOS+'/wharehouse/get-raw-material-inventory'+`${query}`, { headers: this.httpHeaders })
+      return this.http.get<any>(URL_SERVICIOS+'/raw-material/get-raw-material-by-query'+`${query}`, { headers: this.httpHeaders })
         .pipe(
           catchError(err =>{
             console.error(err);
@@ -35,7 +35,22 @@ export class InventoryService {
     }
   getInventory(query: string): Observable<any> {
     this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.get<any>(URL_SERVICIOS+'/wharehouse/get-inventory'+`${query}`, { headers: this.httpHeaders })
+      return this.http.get<any>(URL_SERVICIOS+'/inventory/products'+`${query}`, { headers: this.httpHeaders })
+        .pipe(
+          catchError(err =>{
+            console.error(err);
+          console.log('ERRORRZZOTE');
+
+            this.alertService.error('mensaje de error enviado desde el Servidor', `${err.error.message}`);
+
+            return throwError(err)
+          })
+        )
+    }
+
+    getRawMaterialInventory(query: string): Observable<any> {
+    this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.get<any>(URL_SERVICIOS+'/inventory/raw-materials'+`${query}`, { headers: this.httpHeaders })
         .pipe(
           catchError(err =>{
             console.error(err);

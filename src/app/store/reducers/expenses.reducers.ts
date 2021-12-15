@@ -20,9 +20,9 @@ export const expensesReducer = createReducer(
     query: action.query
   })),
 
-  on(ExpensesActions.loadExpensesByMonthSuccess, (state, action) =>({
-    ...state,
-    data: action.data
-  })),
+  // on(ExpensesActions.loadExpensesByMonthSuccess, (state, action) =>({
+  //   ...state,
+  //   data: action.data
+  // })),
 
   );

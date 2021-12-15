@@ -126,7 +126,7 @@ selectCode(event){
   const resultado = this.products[event.target.selectedIndex];
   console.log('RESULTADO ', resultado);
   this.form.get('code').setValue(resultado.code);
-  this.form.get('product').setValue(resultado.productName);
+  this.form.get('product').setValue(resultado.name);
 
 }
 

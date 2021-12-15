@@ -32,7 +32,7 @@ export class SalesComponent implements OnInit {
       })
 
       this.store.pipe(select(ExpensesSelector.selectorExpensesState)).subscribe(res => {
-        if(res.data){
+        if(res){
           this.totalCosts = res.data;
         }
 

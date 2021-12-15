@@ -1,0 +1,164 @@
+
+  <div class="mt-5" >
+
+
+
+
+
+  <form [formGroup]="whareForm.form">
+
+       <!-- <div class="row"> -->
+        <!-- <div class="form-check">
+          <input class="form-check-input" (click)="isEntrance($event)" formControlName="type" type="radio" name="type" id="exampleRadios1" value="" [checked]="true">
+          <label class="form-check-label" for="exampleRadios1">
+            Entrada
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="type" (click)="isEntrance($event)" name="type" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Salida
+          </label>
+        </div> -->
+      <!-- </div> -->
+
+
+    <div class="row">
+
+
+
+      <div class="col-md-6 ml-2">
+
+      <div class="d-flex align-items-baseline">
+
+        <div class="form-group">
+          <label for="product">Selecccione un Producto</label>
+
+            <select class="form-control form-control-sm" id="productName" formControlName="product"
+            placeholder="Seleccionar Producto" name="descripton" (change)="whareForm.selectedCustomer($event)">
+            <!-- <option>Seleccione un Cliente</option> -->
+            <option *ngFor="let material of whareForm.materials" [value]="material.name">{{
+              material.code + ' | ' + material.name
+            }}</option>
+          </select>
+
+          <!-- <small id="valid1" *ngIf="!_form.form.controls['customer'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+
+        </div>
+        <div class="form-group">
+
+        </div>
+      </div>
+
+        <div class="form-group">
+
+          <label for="code">Codigo</label>
+          <input type="text" formControlName="code" class="form-control form-control-sm" id="code"
+            aria-describedby="emailHelp" placeholder="Condiciones de Pago" />
+          <!-- <small id="valid1" *ngIf="!_form.form.controls['condicionesDePago'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+        </div>
+
+        <div class="form-group">
+
+          <label for="unitCost">Costo Unitario</label>
+          <input type="text" formControlName="unitCost" class="form-control form-control-sm" id="unitCost"
+            aria-describedby="emailHelp" placeholder="Costo Unitario" />
+          <!-- <small id="valid1" *ngIf="!_form.form.controls['folio'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+        </div>
+
+      </div>
+
+
+
+      <div class="col-md-4">
+
+        <div class="form-group">
+          <label for="date">Fecha</label>
+          <input type="date" formControlName="fecha" class="form-control form-control-sm" id="initialDate"
+            aria-describedby="emailHelp" placeholder="Fecha" />
+          <!-- <small id="valid3" *ngIf="!_form.form.controls['fecha'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="quantity">Entrada</label>
+          <input type="text" formControlName="entrance" class="form-control form-control-sm" id="quantity"
+            aria-describedby="emailHelp" placeholder="Numero de Sucursal" (keyup)="whareForm.keyupEntrance()" />
+          <!-- <small id="valid5" *ngIf="!_form.form.controls['sucursal'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+        </div>
+        <div class="form-group">
+          <label for="quantity">Salida</label>
+          <input type="text" formControlName="issues" class="form-control form-control-sm" id="quantity"
+            aria-describedby="emailHelp" placeholder="Numero de Sucursal" (keyup)="whareForm.keyupIssues()" />
+          <!-- <small id="valid5" *ngIf="!_form.form.controls['sucursal'].valid" class="text-danger">*Este campo es
+            requerido.</small> -->
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-row">
+              <!-- <div class="round align-self-center round-danger"><i class="ti-wallet"></i></div> -->
+              <!-- <div [ngClass]="form.controls['type'].value == 'option2' ? 'round align-self-center round-danger' : 'round align-self-center round-success'"><i class="ti-wallet"></i></div> -->
+              <div class="m-l-10 align-self-center">
+                <h3 class="m-b-0">{{this.whareForm.total | currency}}</h3>
+                <h5 class="text-muted m-b-0">Total del Movimiento</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <app-chart-bar></app-chart-bar> -->
+      </div>
+
+      <label for="observ">Observaciones</label>
+      <input type="text" formControlName="observations" class="form-control" id="obsev" aria-describedby="emailHelp"
+        placeholder="Observaciones" />
+    </div>
+
+
+
+
+    <!--
+    <button class="btn btn-primary" (click)="_form.addMaterials()">
+      Agregar Materiales
+    </button> -->
+    <h3>Agrege los detalles de Movimientos al Inventario</h3>
+    <hr />
+
+    <!-- SE AGREGAN LOS MATERIALES PARA LA PRODUCCION -->
+
+
+    <hr />
+    <button type="button" *ngIf="!whareForm.isEditable" class="btn btn-primary btn-lg btn-block" [disabled]="!whareForm.form.valid" type="submit"
+      (click)="whareForm.onSubmit()">
+      AGREGAR MOVIMIENTO
+      <!-- <mat-icon matSuffix>local_atm</mat-icon> -->
+    </button>
+    <button type="button" *ngIf="whareForm.isEditable" class="btn btn-info btn-lg btn-block" [disabled]="!whareForm.form.valid" type="submit"
+      (click)="whareForm.onSubmit()">
+      EDITAR MOVIMIENTO
+      <!-- <mat-icon matSuffix>local_atm</mat-icon> -->
+    </button>
+    <button type="button" class="btn btn-danger btn-lg btn-block" [disabled]="!whareForm.form.valid" type="submit"
+      (click)="whareForm.onCancel()">
+      CANCELAR
+      <!-- <mat-icon matSuffix>local_atm</mat-icon> -->
+    </button>
+  </form>
+  <hr>
+  <small>llene los datos para agregar un  movimiento al inventario sea una salida o entrada de productos, </small>
+</div>

@@ -60,8 +60,9 @@ export class AuthService {
 
   public postObject(createObj: any): Observable<JwtDTO> {
     console.log('USUARIO ',createObj);
-
-    return this.http.post<JwtDTO>(`${URL_SERVICIOS}/auth/login`, createObj)
+    this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<JwtDTO>(`${URL_SERVICIOS}/api/auth/login`, createObj,{ headers: this.httpHeaders })
+    // return this.http.post<JwtDTO>(`${URL_SERVICIOS}/login`, createObj,{ headers: this.httpHeaders })
       .pipe(
       //   tap(() => {
       //   this._refreshNeeded$.next;

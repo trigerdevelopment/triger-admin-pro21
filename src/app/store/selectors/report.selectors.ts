@@ -14,6 +14,10 @@ export interface ReportPurchaseSupport {
   purchasedata: any[],
 
 }
+export interface ExpensesSupport {
+  expenses: any[],
+
+}
 
 export const selectInvoiceSupportModel = createSelector(
   selectorReportState,
@@ -32,6 +36,17 @@ export const selectPurchaseSupportModel = createSelector(
     return {
       // invoices: state.invoices,
       purchasedata: state.data,
+
+    };
+  }
+);
+
+export const selectExpensesSupportModel = createSelector(
+  selectorReportState,
+  (state: fromReportReducer.ReportState): ExpensesSupport => {
+    return {
+      // invoices: state.invoices,
+      expenses: state.data,
 
     };
   }

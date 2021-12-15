@@ -18,7 +18,7 @@
           name="productName" (change)="selectCode($event)">
           <option>Default select</option>
           <option *ngFor="let product of products" [value]="product.id">{{
-            product.productName
+            product.name
           }}</option>
         </select>
           <!-- <select
@@ -210,7 +210,7 @@
 
     <!-- SE AGREGAN LOS MATERIALES PARA LA PRODUCCION -->
 
-    <div formArrayName="rawMaterials" >
+    <div formArrayName="itemRawMaterials" >
       <div *ngFor="let material of materials.controls; let i = index">
         <div [formGroupName]="i">
           <div class="row">
@@ -238,12 +238,12 @@
               <div class="input-group">
                   <div class="input-group-addon"><i class="ti-view-list"></i></div>
                   <select class="form-control"
-                  formControlName="rawmaterial"
+                  formControlName="rawMaterialName"
                   placeholder="Seleccionar Producto"
                   name="nameProduct"
 
                   (change)="selectedItem($event, _form.products, i)">
-                   <option  *ngFor="let product of rawMaterials" [value]="product.product">{{ product.product }}</option>
+                   <option  *ngFor="let product of rawMaterials" [value]="product.name">{{ product.name }}</option>
                 </select>
               </div>
 

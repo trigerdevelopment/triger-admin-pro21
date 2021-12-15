@@ -1,7 +1,22 @@
+<div class="col-lg-6 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex flex-row">
+        <div class="round align-self-center round-success"><i class="ti-wallet"></i></div>
+        <div class="m-l-10 align-self-center">
+          <h3 class="m-b-0">{{this.sum + this.sum2 | currency}}</h3>
+          <h5 class="text-muted m-b-0">Total de Inventarios</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="col-lg-6">
   <div class="card">
       <div class="card-body">
-          <h4 class="card-title">Basic Table</h4>
+          <h4 class="card-title">Inventario de Producto Terminado</h4>
           <h6 class="card-subtitle">Add class <code>.table</code></h6>
           <div class="table-responsive">
               <table class="table">
@@ -17,13 +32,43 @@
                   <tbody>
                       <tr *ngFor="let product of inventory">
                           <td>{{product.code}}</td>
-                          <td>{{product.product}}</td>
+                          <td>{{product.name}}</td>
                           <td>{{product.quantity}}</td>
                           <td>{{product.unitCost | currency}}</td>
+                          <td>{{product.quantity*product.unitCost | currency}}</td>
                           <td *ngIf="product.quantity>0"><h3><span [ngClass]="{'label label-danger': product.quantity == '0', 'label label-info' : product.unitCost > '0' }" class="label label-danger">{{product.quantity * product.unitCost | currency}}</span></h3></td>
                           <td *ngIf="product.quantity<=0"><h3><span class="label label-danger">Falta producto</span></h3></td>
                       </tr>
                       <td><h3>Total de Inventario</h3></td><td></td><td></td><td></td><td><h3>{{sum | currency}}</h3></td>
+                  </tbody>
+              </table>
+          </div>
+
+          <h4 class="card-title">Inventario de Materias Primas</h4>
+          <h6 class="card-subtitle">Add class <code>.table</code></h6>
+
+          <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th style="width:25%;">Codigo de Producto</th>
+                          <th  style="width:400px;">Producto</th>
+                          <th style="width:3%;">Cantidad</th>
+                          <th>Costo Unitario</th>
+                          <th>Costo Total</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let product of rawMaterials">
+                          <td>{{product.code}}</td>
+                          <td>{{product.name}}</td>
+                          <td>{{product.quantity}}</td>
+                          <td>{{product.unitCost | currency}}</td>
+                          <td>{{product.quantity*product.unitCost | currency}}</td>
+                          <td *ngIf="product.quantity>0"><h3><span [ngClass]="{'label label-danger': product.quantity == '0', 'label label-info' : product.unitCost > '0' }" class="label label-danger">{{product.quantity * product.unitCost | currency}}</span></h3></td>
+                          <td *ngIf="product.quantity<=0"><h3><span class="label label-danger">Falta producto</span></h3></td>
+                      </tr>
+                      <td><h3>Total de Inventario</h3></td><td></td><td></td><td></td><td><h3>{{sum2 | currency}}</h3></td>
                   </tbody>
               </table>
           </div>

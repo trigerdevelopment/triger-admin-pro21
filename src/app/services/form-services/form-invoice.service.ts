@@ -45,19 +45,7 @@ export class FormInvoiceService {
     private invoiceService: InvoiceService
   ) // private _productionservice: ProduccionService
   {
-    // this.getAllProducts();
-    // this.store
-    //   .pipe(select(ProductsSelector.selectProductSupportModel))
-    //   .subscribe((res) => {
-    //     this.products = res.pageable.content;
-    //     console.log("PRODUCTS ", this.products);
-    //   });
 
-    // this.store
-    //   .pipe(select(CustomerSelector.selectCustomerSupportModel))
-    //   .subscribe((res) => {
-    //     this.customers = res.customers;
-    //   });
 
     this.addMaterials();
     this.cleanForm();

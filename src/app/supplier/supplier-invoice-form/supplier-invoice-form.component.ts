@@ -26,7 +26,6 @@ export class SupplierInvoiceFormComponent implements OnInit {
       private invoiceService: InvoiceService,
       public formBuilder: FormBuilder,
       private productService: ProductService,
-      private customerService: CustomerService,
       private supplierService: SupplierService,
   ) { }
 
@@ -52,8 +51,8 @@ export class SupplierInvoiceFormComponent implements OnInit {
       invoiceItems: this.formBuilder.array([]),
     });
 
-    this.productService.getProductsByQuery('').subscribe(res => {
-      this.products = res.content;
+    this.productService.getRawMaterialByQuery('').subscribe(res => {
+      this.products = res;
     })
 
     this.supplierService.getAllSupplierByQuery('').subscribe(res => {
@@ -88,8 +87,11 @@ export class SupplierInvoiceFormComponent implements OnInit {
     console.log('EVENT ', event.target.value);
 
 
+
     this.products[event.target.selectedIndex].code
-    this.resultado = this.products[event.target.selectedIndex];
+    this.resultado = this.products[event.target.selectedIndex-1];
+    console.log('RESULTADO ', this.resultado);
+
 
     var arrayControl = this.form.get("invoiceItems") as FormArray;
 
@@ -101,7 +103,7 @@ export class SupplierInvoiceFormComponent implements OnInit {
       arrayControl.controls[id].get("unidad").setValue("pza");
       arrayControl.controls[id]
         .get("valorUnitario")
-        .setValue(this.resultado.unitPrice);
+        .setValue(this.resultado.unitCost);
       arrayControl.controls[id]
         .get("importe")
         .setValue(
@@ -115,6 +117,9 @@ export class SupplierInvoiceFormComponent implements OnInit {
     }
 
     this.itemsCalculation();
+
+    console.log('FORM ', this.form);
+
   }
 
   get materials(): FormArray {
@@ -171,6 +176,8 @@ export class SupplierInvoiceFormComponent implements OnInit {
     let myDate2 = this.getDate(this.form.get("fechaPago").value);
     this.form.get("fechaPago").setValue(myDate2);
     let resource = JSON.stringify(this.form.value);
+    console.log('INVOICE ', resource);
+
     this.invoiceService.addSuppilerInvoice(resource).subscribe((res) => {
       console.log("production ", res);
       this.cleanForm();

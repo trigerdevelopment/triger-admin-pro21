@@ -19,6 +19,7 @@ import { ProductCategoryComponent } from './product-category/product-category.co
 import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
 import { ExpenseTypeComponent } from './expense-type/expense-type.component';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list/expense-type-list.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
 
 
 
@@ -38,6 +39,7 @@ import { ExpenseTypeListComponent } from './expense-type/expense-type-list/expen
     ProductCategoryListComponent,
     ExpenseTypeComponent,
     ExpenseTypeListComponent,
+    UploadFilesComponent,
   ],
   imports: [
     CommonModule,

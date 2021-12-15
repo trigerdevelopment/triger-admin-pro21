@@ -51,7 +51,7 @@ export class AddCustomerFormService {
     id: [""],
     company: [
       "",
-      [Validators.required, Validators.minLength(3), Validators.maxLength(50)],
+      [Validators.required, Validators.minLength(3), Validators.maxLength(150)],
     ],
     storeNum: [""],
     balance: [""],

@@ -1,0 +1,146 @@
+
+
+<div class="card">
+  <div class="card-body" *ngIf="vm$ |async as vm">
+
+    <div class="table-responsive">
+      <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+
+
+        <!-- <app-filter [basecontroller]="basecontroller"></app-filter> -->
+        <app-movement-whare-house-filter [basecontroller]="basecontroller"></app-movement-whare-house-filter>
+
+     <div class="dataTables_length ml-2" id="myTable_length">
+        </div>
+        <div id="myTable_filter" class="dataTables_filter">
+          <button type="button" data-toggle="tooltip" data-placement="top" (click)="mostrarMultipleModal()" title
+            data-original-title="agregar multiple-facutras" class="btn btn-warning btn-circle btn-sm"><i
+              class="fa fa-plus"></i>
+          </button>
+          <button type="button" data-toggle="tooltip" data-placement="top" (click)="showFormModal()" title
+            data-original-title="agregar Factura" class="btn btn-info btn-sm ml-2">
+            <i class="fa fa-plus"> Agregar Factura</i>
+          </button>
+
+          <button class="btn btn-primary btn-sm ml-2" >Pagar Factura</button>
+
+        </div>
+
+
+
+          <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
+          aria-describedby="myTable_info">
+          <thead>
+            <!-- <app-filter-order-by></app-filter-order-by> -->
+            <tr role="row">
+              <th class="sorting_asc" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">#</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fecha')"
+                >Fecha</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fechaPago')"
+                >Batch</th>
+              <!-- <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Office: "
+                style="width:2%;">#</th> -->
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Age: activate to sort column ascending" (click)="functionSortBy('folio')"
+                style="width: 2%;">Codigo</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('company')"
+                style="width:30%;">Producto</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('company')"
+                style="width:30%;">Observaciones</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" (click)="functionSortBy('sucursal')"
+                style="width:20%;">Entrada</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Salida</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">C.Unitario</th>
+              <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" (click)="functionSortBy('total')"
+                style="width:5%;">Total</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Pago</th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">Acciones</th>
+
+              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
+              </th>
+              <th class="form-group" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Position: activate to sort column ascending" (click)="functionSortBy('fecha')"
+                style="width:1%;">
+              </th>
+            </tr>
+
+              <th class="" tabindex="0" aria-controls="myTable" aria-sort="ascending"
+                aria-label="Name: activate to sort column descending" style="width:2%; height:auto;">
+              </th>
+              <th tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 5%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Start date: activate to sort column ascending" style="width:30%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;">
+              </th>
+
+              <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="2"
+                aria-label="Salary: activate to sort column ascending" style="width:5%;"></th>
+
+
+          </thead>
+
+          <tbody>
+            <hr>
+            <tr role="row" class="odd" *ngFor="let inv of vm.pageable.content">
+              <td>{{inv.id}}</td>
+              <td>{{inv.fecha|date:'dd/MM/yyyy'}}</td>
+              <td>{{inv.batch}}</td>
+              <td>{{inv.code}}</td>
+              <td>{{inv.product}}</td>
+              <td>{{inv.observations}}</td>
+              <td>{{inv.entrance}}</td>
+              <td>{{inv.issues}}</td>
+              <td>{{inv.unitCost|currency}}</td>
+              <td>{{inv.totalCost|currency}}</td>
+              <!-- <td>{{inv.nombreArchivo}}</td> -->
+              <td><button class="btn btn-primary btn-sm" (click)="edit(inv)">Editar</button></td>
+              <td><button class="btn btn-danger btn-sm" (click)="deleteInvoice(inv)">borrar</button></td>
+
+            </tr>
+
+          </tbody>
+        </table>
+
+
+        <!-- <div *ngIf="pageable.content.length === 0" class="alert alert-success text-center">No existen Facturas del mes en
+          curso. </div> -->
+
+        <app-whare-house-paginator [url]="url"  [totalPages]="vm.pageable.totalPages" [first]="vm.pageable.first" [number]="vm.pageable.number" [last]="vm.pageable.last" [orderBy]="orderBy" [sortBy]="sortBy"></app-whare-house-paginator>
+            <!-- <app-shared-paginator [url]="url"  [totalPages]="vm.pageable.totalPages" [first]="vm.pageable.first" [number]="vm.pageable.number" [last]="vm.pageable.last" [orderBy]="orderBy" [sortBy]="sortBy"></app-shared-paginator> -->
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
+

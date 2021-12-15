@@ -38,7 +38,7 @@ export class CustomerService {
     this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
     formdata.append('file', fileXml);
     console.log('FORM DATA ', formdata);
-    const req = new HttpRequest('POST', 'http://localhost:8080/api/invoice/customer-xml-file', fileXml, {
+    const req = new HttpRequest('POST',`${URL_SERVICIOS}/invoice/customer-xml-file`, fileXml, {
       headers: this.httpHeaders,
       reportProgress: true,
       // responseType: 'text'
@@ -157,7 +157,7 @@ export class CustomerService {
   getAllCustomerByQuery(url: string): Observable<Pageable> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Pageable>(environment.baseUrl+'/customer/customer-by-query?'+url, { headers: this.httpHeaders })
+    return this.http.get<Pageable>(URL_SERVICIOS+'/customer/customer-by-query?'+url, { headers: this.httpHeaders })
       .pipe(
         tap(() => {
           // this._refreshNeeded$.next;

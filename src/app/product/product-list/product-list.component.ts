@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit {
     this.sortBy = sortBy;
 
     this.query = this.queryService.createFilterUrl(
-      { code: '', productName: '', category: '', subCategory: '', unitCost: '', unitPrice: '', sortBy:this.sortBy, orderBy:this.orderBy })
+      { code: '', product: '', category: '', subCategory: '', unitCost: '', unitPrice: '', sortBy:this.sortBy, orderBy:this.orderBy })
     this.store.dispatch(loadProducts({ query: this.query }))
 
   }

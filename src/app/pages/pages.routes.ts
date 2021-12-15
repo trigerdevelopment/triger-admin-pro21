@@ -12,6 +12,7 @@ import { TypesListComponent } from './types/types-list/types-list.component';
 import { ProductCategoryListComponent } from './product-category/product-category-list/product-category-list.component';
 import { ExpenseTypeComponent } from './expense-type/expense-type.component';
 import { ExpenseTypeListComponent } from './expense-type/expense-type-list/expense-type-list.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
 
 
 const pagesRoutes: Routes = [
@@ -68,6 +69,13 @@ const pagesRoutes: Routes = [
     path: 'supplier',
     component: SupplierComponent,
     loadChildren: () => import('../supplier/supplier.module').then(m => m.SupplierModule),
+
+  },
+  {
+    path: 'upload-files',
+    component: UploadFilesComponent,
+    data: {titulo: 'Cargar Archivo de Datos',expectedRol: ['ROLE_ADMIN','ROLE_VENTAS','ROLE_ALMACEN','ROLE_PRODUCCION','ROLE_COMPARAS','ROLE_CONTA'] }
+
 
   },
 ];

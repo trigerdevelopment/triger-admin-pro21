@@ -51,7 +51,7 @@ export class ProductionFormComponent implements OnInit {
       quantity: ["", [Validators.required]],
       cost: [""],
       totalCost: [""],
-      rawMaterials: this.formBuilder.array([])
+      itemRawMaterials: this.formBuilder.array([])
     });
     this.addMaterials();
     this.getAllProducts();
@@ -63,7 +63,7 @@ export class ProductionFormComponent implements OnInit {
       id: [''],
       codeProduct: ['',Validators.required],
       quantity: ['',Validators.required],
-      rawmaterial:['',Validators.required],
+      rawMaterialName:['',Validators.required],
       unitCost: ['',Validators.required],
       total: ['']
     })
@@ -80,7 +80,7 @@ removeMaterials(id: number) {
 }
 
 get materials(): FormArray {
-  return this.form.get("rawMaterials") as FormArray;
+  return this.form.get("itemRawMaterials") as FormArray;
 }
 
 addMaterials() {
@@ -90,25 +90,19 @@ addMaterials() {
 getAllProducts() {
   this.productService.getProductsByQuery('').subscribe(res => {
     this.products = res.content;
-    console.log("PRODUCTS ", this.products);
 
   });
-  // this._inventoryService.getAllSupplierInvoiceByQuery('').subscribe(res => {
-  //   this.products = res;
-  //     console.log("PRODUCTS ", this.products);
-  // })
+
 }
 getRawMaterials() {
 
   this._inventoryService.getRawMaterial('').subscribe(res => {
     this.rawMaterials = res;
-      console.log("RAW MATERIALS ", this.rawMaterials);
   })
 }
 
 itemsCalculation() {
-  console.log('FORM ', this.form.controls.rawMaterials.value);
-  var arrayControl = this.form.get("rawMaterials") as FormArray;
+  var arrayControl = this.form.get("itemRawMaterials") as FormArray;
   if( this.form.get("quantity").value !== 0) {
 
     this.totalCosto = 0;
@@ -121,7 +115,6 @@ itemsCalculation() {
     this.form.get("totalCost").setValue(this.totalCosto);
     this.form.get("cost").setValue(this.totalCosto / this.totalpzas);
   } else {
-  console.log('AGREGE LA CANTIDAD A PRODUCIR');
 
   }
 }
@@ -129,42 +122,39 @@ itemsCalculation() {
 
 selectCode(event){
 
-  // this.getAllProducts();
-  console.log('SELECT CODE ', event.target.selectedIndex);
-  // const resultado = this.products.find( res => res.id === event.target.selectedIndex);
+  // console.log('SELECT CODE ', event.target.selectedIndex);
   const resultado = this.products[event.target.selectedIndex-1];
   console.log('RESULTADO ', resultado);
-  this.form.get('code').setValue(resultado.code);
-  this.form.get('product').setValue(resultado.productName);
-  console.log('FORM ', this.form);
 
+  this.form.get('code').setValue(resultado.code);
+  this.form.get('product').setValue(resultado.name);
 
 }
 
 selectedItem(event, data, id) {
 
-  console.log('VALOR DE ID ', id);
-  console.log('EVENT ', data);
-  console.log('EVENT TARGET ', event.target);
-  console.log('EVENT TARGET VALUE ', event.target.value);
-  console.log('EVENT SRCELEMENT SELECTED INDEX ', event.srcElement.selectedIndex);
-  console.log('EVENT TARGET SELECTED INDEX ', event.target.selectedIndex);
+  // console.log('VALOR DE ID ', id);
+  // console.log('EVENT ', data);
+  // console.log('EVENT TARGET ', event.target);
+  // console.log('EVENT TARGET VALUE ', event.target.value);
+  // console.log('EVENT SRCELEMENT SELECTED INDEX ', event.srcElement.selectedIndex);
+  // console.log('EVENT TARGET SELECTED INDEX ', event.target.selectedIndex);
   var cant = 10;
   // const resultado = this.products.find( res => res[event.target.selectedIndex] === event.target.selectedIndex);
-  console.log('RESULTADO ', this.rawMaterials[event.target.selectedIndex]);
+  // console.log('RESULTADO ', this.rawMaterials[event.target.selectedIndex]);
   // const resultado = this.products[event.target.selectedIndex];
   this.result = this.rawMaterials[event.target.selectedIndex];
 
 
   // var arrayControl = this.form.get("rawMaterials") as FormArray;
-   this.arrayControl = this.form.get("rawMaterials") as FormArray;
+   this.arrayControl = this.form.get("itemRawMaterials") as FormArray;
 
-    console.log('FORM CONTROL ', this.form.controls);
-    console.log('FORM RAWMATERIAL', this.form.controls.rawMaterials.value[id].rawmaterial);
-    console.log('FORM QUANTITY', this.form.controls.rawMaterials.value[id].quantity);
+    // console.log('FORM CONTROL ', this.form.controls);
+    // console.log('FORM RAWMATERIAL', this.form.controls.rawMaterials.value[id].rawmaterial);
+    // console.log('FORM QUANTITY', this.form.controls.rawMaterials.value[id].quantity);
 
-    console.log('FORM DATA ', data);
-    console.log('QUANTITY ', this.arrayControl.controls[id].value.quantity);
+    // console.log('FORM DATA ', data);
+    // console.log('QUANTITY ', this.arrayControl.controls[id].value.quantity);
 
     if(this.arrayControl.controls[id].value.quantity > 0) {
       console.log('FORM ARRAY ', this.arrayControl.controls[id].value.rawmaterial);
@@ -184,12 +174,13 @@ selectedItem(event, data, id) {
   //  this.raw[id].costo = data.unitCost;
   //  this.raw[id].total = this.raw[id].quantity * this.raw[id].costo;
   //  arrayControl.controls[id].setValue(this.raw[id]);
+    console.log('FOMR ' ,this.form.value);
 
    this.itemsCalculation();
 }
 
 recalculateCost() {
-  var arrayControl = this.form.get("rawMaterials") as FormArray;
+  var arrayControl = this.form.get("itemRawMaterials") as FormArray;
   if (arrayControl.length > 0) {
     this.itemsCalculation();
   }
@@ -204,24 +195,12 @@ console.log('RESULT ', this.result);
 console.log('ARRAY CONTROL ', this.arrayControl);
 if(this.arrayControl){
   this.arrayControl.controls[id].get('unitCost').setValue(this.result.unitCost);
-  this.arrayControl.controls[id].get('codeProduct').setValue(this.result.code);
+  this.arrayControl.controls[id].get('codeProduct').setValue(this.result.codeProduct);
   this.arrayControl.controls[id].get('total').setValue(this.arrayControl.controls[id].value.quantity *
       this.arrayControl.controls[id].value.unitCost);
 }
 
   console.log('I ',id);
-  // var arrayControl = this.form.get("rawMaterials") as FormArray;
-  // if(arrayControl.controls[id].value.unitCost > 0 ) {
-
-  //   console.log('FORM ARRAY ', arrayControl.controls[id].value.rawmaterial);
-  //   arrayControl.controls[id].get('codeProduct').setValue(this.result.code);
-  //  arrayControl.controls[id].get('unitCost').setValue(this.result.unitCost);
-  //   arrayControl.controls[id].get('total').setValue(arrayControl.controls[id].value.quantity *
-  //     arrayControl.controls[id].value.unitCost);
-
-          // arrayControl.controls[id].get('total').setValue(arrayControl.controls[id].value.quantity *
-          //   arrayControl.controls[id].value.unitCost);
-  //       }
 
         this.itemsCalculation();
 }
@@ -287,7 +266,7 @@ cleanForm(){
   this.form.reset();
   var arrayControl = this.form.get("invoiceItems") as FormArray;
   for (var i = 0; i < this.arrayControl.length; i++) {
-    this.arrayControl.controls[i].get("rawmaterial").setValue("");
+    this.arrayControl.controls[i].get("rawMaterialName").setValue("");
     this.arrayControl.controls[i].get("codeProduct").setValue("");
     this.arrayControl.controls[i].get("quantity").setValue("");
     this.arrayControl.controls[i].get("total").setValue("");

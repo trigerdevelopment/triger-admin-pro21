@@ -108,7 +108,7 @@ export class FilterComponent implements OnInit {
     }
     this.query = this.queryService.createFilterUrl(
       {
-        code: '', productName: '', category: '', subCategory: '', unitCost: '', unitPrice: '',  pageNo: null, pageSize: '', sortBy: '', orderBy: true
+        code: '', product: '', category: '', subCategory: '', unitCost: '', unitPrice: '',  pageNo: null, pageSize: '', sortBy: '', orderBy: true
         // 'api/invoice/get-all-invoice/?'
            })
     this.dispatchAction();
@@ -119,7 +119,7 @@ export class FilterComponent implements OnInit {
 
     this.query = this.queryService.createFilterUrl(
       {
-        code: this.filter.code, productName: this.filter.productName, category: this.filter.category, subCategory: this.filter.subCategory, unitCost: this.filter.unitCost, unitPrice: this.filter.unitPrice, pageSize: this.filter.pageSize, orderBy: true,
+        code: this.filter.code, product: this.filter.productName, category: this.filter.category, subCategory: this.filter.subCategory, unitCost: this.filter.unitCost, unitPrice: this.filter.unitPrice, pageSize: this.filter.pageSize, orderBy: true,
         // 'api/invoice/get-all-invoice/?'
         })
    }

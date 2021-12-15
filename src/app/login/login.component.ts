@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.form = this.f.group({
-      nombreUsuario: [''],
+      username: [''],
       password: ['']
 
     });

@@ -1,16 +1,16 @@
-<p>sales works!</p>
+<p>Estados de Resultados anual</p>
 <!-- <app-filter-report></app-filter-report> -->
 
 
 
-<div class="card">
+<div class="card-body">
+<div class="card"  *ngIf="vm$ |async as vm">
   <!-- <div class="card-body" *ngIf="vm$ |async as vm"> -->
-  <div class="card-body">
 
-      <div class="table-responsive">
+      <div class="table-responsive" >
         <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
 
-          <app-filter-report [totalSales]=totalSales></app-filter-report>
+          <app-filter2 ></app-filter2>
 
           <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
           aria-describedby="myTable_info">
@@ -55,25 +55,25 @@
 
           <tbody>
             <hr>
-            <tr role="row" class="odd" *ngFor="let inv of customers">
+            <tr  *ngIf="sales" role="row" class="odd">
 
-              <td>{{inv.id | number}}</td>
-              <td>{{inv.expenseName}}</td>
-              <td>{{inv.january | currency}}</td>
-              <td>{{inv.february | currency}}</td>
-              <td>{{inv.march | currency}}</td>
-              <td>{{inv.april | currency}}</td>
-              <td>{{inv.may | currency}}</td>
-              <td>{{inv.june | currency}}</td>
-              <td>{{inv.july | currency}}</td>
-              <td>{{inv.august | currency}}</td>
-              <td>{{inv.september | currency}}</td>
-              <td>{{inv.october | currency}}</td>
-              <td>{{inv.november | currency}}</td>
-              <td>{{inv.december | currency}}</td>
+              <td></td>
+              <td>Ventas Totales</td>
+              <td>{{sales.january | currency}}</td>
+              <td>{{sales.february | currency}}</td>
+              <td>{{sales.march | currency}}</td>
+              <td>{{sales.april | currency}}</td>
+              <td>{{sales.may | currency}}</td>
+              <td>{{sales.june | currency}}</td>
+              <td>{{sales.july | currency}}</td>
+              <td>{{sales.august | currency}}</td>
+              <td>{{sales.september | currency}}</td>
+              <td>{{sales.october | currency}}</td>
+              <td>{{sales.november | currency}}</td>
+              <td>{{sales.december | currency}}</td>
 
             </tr>
-            <tr>
+            <!-- <tr>
               <td></td>
               <td><h3>Totales</h3></td>
               <td>
@@ -136,40 +136,92 @@
                   {{this.sumDic| currency}}
                 </h4>
               </td>
-            </tr>
-          <tr *ngIf="totalCosts">
+            </tr> -->
+          <tr *ngIf="costs">
               <td>Costo de venta</td>
               <td></td>
-              <td ><h4>{{totalCosts.january |currency}}</h4></td>
-              <td><h4>{{totalCosts.february |currency}}</h4></td>
-              <td><h4>{{totalCosts.march |currency}}</h4></td>
-              <td><h4>{{totalCosts.april |currency}}</h4></td>
-              <td><h4>{{totalCosts.may |currency}}</h4></td>
-              <td><h4>{{totalCosts.june |currency}}</h4></td>
-              <td><h4>{{totalCosts.july |currency}}</h4></td>
-              <td><h4>{{totalCosts.august |currency}}</h4></td>
-              <td><h4>{{totalCosts.september |currency}}</h4></td>
-              <td><h4>{{totalCosts.october |currency}}</h4></td>
-              <td><h4>{{totalCosts.november |currency}}</h4></td>
-              <td><h4>{{totalCosts.december |currency}}</h4></td>
+              <td ><h4 class="text-danger">{{costs.january |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.february |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.march |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.april |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.may |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.june |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.july |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.august |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.september |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.october |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.november |currency}}</h4></td>
+              <td><h4 class="text-danger">{{costs.december |currency}}</h4></td>
 
           </tr>
-          <tr>
+          <tr *ngIf="sales">
               <td>Utilidad Bruta</td>
               <td></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumJaun-totalCosts.january |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumFeb-totalCosts.february |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumMar-totalCosts.march |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumApr-totalCosts.april |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumMay-totalCosts.may |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumJun-totalCosts.june |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumJul-totalCosts.july |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumAug-totalCosts.august |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumSep-totalCosts.september |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumOct-totalCosts.october |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumNov-totalCosts.november |currency}}</h4></td>
-              <td *ngIf="totalCosts"><h4> {{this.sumDic-totalCosts.december |currency}}</h4></td>
-          </tr>
+              <td *ngIf="costs"><h4> {{sales.january-costs.january |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.february-costs.february |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.march -costs.march |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.april-costs.april |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.may-costs.may |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.june-costs.june |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.july-costs.july |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.august-costs.august |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.september-costs.september |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.october-costs.october |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.november-costs.november |currency}}</h4></td>
+              <td *ngIf="costs"><h4> {{sales.december-costs.december |currency}}</h4></td>
+            </tr>
+            <h3>Gastos</h3>
+            <tr  role="row" class="odd" *ngFor="let inv of vm.data">
+              <td></td>
+              <td>  {{inv.expenseName}}</td>
+              <td>  {{inv.january | currency}}</td>
+              <td>  {{inv.february | currency}}</td>
+              <td>  {{inv.march | currency}}</td>
+              <td>  {{inv.april | currency}}</td>
+              <td>  {{inv.may | currency}}</td>
+              <td>  {{inv.june | currency}}</td>
+              <td>  {{inv.july | currency}}</td>
+              <td>  {{inv.august | currency}}</td>
+              <td>  {{inv.september | currency}}</td>
+              <td>  {{inv.october | currency}}</td>
+              <td>  {{inv.november | currency}}</td>
+              <td>  {{inv.december | currency}}</td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td>Totales</td>
+              <td>{{sum1Jaun  | currency}}</td>
+              <td>{{sum1Feb  | currency}}</td>
+              <td>{{sum1Mar  | currency}}</td>
+              <td>{{sum1Apr  | currency}}</td>
+              <td>{{sum1May  | currency}}</td>
+              <td>{{sum1Jun  | currency}}</td>
+              <td>{{sum1Jul  | currency}}</td>
+              <td>{{sum1Aug  | currency}}</td>
+              <td>{{sum1Sep  | currency}}</td>
+              <td>{{sum1Oct  | currency}}</td>
+              <td>{{sum1Nov  | currency}}</td>
+              <td>{{sum1Dic  | currency}}</td>
+              <td></td>
+            </tr>
+            <tr *ngIf="costs">
+              <td></td>
+              <td>Utilidad Neta</td>
+              <td *ngIf="sales">{{sales.january-costs.january-sum1Jaun  | currency}}</td>
+              <td *ngIf="sales">{{sales.february-costs.february-sum1Feb  | currency}}</td>
+              <td *ngIf="sales">{{sales.march -costs.march-sum1Mar  | currency}}</td>
+              <td *ngIf="sales">{{sales.april-costs.april-sum1Apr  | currency}}</td>
+              <td *ngIf="sales">{{sales.may-costs.may-sum1May  | currency}}</td>
+              <td *ngIf="sales">{{sales.june-costs.june-sum1Jun  | currency}}</td>
+              <td *ngIf="sales">{{sales.july-costs.july-sum1Jul  | currency}}</td>
+              <td *ngIf="sales">{{sales.august-costs.august-sum1Aug  | currency}}</td>
+              <td *ngIf="sales">{{sales.september-costs.september -sum1Sep  | currency}}</td>
+              <td *ngIf="sales">{{sales.october-costs.october-sum1Oct  | currency}}</td>
+              <td *ngIf="sales">{{sales.november-costs.november-sum1Nov  | currency}}</td>
+              <td *ngIf="sales">{{sales.december-costs.december-sum1Dic  | currency}}</td>
+              <td></td>
+            </tr>
 
           </tbody>
         </table>

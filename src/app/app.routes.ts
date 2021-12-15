@@ -75,6 +75,12 @@ const appRoutes: Routes = [
     loadChildren: () => import('./inventory/inventory.module').then(m => m.InventoryModule),
 
   },
+   {
+    path: 'movement-whare-house',
+    component: ManufactureComponent,
+    loadChildren: () => import('./movement-whare-house/movement-whare-house.module').then(m => m.MovementWhareHouseModule),
+
+  },
 
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', component: PagenofoundComponent }

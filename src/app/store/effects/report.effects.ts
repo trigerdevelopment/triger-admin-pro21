@@ -22,6 +22,19 @@ export class ReportEffects {
       )
     );
   });
+
+  /*---- LA ACCION SE DISPARA DESDE "report.actions.ts" para obtener los gastos por mes  ----*/
+  getExpensesByMonth$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ReportActions.loadExpensesByMonth),
+      concatMap((action) =>
+        this.reportService.getExpenseByMonth(action.query).pipe(
+          map((pageable) => ReportActions.loadExpensesByMonthSuccess({ data: pageable })),
+          // catchError((error) => of(InvoiceActions.loadInvoicesFailure({ error })))
+        )
+      )
+    );
+  });
   getPurchaseByMonth$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ReportActions.loadPurchaseByMonth),

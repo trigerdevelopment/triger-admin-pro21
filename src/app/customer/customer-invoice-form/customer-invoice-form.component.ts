@@ -22,6 +22,9 @@ export class CustomerInvoiceFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
   totalCosto: number = 0;
   resultado: any;
+  arrayControl: FormArray;
+  selectProduct:string='';
+
 
   constructor
     (
@@ -87,33 +90,44 @@ export class CustomerInvoiceFormComponent implements OnInit, OnDestroy {
   selectedItem(event, id) {
 
     console.log('EVENT ', event.target.value);
+    console.log('EVENT id', id);
 
 
-    this.products[event.target.selectedIndex].code
-    this.resultado = this.products[event.target.selectedIndex];
+    // this.products[event.target.selectedIndex].code
+    // this.resultado = this.products[event.target.selectedIndex];
+     this.resultado = this.products.find( prod => prod.code === event.target.value );
 
-    var arrayControl = this.form.get("invoiceItems") as FormArray;
 
-    if (arrayControl.controls[id].value.cantidad > 0) {
-      arrayControl.controls[id]
+    console.log('ID ', event.target.selectedIndex);
+
+    console.log('PRODUCTS ', this.products);
+
+    console.log('resultado ', this.resultado);
+
+     this.arrayControl = this.form.get("invoiceItems") as FormArray;
+
+    if (this.arrayControl.controls[id].value.cantidad > 0) {
+      this.arrayControl.controls[id]
         .get("claveUnidad")
         .setValue(this.resultado.code);
 
-      arrayControl.controls[id].get("unidad").setValue("pza");
-      arrayControl.controls[id]
+      this.arrayControl.controls[id].get("unidad").setValue("pza");
+      this.arrayControl.controls[id].get("descripcion").setValue(this.resultado.name);
+      this.arrayControl.controls[id]
         .get("valorUnitario")
         .setValue(this.resultado.unitPrice);
-      arrayControl.controls[id]
+      this.arrayControl.controls[id]
         .get("importe")
         .setValue(
-          arrayControl.controls[id].value.cantidad *
-          arrayControl.controls[id].value.valorUnitario
+          this.arrayControl.controls[id].value.cantidad *
+          this.arrayControl.controls[id].value.valorUnitario
         );
-      arrayControl.controls[id].get("cantidad")
+      this.arrayControl.controls[id].get("cantidad")
 
     } else {
-      arrayControl.controls[id].get("invoiceItems").setValue("");
+      // arrayControl.controls[id].get("invoiceItems").setValue("");
     }
+    console.log('FORM ', this.form.value);
 
     this.itemsCalculation();
   }
@@ -154,13 +168,23 @@ export class CustomerInvoiceFormComponent implements OnInit, OnDestroy {
   }
 
   inputChange(event: any, id) {
-    var arrayControl = this.form.get("invoiceItems") as FormArray;
-    arrayControl.controls[id]
-      .get("importe")
-      .setValue(
-        arrayControl.controls[id].value.cantidad *
-        arrayControl.controls[id].value.valorUnitario
-      );
+    // var arrayControl = this.form.get("invoiceItems") as FormArray;
+    // arrayControl.controls[id]
+    //   .get("importe")
+    //   .setValue(
+    //     arrayControl.controls[id].value.cantidad *
+    //     arrayControl.controls[id].value.valorUnitario
+    //   );
+
+      if(this.arrayControl){
+        this.arrayControl.controls[id].get('valorUnitario').setValue(this.resultado.unitPrice);
+      this.arrayControl.controls[id].get("descripcion").setValue(this.resultado.name);
+        this.arrayControl.controls[id].get("unidad").setValue("pza");
+        this.arrayControl.controls[id].get('claveUnidad').setValue(this.resultado.code);
+        this.arrayControl.controls[id].get('importe').setValue(this.arrayControl.controls[id].value.cantidad *
+            this.arrayControl.controls[id].value.valorUnitario);
+      }
+
     this.itemsCalculation();
   }
 
@@ -195,6 +219,7 @@ export class CustomerInvoiceFormComponent implements OnInit, OnDestroy {
 
   cleanForm() {
     this.form.get("fecha").setValue("");
+    this.selectProduct='';
     this.form.reset();
     //  console.log('ARRAY LENGHT', this.materials.length);
     var arrayControl = this.form.get("invoiceItems") as FormArray;

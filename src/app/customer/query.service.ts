@@ -26,6 +26,19 @@ export class QueryService {
     'orderBy': true
 
   }
+  filter2: any = {
+    'initialDate': '',
+    'finalDate': '',
+    'product':'',
+    'code':'',
+    'batch': '',
+    'quantity': '',
+    'pageNo': 0,
+    'pageSize': '',
+    'sortBy': '',
+    'orderBy': true
+
+  }
   filter3: any = {
     'iniDate': '',
     'finalDate': '',
@@ -43,20 +56,21 @@ export class QueryService {
     'orderBy': true
 
   }
-
-  filter2: any = {
+  filter4: any = {
     'initialDate': '',
     'finalDate': '',
-    'product':'',
     'code':'',
     'batch': '',
-    'quantity': '',
+    'product': '',
+    'observations':'',
     'pageNo': 0,
     'pageSize': '',
     'sortBy': '',
     'orderBy': true
 
   }
+
+
 
 
   constructor() { }
@@ -240,7 +254,7 @@ export class QueryService {
 
 
   createFilterUrl(
-{ code, productName, category, subCategory, unitCost, unitPrice, iniDate = null, finalDate = '', iniFolio = '', finalFolio = '', company = '', sucursal = '', total = '', total2 = '', pageNo = null, pageSize = '', sortBy = '', orderBy = true }: { code?; productName?; category?; subCategory?; unitCost?; unitPrice?; iniDate?; finalDate?; iniFolio?; finalFolio?; company?: string; sucursal?: string; total?: string; total2?: string; pageNo?: number; pageSize?: string; sortBy?: string; orderBy?: boolean },
+{ code, batch, product, observations,category, subCategory, unitCost, unitPrice, iniDate = null, finalDate = '', iniFolio = '', finalFolio = '', company = '', sucursal = '', total = '', total2 = '', pageNo = null, pageSize = '', sortBy = '', orderBy = true }: { code?; batch?; product?; observations?;category?; subCategory?; unitCost?; unitPrice?; iniDate?; finalDate?; iniFolio?; finalFolio?; company?: string; sucursal?: string; total?: string; total2?: string; pageNo?: number; pageSize?: string; sortBy?: string; orderBy?: boolean },
   ): string {
     var prepend = '';
     //var query = this.baseUrl + 'products?';
@@ -250,8 +264,16 @@ export class QueryService {
       query = `${query}` + prepend + `code=${code}`;
       prepend = '&';
     }
-    if (productName) {
-      query = `${query}` + prepend + `productName=${productName}`;
+    if (batch) {
+      query = `${query}` + prepend + `batch=${batch}`;
+      prepend = '&';
+    }
+    if (product) {
+      query = `${query}` + prepend + `product=${product}`;
+      prepend = '&';
+    }
+    if (observations) {
+      query = `${query}` + prepend + `observations=${observations}`;
       prepend = '&';
     }
     if (category) {

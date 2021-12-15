@@ -37,6 +37,8 @@ import { ManufactureComponent } from './manufacture/manufacture.component';
 import { ReportPurchaseEffects } from './store/effects/purchase.report.effects';
 import { ExpensesEffects } from './store/effects/expenses.effects';
 import { ModalExpenseTypeComponent } from './modals/modal-expense-type/modal-expense-type.component';
+import { ModalBankMovExcelComponent } from './bank/modal-bank-mov-excel/modal-bank-mov-excel.component';
+import { UploadFilesModalComponent } from './modals/upload-files-modal/upload-files-modal.component';
 
 
 
@@ -51,6 +53,8 @@ import { ModalExpenseTypeComponent } from './modals/modal-expense-type/modal-exp
     SpinnerComponent,
     ManufactureComponent,
     ModalExpenseTypeComponent,
+    ModalBankMovExcelComponent,
+    UploadFilesModalComponent,
 
  ],
   imports: [
@@ -72,7 +76,7 @@ import { ModalExpenseTypeComponent } from './modals/modal-expense-type/modal-exp
         strictStateImmutability: true,
         strictActionImmutability: true,
       }}),
-    EffectsModule.forRoot([AuthEffects,SpinnerEffects, AlertEffects,RoutesEffects,ReportEffects,ExpensesEffects,ReportPurchaseEffects]),
+    EffectsModule.forRoot([AuthEffects,SpinnerEffects, AlertEffects,RoutesEffects,ReportEffects,ReportPurchaseEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 
 

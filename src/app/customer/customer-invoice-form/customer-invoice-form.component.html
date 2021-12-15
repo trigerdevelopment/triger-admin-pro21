@@ -187,7 +187,7 @@
                   <!-- <div class="form-group"> -->
                   <!-- <label for="exampleInputEmail1">Cantidad a Producir</label> -->
                   <input type="text" formControlName="cantidad" class="form-control form-control-sm" id="quantity2"
-                    aria-describedby="emailHelp" placeholder="Cantidad" (keyup)="inputChange($event, i)" />
+                    aria-describedby="emailHelp" placeholder="Cantidad"  (change)="inputChange($event, i)" (keyup)="inputChange($event, i)" />
                   <!-- <small id="quantity2" class="form-text text-muted">Cantidad Utilizada.</small> -->
                   <!-- </div> -->
                 </div>
@@ -205,18 +205,18 @@
                   <!-- <div class="form-group"> -->
                   <!-- <label for="exampleInputEmail1">Cantidad a Producir</label> -->
                   <input type="text" formControlName="claveUnidad" class="form-control form-control-sm" id="calveProdServ"
-                    aria-describedby="emailHelp" placeholder="Clave Unidad" (keyup)="inputChange($event, i)" readonly />
+                    aria-describedby="emailHelp" placeholder="Clave Unidad" readonly />
                   <!-- <small id="quantity2" class="form-text text-muted">Cantidad Utilizada.</small> -->
                   <!-- </div> -->
                 </div>
 
                 <div class="col-md-3 mt-1">
                   <!-- <div class="form-group"> -->
-                  <select class="form-control form-control-sm" formControlName="descripcion"
-                    placeholder="Seleccionar Producto" name="nameProduct"
+                  <select class="form-control form-control-sm" formControlName="claveProdServ"
+                    placeholder="Seleccionar Producto" name="claveProdServ"
                     (change)="selectedItem($event,i)">
                     <option>Seleccione un Producto</option>
-                    <option *ngFor="let product of products" [value]="product.productName">{{ product.productName }}
+                    <option *ngFor="let product of products" [value]="product.code">{{product.code}} | {{product.name}}
                     </option>
                   </select>
                   <!-- <small id="prodselect" class="form-text text-muted">Producto.</small> -->

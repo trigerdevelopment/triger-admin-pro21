@@ -15,6 +15,7 @@ export class SidebarService {
         { titulo: "Categoria de Clientes", url: "/dashboard/types" },
         { titulo: "Categorias de Productos", url: "/dashboard/product-category-list" },
         { titulo: "Categorias de Gastos", url: "/dashboard/expenses-type" },
+        { titulo: "Subir Archivo de Datos", url: "/dashboard/upload-files" },
         // { titulo: "Lista de Usuarios Registrados", url: "/usuarios-registrados" },
 
       ],
@@ -95,7 +96,9 @@ export class SidebarService {
       titulo: "Inventarios",
       icono: "mdi mdi-format-list-bulleted",
       submenu: [
-        { titulo: "Productos", url: "/product/list" },
+        { titulo: "Lista de Productos", url: "/product/list" },
+        { titulo: "Lista de Materias Primas", url: "/inventory/raw-materials" },
+        { titulo: "Movimientos al Inventario", url: "/movement-whare-house/list" },
         { titulo: "Inventarios", url: "/inventory/inventory-list" },
       ],
     },
@@ -108,6 +111,7 @@ export class SidebarService {
       icono: "mdi mdi-bank",
       submenu: [
         { titulo: "Ventas", url: "/reports/sales" },
+        { titulo: "Volumen de Ventas", url: "/reports/sales-volume" },
         { titulo: "Compras", url: "/reports/purchase" },
         { titulo: "Estados de Resultados", url: "/reports/income-statements" },
       ],

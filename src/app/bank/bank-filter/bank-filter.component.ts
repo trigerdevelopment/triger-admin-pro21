@@ -64,7 +64,7 @@ export class BankFilterComponent implements OnInit {
 
   setEventPageSize(event) {
 
-    this.queryService.filter1.pageSize = event.target.value;
+    this.queryService.filter3.pageSize = event.target.value;
     this.setFilter();
 
     this.dispatchAction();
@@ -136,7 +136,7 @@ export class BankFilterComponent implements OnInit {
 
    dispatchAction() {
      console.log('DISPATCH');
-    this.store.dispatch(BankMovActions.loadBankTransactions());
+     this.store.dispatch(BankMovActions.loadBankTransactionsByQuery({ query: this.query}));
   }
 
    dispatchActionFilter() {
