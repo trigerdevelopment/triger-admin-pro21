@@ -50,7 +50,7 @@ export class InvoiceService {
   getAllInvoice(): Observable<Pageable> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<Pageable>(environment.baseUrl+'/invoice/', { headers: this.httpHeaders })
+    return this.http.get<Pageable>(URL_SERVICIOS+'/invoice/', { headers: this.httpHeaders })
       .pipe(
         tap(() => {
           // this._refreshNeeded$.next;
