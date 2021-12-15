@@ -4,9 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject, throwError } from 'rxjs';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { Invoice, Pageable } from '../models/customer';
-import { pageable } from './get-service/get-service.service';
+import {  Pageable } from '../models/customer';
 import { URL_SERVICIOS } from './settings/url';
 
 @Injectable({
@@ -87,7 +85,7 @@ export class InvoiceService {
   addInvoice(inv: string): Observable<any> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(environment.baseUrl+'/invoice/add',inv, { headers: this.httpHeaders })
+    return this.http.post<any>(URL_SERVICIOS+'/invoice/add',inv, { headers: this.httpHeaders })
       .pipe(
      catchError(err =>{
        console.error(err);
@@ -100,7 +98,7 @@ export class InvoiceService {
   addSuppilerInvoice(inv: string): Observable<any> {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(environment.baseUrl+'/invoice/supplier-add',inv, { headers: this.httpHeaders })
+    return this.http.post<any>(URL_SERVICIOS+'/invoice/supplier-add',inv, { headers: this.httpHeaders })
       .pipe(
      catchError(err =>{
        console.error(err);
@@ -114,7 +112,7 @@ export class InvoiceService {
     // this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
 
   this.httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<any>(environment.baseUrl+'/invoice/id?'+`id=${id}`, { headers: this.httpHeaders })
+    return this.http.get<any>(URL_SERVICIOS+'/invoice/id?'+`id=${id}`, { headers: this.httpHeaders })
       .pipe(
         catchError(err =>{
           console.error(err);
@@ -132,8 +130,8 @@ export class InvoiceService {
   // .set('Accept', 'application/json');
   console.log('BORRARA');
 
-    return this.http.delete(`${environment.deleteUrl}/${id}` );
-    // return this.http.delete<String>(environment.baseUrl+'/invoice/delete/'+ `${id}`, { headers: this.httpHeaders })
+    return this.http.delete(`${URL_SERVICIOS}/${id}` );
+    // return this.http.delete<String>(URL_SERVICIOS+'/invoice/delete/'+ `${id}`, { headers: this.httpHeaders })
       // .pipe(
       //   // tap(() => {
       //   //   // this._refreshNeeded$.next;
